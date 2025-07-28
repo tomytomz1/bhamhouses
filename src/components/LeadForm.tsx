@@ -23,9 +23,10 @@ type FormData = z.infer<typeof formSchema>;
 interface LeadFormProps {
   title?: string;
   subtitle?: string;
+  variant?: 'default' | 'inline';
 }
 
-export default function LeadForm({ title, subtitle }: LeadFormProps) {
+export default function LeadForm({ title, subtitle, variant = 'default' }: LeadFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -124,8 +125,10 @@ export default function LeadForm({ title, subtitle }: LeadFormProps) {
     );
   }
 
+  const containerClass = variant === 'inline' ? 'space-y-4' : 'space-y-6';
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className={containerClass}>
       {title && (
         <div className="text-center mb-6">
           <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
