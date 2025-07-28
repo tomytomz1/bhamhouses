@@ -6,12 +6,26 @@ import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
 import { Clock, DollarSign, MapPin, Handshake, Phone, Mail, ArrowRight } from 'lucide-react';
 import { CONTACT_INFO } from '@/utils/contactInfo';
+import Image from 'next/image';
 
 export default function HomePage() {
   return (
     <main className="bg-white">
       {/* Hero Section - Full Viewport Height */}
-      <section className="hero-section">
+      <section className="hero-section relative">
+        {/* Background Image with Frosted Effect */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/downtown-birmingham-mi-2025.jpg"
+            alt="Downtown Birmingham, MI"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Frosted Overlay */}
+          <div className="absolute inset-0 bg-white/80 backdrop-blur-sm"></div>
+        </div>
+        
         {/* Content Container */}
         <div className="relative z-10 w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-0 pb-8">
           <div className="w-full max-w-7xl mx-auto">
@@ -63,7 +77,7 @@ export default function HomePage() {
               </div>
 
               {/* Right Column - Form */}
-              <div className="hero-form bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-luxury border border-gray-200 p-4 sm:p-6 max-w-sm sm:max-w-md mx-auto lg:max-w-none">
+              <div className="hero-form bg-white/90 backdrop-blur-sm rounded-3xl shadow-luxury border border-gray-200 p-4 sm:p-6 max-w-sm sm:max-w-md mx-auto lg:max-w-none">
                 <div className="text-center mb-3 sm:mb-4">
                   <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Get Your Birmingham Cash Offer</h2>
                   <p className="text-xs sm:text-sm text-gray-600">Fill out the form below and we'll contact you within 24 hours with your fair cash offer.</p>
