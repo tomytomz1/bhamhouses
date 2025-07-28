@@ -3,6 +3,10 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import UTMTracker from '@/components/UTMTracker'
+import StickyCTA from '@/components/StickyCTA'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
+import ErrorBoundary from '@/components/ErrorBoundary'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -53,11 +57,16 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <Header />
-        <main>
-          {children}
-        </main>
-        <Footer />
+        <ErrorBoundary>
+          <GoogleAnalytics />
+          <UTMTracker />
+          <Header />
+          <main>
+            {children}
+          </main>
+          <Footer />
+          <StickyCTA />
+        </ErrorBoundary>
       </body>
     </html>
   )

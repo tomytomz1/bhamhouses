@@ -3,8 +3,9 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useState } from 'react';
-import { MapPin, Home, Wrench, Clock, User, Phone, Mail, Send, CheckCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { MapPin, Home, Wrench, Clock, User, Phone, Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { getStoredUTMParams } from '@/utils/utmTracking';
 
 const formSchema = z.object({
   address: z.string().min(1, 'Property address is required'),
@@ -27,6 +28,7 @@ interface LeadFormProps {
 export default function LeadForm({ title, subtitle }: LeadFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const {
     register,
@@ -39,19 +41,54 @@ export default function LeadForm({ title, subtitle }: LeadFormProps) {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
+    setError(null);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    console.log('Form submitted:', data);
-    setIsSubmitted(true);
-    setIsSubmitting(false);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      reset();
-    }, 3000);
+    try {
+      // Get UTM parameters
+      const utmParams = getStoredUTMParams();
+      
+      const response = await fetch('/api/submit-lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          propertyAddress: data.address,
+          neighborhood: data.neighborhood,
+          propertyType: data.propertyType,
+          propertyCondition: data.condition,
+          timeline: data.timeline,
+          fullName: data.name,
+          phone: data.phone,
+          email: data.email,
+          utmSource: utmParams.utm_source,
+          utmMedium: utmParams.utm_medium,
+          utmCampaign: utmParams.utm_campaign,
+          utmTerm: utmParams.utm_term,
+          utmContent: utmParams.utm_content,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit lead');
+      }
+
+      setIsSubmitted(true);
+      
+      // Reset form after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        reset();
+      }, 5000);
+
+    } catch (err) {
+      console.error('Lead submission error:', err);
+      setError(err instanceof Error ? err.message : 'Failed to submit lead. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const formatPhone = (value: string) => {
@@ -71,9 +108,18 @@ export default function LeadForm({ title, subtitle }: LeadFormProps) {
       <div className="text-center py-8">
         <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank You!</h3>
-        <p className="text-gray-700">
+        <p className="text-gray-700 mb-4">
           We've received your information and will contact you within 24 hours with your fair cash offer.
         </p>
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <p className="text-sm text-blue-800">
+            <strong>What happens next?</strong><br />
+            • We'll review your property details<br />
+            • Get a fair market analysis<br />
+            • Contact you within 24 hours<br />
+            • No obligation, no pressure
+          </p>
+        </div>
       </div>
     );
   }
@@ -84,6 +130,16 @@ export default function LeadForm({ title, subtitle }: LeadFormProps) {
         <div className="text-center mb-6">
           <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
           {subtitle && <p className="text-gray-600 text-sm">{subtitle}</p>}
+        </div>
+      )}
+
+      {error && (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start space-x-3">
+          <AlertCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+          <div>
+            <p className="text-sm font-medium text-red-800">Submission Error</p>
+            <p className="text-sm text-red-700 mt-1">{error}</p>
+          </div>
         </div>
       )}
 
