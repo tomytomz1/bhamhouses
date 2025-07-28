@@ -1,103 +1,195 @@
-import Image from "next/image";
+import LeadForm from '@/components/LeadForm';
+import BenefitsSection from '@/components/BenefitsSection';
+import ProcessSection from '@/components/ProcessSection';
+import NeighborhoodsGrid from '@/components/NeighborhoodsGrid';
+import Testimonials from '@/components/Testimonials';
+import FAQ from '@/components/FAQ';
+import { Clock, DollarSign, MapPin, Handshake, Phone, Mail, ArrowRight } from 'lucide-react';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-white">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 to-green-900/10"></div>
+        <div className="container-max section-padding relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                  Sell Your House Fast in{' '}
+                  <span className="text-gradient">Birmingham, MI</span>
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
+                  Birmingham, Michigan's dedicated cash home buyers. Get a fair cash offer in 24 hours, close in 7 days. No repairs, no fees, no commissions.
+                </p>
+              </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="flex items-center space-x-2 text-gray-700">
+                  <Clock className="w-5 h-5 text-blue-600" />
+                  <span className="text-sm font-medium">Close in 7 days</span>
+                </div>
+                <div className="flex items-center space-x-2 text-gray-700">
+                  <DollarSign className="w-5 h-5 text-green-600" />
+                  <span className="text-sm font-medium">No fees or commissions</span>
+                </div>
+                <div className="flex items-center space-x-2 text-gray-700">
+                  <MapPin className="w-5 h-5 text-orange-600" />
+                  <span className="text-sm font-medium">Serving all Birmingham neighborhoods</span>
+                </div>
+                <div className="flex items-center space-x-2 text-gray-700">
+                  <Handshake className="w-5 h-5 text-blue-600" />
+                  <span className="text-sm font-medium">Fair offers in 24 hours</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex items-center space-x-3 text-2xl font-bold text-blue-600">
+                  <Phone className="w-6 h-6" />
+                  <span>Call (248) XXX-XXXX</span>
+                </div>
+                <div className="text-gray-600">
+                  <div className="font-medium">Get Cash Offer Online</div>
+                  <div className="text-sm">Get Your Birmingham Cash Offer</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="card-luxury">
+              <div className="text-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Get Your Birmingham Cash Offer</h2>
+                <p className="text-gray-600">Fill out the form below and we'll contact you within 24 hours with your fair cash offer.</p>
+              </div>
+              <LeadForm />
+            </div>
+          </div>
         </div>
+      </section>
+
+      {/* Birmingham Specialization Section */}
+      <section className="section-padding bg-white">
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              Birmingham, MI's Only Dedicated Cash Home Buyer
+            </h2>
+            <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+              While other companies spread themselves thin across 50+ cities, we focus exclusively on Birmingham, Michigan. 
+              This specialization gives us deep local market knowledge and allows us to provide better service to Birmingham homeowners.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="card text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <MapPin className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Birmingham Specialists</h3>
+              <p className="text-gray-700">
+                We know every Birmingham neighborhood, from downtown condos to luxury family homes in Bloomfield Ridge.
+              </p>
+            </div>
+
+            <div className="card text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <DollarSign className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Fair Market Offers</h3>
+              <p className="text-gray-700">
+                Our offers are based on current Birmingham market values and recent sales in your specific neighborhood.
+              </p>
+            </div>
+
+            <div className="card text-center">
+              <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Clock className="w-8 h-8 text-orange-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Fast & Flexible</h3>
+              <p className="text-gray-700">
+                Close in 7 days or choose your timeline. We work around your schedule, not ours.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <BenefitsSection />
+
+      {/* Process Section */}
+      <ProcessSection />
+
+      {/* Birmingham Neighborhoods */}
+      <section className="section-padding bg-gradient-to-br from-gray-50 to-white">
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              We Serve All Birmingham, MI Neighborhoods
+            </h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              From downtown condos to luxury family homes, we buy properties in every Birmingham neighborhood. 
+              Click on any area to learn more about selling your house in that specific neighborhood.
+            </p>
+          </div>
+          <NeighborhoodsGrid />
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="section-padding bg-white">
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              What Birmingham Homeowners Say
+            </h2>
+            <p className="text-xl text-gray-700">
+              Don't just take our word for it. Here's what Birmingham property owners have to say about their experience.
+            </p>
+          </div>
+          <Testimonials />
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="section-padding bg-gradient-to-br from-white to-gray-50">
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-xl text-gray-700">
+              Get answers to the most common questions about selling your Birmingham home for cash.
+            </p>
+          </div>
+          <FAQ />
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="section-padding bg-blue-900">
+        <div className="container-max text-center">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Ready to Sell Your Birmingham Home?
+            </h2>
+            <p className="text-xl text-blue-100 mb-8">
+              Get your fair cash offer today. No obligation, no pressure, just a straightforward process.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="tel:248XXXXXXX" className="btn-secondary inline-flex items-center space-x-2">
+                <Phone className="w-5 h-5" />
+                <span>Call (248) XXX-XXXX</span>
+              </a>
+              <a href="/contact" className="btn-outline border-white text-white hover:bg-white hover:text-blue-900 inline-flex items-center space-x-2">
+                <Mail className="w-5 h-5" />
+                <span>Contact Us</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
   );
 }
