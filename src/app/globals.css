@@ -14,11 +14,18 @@
     -moz-osx-font-smoothing: grayscale;
     background-color: #ffffff;
     color: #1f2937;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.2;
+  }
+
+  /* Ensure proper viewport handling */
+  #__next {
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 }
 
@@ -75,6 +82,55 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Hero Section Specific Utilities */
+  .hero-full-height {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .hero-content-container {
+    @apply relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16;
+  }
+
+  .hero-grid-layout {
+    @apply grid lg:grid-cols-2 gap-8 lg:gap-12 items-center h-full;
+  }
+
+  /* Ensure hero section fits properly */
+  .hero-section {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow: hidden;
+  }
+
+  /* Responsive form sizing */
+  .hero-form {
+    max-height: 90vh;
+    max-height: 90dvh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  }
+
+  .hero-form::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .hero-form::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .hero-form::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 3px;
   }
 }
 
