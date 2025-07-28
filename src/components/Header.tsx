@@ -22,41 +22,41 @@ export default function Header() {
     <header className="bg-white shadow-soft sticky top-0 z-40">
       <div className="container-max">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <div className="flex items-center">
+          {/* Logo and Tagline */}
+          <div className="flex items-center space-x-4">
             <Link href="/" className="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
               BHAM Houses
             </Link>
-            <div className="ml-2 text-sm text-gray-600 hidden sm:block">
+            <div className="hidden lg:block text-sm text-gray-600 border-l border-gray-300 pl-4">
               Birmingham, MI Cash Buyers
             </div>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          {/* Desktop Navigation - Centered */}
+          <nav className="hidden lg:flex items-center space-x-6">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm"
               >
                 {item.name}
               </Link>
             ))}
           </nav>
 
-          {/* Contact Info */}
-          <div className="hidden md:flex items-center space-x-6">
+          {/* Contact Info and CTA */}
+          <div className="hidden lg:flex items-center space-x-4">
             <a
               href={`tel:${CONTACT_INFO.phoneRaw}`}
-              className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors"
+              className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors text-sm"
             >
               <Phone className="w-4 h-4" />
               <span>{CONTACT_INFO.phone}</span>
             </a>
             <Link
               href="/contact"
-              className="btn-primary text-sm"
+              className="btn-primary text-sm px-4 py-2"
             >
               Get Cash Offer
             </Link>

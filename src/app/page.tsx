@@ -9,12 +9,9 @@ import { CONTACT_INFO } from '@/utils/contactInfo';
 
 export default function HomePage() {
   return (
-    <main className="bg-gradient-to-br from-white via-gray-50 to-white">
+    <main className="bg-white">
       {/* Hero Section - Full Viewport Height */}
       <section className="hero-section">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 to-green-900/10"></div>
-        
         {/* Content Container */}
         <div className="relative z-10 w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
           <div className="w-full max-w-7xl mx-auto">
