@@ -98,4 +98,33 @@
   .shadow-luxury {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
+
+  /* Viewport Height Utilities */
+  .vh-screen {
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  }
+
+  .vh-screen-safe {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Hero Section Specific Utilities */
+  .hero-full-height {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .hero-content-container {
+    @apply relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16;
+  }
+
+  .hero-grid-layout {
+    @apply grid lg:grid-cols-2 gap-8 lg:gap-12 items-center h-full;
+  }
 }
