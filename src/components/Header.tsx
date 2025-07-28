@@ -21,7 +21,7 @@ export default function Header() {
   return (
     <header className="bg-white shadow-soft sticky top-0 z-40">
       <div className="container-max">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors">

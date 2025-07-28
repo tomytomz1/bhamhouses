@@ -66,7 +66,7 @@ export default function HomePage() {
               </div>
 
               {/* Right Column - Form */}
-              <div className="hero-form card-luxury max-w-sm sm:max-w-md mx-auto lg:max-w-none">
+              <div className="hero-form bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-luxury border border-gray-200 p-4 sm:p-6 max-w-sm sm:max-w-md mx-auto lg:max-w-none">
                 <div className="text-center mb-3 sm:mb-4">
                   <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Get Your Birmingham Cash Offer</h2>
                   <p className="text-xs sm:text-sm text-gray-600">Fill out the form below and we'll contact you within 24 hours with your fair cash offer.</p>

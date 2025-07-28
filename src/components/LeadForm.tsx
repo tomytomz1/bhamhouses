@@ -107,14 +107,14 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
 
   if (isSubmitted) {
     return (
-      <div className="text-center py-6 sm:py-8">
-        <CheckCircle className="w-12 h-12 sm:w-16 sm:h-16 text-green-600 mx-auto mb-3 sm:mb-4" />
-        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Thank You!</h3>
-        <p className="text-gray-700 mb-3 sm:mb-4 text-sm sm:text-base">
+      <div className="text-center py-4 sm:py-6">
+        <CheckCircle className="w-10 h-10 sm:w-12 sm:h-12 text-green-600 mx-auto mb-2 sm:mb-3" />
+        <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Thank You!</h3>
+        <p className="text-gray-700 mb-2 sm:mb-3 text-xs sm:text-sm">
           We've received your information and will contact you within 24 hours with your fair cash offer.
         </p>
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4">
-          <p className="text-xs sm:text-sm text-blue-800">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 sm:p-3">
+          <p className="text-xs text-blue-800">
             <strong>What happens next?</strong><br />
             • We'll review your property details<br />
             • Get a fair market analysis<br />
@@ -126,54 +126,54 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
     );
   }
 
-  const containerClass = variant === 'inline' ? 'space-y-3 sm:space-y-4' : 'space-y-4 sm:space-y-6';
+  const containerClass = variant === 'inline' ? 'space-y-2 sm:space-y-3' : 'space-y-3 sm:space-y-4';
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={containerClass}>
       {title && (
-        <div className="text-center mb-4 sm:mb-6">
-          <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">{title}</h3>
-          {subtitle && <p className="text-gray-600 text-xs sm:text-sm">{subtitle}</p>}
+        <div className="text-center mb-3 sm:mb-4">
+          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">{title}</h3>
+          {subtitle && <p className="text-gray-600 text-xs">{subtitle}</p>}
         </div>
       )}
 
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-3 sm:p-4 flex items-start space-x-2 sm:space-x-3">
-          <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-red-600 mt-0.5 flex-shrink-0" />
+        <div className="bg-red-50 border border-red-200 rounded-lg p-2 sm:p-3 flex items-start space-x-2">
+          <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4 text-red-600 mt-0.5 flex-shrink-0" />
           <div>
-            <p className="text-xs sm:text-sm font-medium text-red-800">Submission Error</p>
-            <p className="text-xs sm:text-sm text-red-700 mt-1">{error}</p>
+            <p className="text-xs font-medium text-red-800">Submission Error</p>
+            <p className="text-xs text-red-700 mt-1">{error}</p>
           </div>
         </div>
       )}
 
       {/* Property Information */}
-      <div className="space-y-3 sm:space-y-4">
+      <div className="space-y-2 sm:space-y-3">
         <div>
-          <label className="block text-xs sm:text-sm font-semibold text-gray-900 mb-1 sm:mb-2">
+          <label className="block text-xs font-semibold text-gray-900 mb-1">
             Property Address *
           </label>
           <div className="relative">
-            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
             <input
               {...register('address')}
               type="text"
               placeholder="Enter your Birmingham property address"
-              className="form-input pl-10 text-sm sm:text-base"
+              className="form-input pl-8 text-xs sm:text-sm"
             />
           </div>
           {errors.address && (
-            <p className="text-red-600 text-xs sm:text-sm mt-1">{errors.address.message}</p>
+            <p className="text-red-600 text-xs mt-1">{errors.address.message}</p>
           )}
         </div>
 
         <div>
-          <label className="block text-xs sm:text-sm font-semibold text-gray-900 mb-1 sm:mb-2">
+          <label className="block text-xs font-semibold text-gray-900 mb-1">
             Birmingham Neighborhood *
           </label>
           <div className="relative">
-            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
-            <select {...register('neighborhood')} className="form-select pl-10 text-sm sm:text-base">
+            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
+            <select {...register('neighborhood')} className="form-select pl-8 text-xs sm:text-sm">
               <option value="">Select your neighborhood</option>
               <option value="downtown">Downtown Birmingham</option>
               <option value="shain-park">Shain Park</option>
@@ -193,18 +193,18 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
             </select>
           </div>
           {errors.neighborhood && (
-            <p className="text-red-600 text-xs sm:text-sm mt-1">{errors.neighborhood.message}</p>
+            <p className="text-red-600 text-xs mt-1">{errors.neighborhood.message}</p>
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
           <div>
-            <label className="block text-xs sm:text-sm font-semibold text-gray-900 mb-1 sm:mb-2">
+            <label className="block text-xs font-semibold text-gray-900 mb-1">
               Property Type *
             </label>
             <div className="relative">
-              <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
-              <select {...register('propertyType')} className="form-select pl-10 text-sm sm:text-base">
+              <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
+              <select {...register('propertyType')} className="form-select pl-8 text-xs sm:text-sm">
                 <option value="">Select property type</option>
                 <option value="single-family">Single Family Home</option>
                 <option value="condo">Condo</option>
@@ -214,17 +214,17 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
               </select>
             </div>
             {errors.propertyType && (
-              <p className="text-red-600 text-xs sm:text-sm mt-1">{errors.propertyType.message}</p>
+              <p className="text-red-600 text-xs mt-1">{errors.propertyType.message}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-xs sm:text-sm font-semibold text-gray-900 mb-1 sm:mb-2">
+            <label className="block text-xs font-semibold text-gray-900 mb-1">
               Property Condition *
             </label>
             <div className="relative">
-              <Wrench className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
-              <select {...register('condition')} className="form-select pl-10 text-sm sm:text-base">
+              <Wrench className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
+              <select {...register('condition')} className="form-select pl-8 text-xs sm:text-sm">
                 <option value="">Select condition</option>
                 <option value="excellent">Excellent</option>
                 <option value="good">Good</option>
@@ -234,18 +234,18 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
               </select>
             </div>
             {errors.condition && (
-              <p className="text-red-600 text-xs sm:text-sm mt-1">{errors.condition.message}</p>
+              <p className="text-red-600 text-xs mt-1">{errors.condition.message}</p>
             )}
           </div>
         </div>
 
         <div>
-          <label className="block text-xs sm:text-sm font-semibold text-gray-900 mb-1 sm:mb-2">
+          <label className="block text-xs font-semibold text-gray-900 mb-1">
             Timeline *
           </label>
           <div className="relative">
-            <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
-            <select {...register('timeline')} className="form-select pl-10 text-sm sm:text-base">
+            <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
+            <select {...register('timeline')} className="form-select pl-8 text-xs sm:text-sm">
               <option value="">Select timeline</option>
               <option value="asap">ASAP</option>
               <option value="30-days">Within 30 days</option>
@@ -255,66 +255,66 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
             </select>
           </div>
           {errors.timeline && (
-            <p className="text-red-600 text-xs sm:text-sm mt-1">{errors.timeline.message}</p>
+            <p className="text-red-600 text-xs mt-1">{errors.timeline.message}</p>
           )}
         </div>
       </div>
 
       {/* Contact Information */}
-      <div className="space-y-3 sm:space-y-4">
+      <div className="space-y-2 sm:space-y-3">
         <div>
-          <label className="block text-xs sm:text-sm font-semibold text-gray-900 mb-1 sm:mb-2">
+          <label className="block text-xs font-semibold text-gray-900 mb-1">
             Full Name *
           </label>
           <div className="relative">
-            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
             <input
               {...register('name')}
               type="text"
               placeholder="Enter your full name"
-              className="form-input pl-10 text-sm sm:text-base"
+              className="form-input pl-8 text-xs sm:text-sm"
             />
           </div>
           {errors.name && (
-            <p className="text-red-600 text-xs sm:text-sm mt-1">{errors.name.message}</p>
+            <p className="text-red-600 text-xs mt-1">{errors.name.message}</p>
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
           <div>
-            <label className="block text-xs sm:text-sm font-semibold text-gray-900 mb-1 sm:mb-2">
+            <label className="block text-xs font-semibold text-gray-900 mb-1">
               Phone Number *
             </label>
             <div className="relative">
-              <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+              <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
               <input
                 {...register('phone')}
                 type="tel"
                 placeholder={CONTACT_INFO.phone}
-                className="form-input pl-10 text-sm sm:text-base"
+                className="form-input pl-8 text-xs sm:text-sm"
                 onChange={handlePhoneChange}
               />
             </div>
             {errors.phone && (
-              <p className="text-red-600 text-xs sm:text-sm mt-1">{errors.phone.message}</p>
+              <p className="text-red-600 text-xs mt-1">{errors.phone.message}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-xs sm:text-sm font-semibold text-gray-900 mb-1 sm:mb-2">
+            <label className="block text-xs font-semibold text-gray-900 mb-1">
               Email Address *
             </label>
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
               <input
                 {...register('email')}
                 type="email"
                 placeholder="your.email@example.com"
-                className="form-input pl-10 text-sm sm:text-base"
+                className="form-input pl-8 text-xs sm:text-sm"
               />
             </div>
             {errors.email && (
-              <p className="text-red-600 text-xs sm:text-sm mt-1">{errors.email.message}</p>
+              <p className="text-red-600 text-xs mt-1">{errors.email.message}</p>
             )}
           </div>
         </div>
@@ -323,16 +323,16 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
       <button
         type="submit"
         disabled={isSubmitting}
-        className="btn-primary w-full flex items-center justify-center space-x-2 text-sm sm:text-base py-2 sm:py-3"
+        className="btn-primary w-full flex items-center justify-center space-x-2 text-xs sm:text-sm py-2 sm:py-3"
       >
         {isSubmitting ? (
           <>
-            <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
             <span>Submitting...</span>
           </>
         ) : (
           <>
-            <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+            <Send className="w-3 h-3 sm:w-4 sm:h-4" />
             <span>Get My Fair Cash Offer</span>
           </>
         )}
