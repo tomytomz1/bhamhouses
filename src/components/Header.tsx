@@ -2,39 +2,35 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Phone, Menu, X, MapPin } from 'lucide-react';
+import { Phone, Menu, X } from 'lucide-react';
+import { CONTACT_INFO } from '@/utils/contactInfo';
+
+const navigation = [
+  { name: 'Home', href: '/' },
+  { name: 'How It Works', href: '/how-it-works' },
+  { name: 'About Us', href: '/about-birmingham-mi-cash-buyers' },
+  { name: 'Reviews', href: '/reviews' },
+  { name: 'Market Report', href: '/birmingham-mi-real-estate-market' },
+  { name: 'FAQ', href: '/birmingham-mi-house-selling-faq' },
+  { name: 'Contact', href: '/contact' },
+];
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'How It Works', href: '/how-it-works' },
-    { name: 'About Us', href: '/about-birmingham-mi-cash-buyers' },
-    { name: 'Reviews', href: '/reviews' },
-    { name: 'Market Report', href: '/birmingham-mi-real-estate-market' },
-    { name: 'FAQ', href: '/birmingham-mi-house-selling-faq' },
-    { name: 'Contact', href: '/contact' },
-  ];
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+    <header className="bg-white shadow-soft sticky top-0 z-40">
       <div className="container-max">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl flex items-center justify-center">
-              <MapPin className="w-6 h-6 text-white" />
+          <div className="flex items-center">
+            <Link href="/" className="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
+              BHAM Houses
+            </Link>
+            <div className="ml-2 text-sm text-gray-600 hidden sm:block">
+              Birmingham, MI Cash Buyers
             </div>
-            <div>
-              <div className="text-xl lg:text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                BHAM Houses
-              </div>
-              <div className="text-xs text-gray-600 font-medium">
-                Birmingham, MI Cash Buyers
-              </div>
-            </div>
-          </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
@@ -42,79 +38,68 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors relative group"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
               </Link>
             ))}
           </nav>
 
-          {/* Phone Number & CTA */}
-          <div className="hidden lg:flex items-center space-x-6">
+          {/* Contact Info */}
+          <div className="hidden md:flex items-center space-x-6">
             <a
-              href="tel:248XXXXXXX"
-              className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-semibold transition-colors"
+              href={`tel:${CONTACT_INFO.phoneRaw}`}
+              className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors"
             >
-              <Phone className="w-5 h-5" />
-              <span>(248) XXX-XXXX</span>
+              <Phone className="w-4 h-4" />
+              <span>{CONTACT_INFO.phone}</span>
             </a>
             <Link
               href="/contact"
-              className="btn-primary"
+              className="btn-primary text-sm"
             >
               Get Cash Offer
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu button */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            type="button"
+            className="lg:hidden p-2 text-gray-700 hover:text-blue-600"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {isMenuOpen ? (
-              <X className="w-6 h-6 text-gray-700" />
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6" />
             ) : (
-              <Menu className="w-6 h-6 text-gray-700" />
+              <Menu className="w-6 h-6" />
             )}
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="lg:hidden border-t border-gray-100 bg-white">
-            <div className="px-4 py-6 space-y-4">
-              {/* Mobile Phone Number */}
-              <div className="flex items-center justify-center space-x-2 text-blue-600 font-semibold text-lg">
-                <Phone className="w-5 h-5" />
-                <span>(248) XXX-XXXX</span>
-              </div>
-
-              {/* Mobile Navigation */}
-              <nav className="space-y-2">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg font-medium transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </nav>
-
-              {/* Mobile CTA */}
-              <div className="pt-4 border-t border-gray-100">
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden border-t border-gray-200 py-4">
+            <nav className="flex flex-col space-y-4">
+              {navigation.map((item) => (
                 <Link
-                  href="/contact"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="btn-primary w-full text-center"
+                  key={item.name}
+                  href={item.href}
+                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
-                  Get Cash Offer
+                  {item.name}
                 </Link>
+              ))}
+              <div className="pt-4 border-t border-gray-200">
+                <a
+                  href={`tel:${CONTACT_INFO.phoneRaw}`}
+                  className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors"
+                >
+                  <Phone className="w-4 h-4" />
+                  <span>{CONTACT_INFO.phone}</span>
+                </a>
               </div>
-            </div>
+            </nav>
           </div>
         )}
       </div>

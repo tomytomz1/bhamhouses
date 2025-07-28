@@ -1,187 +1,155 @@
-import { Metadata } from 'next'
-import LeadForm from '@/components/LeadForm'
-import { Phone, Mail, MapPin, Clock } from 'lucide-react'
+import { Metadata } from 'next';
+import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import LeadForm from '@/components/LeadForm';
+import { CONTACT_INFO } from '@/utils/contactInfo';
 
 export const metadata: Metadata = {
   title: 'Contact BHAM Houses - Birmingham, MI Cash Home Buyers',
-  description: 'Contact BHAM Houses, Birmingham, Michigan\'s cash home buyers. Call (248) XXX-XXXX or fill out our form for a free cash offer.',
-  keywords: 'contact BHAM Houses, Birmingham MI cash home buyers contact, call Birmingham house buyers',
-}
+  description: 'Contact BHAM Houses, Birmingham, Michigan\'s cash home buyers. Call (586) 324-1248 or fill out our form for a free cash offer.',
+  keywords: 'contact BHAM Houses, Birmingham MI cash home buyers contact, we buy houses Birmingham contact',
+};
 
 export default function ContactPage() {
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 to-blue-800 text-white">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+      <section className="section-padding">
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Contact BHAM Houses
             </h1>
-            <p className="text-xl mb-8 text-blue-100 max-w-3xl mx-auto">
-              Ready to sell your Birmingham, MI house? Get in touch with us today for a free cash offer.
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              Ready to sell your Birmingham home? Get in touch with us today for a fair cash offer. 
+              No obligation, no pressure, just a straightforward conversation about your property.
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* Contact Information */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Details */}
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">
-                Get in Touch
-              </h2>
-              
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                  Get Your Fair Cash Offer
+                </h2>
+                <p className="text-gray-700 mb-8 leading-relaxed">
+                  We're here to help you sell your Birmingham home quickly and hassle-free. 
+                  Whether you need to sell fast or just want to explore your options, we're ready to help.
+                </p>
+              </div>
+
+              {/* Contact Methods */}
               <div className="space-y-6">
-                <div className="flex items-start">
-                  <Phone className="h-6 w-6 text-blue-600 mr-4 mt-1" />
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-blue-600" />
+                  </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">Phone</h3>
-                    <a href="tel:248XXXXXXX" className="text-gray-600 hover:text-blue-600 text-lg">
-                      (248) XXX-XXXX
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Call Us</h3>
+                    <a href={`tel:${CONTACT_INFO.phoneRaw}`} className="text-gray-600 hover:text-blue-600 text-lg">
+                      {CONTACT_INFO.phone}
                     </a>
-                    <p className="text-sm text-gray-500 mt-1">Call us anytime during business hours</p>
+                    <p className="text-sm text-gray-500 mt-1">Available 7 days a week, 8AM-8PM</p>
                   </div>
                 </div>
 
-                <div className="flex items-start">
-                  <Mail className="h-6 w-6 text-blue-600 mr-4 mt-1" />
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-green-600" />
+                  </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">Email</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Email Us</h3>
                     <a href="mailto:info@bhamhouses.com" className="text-gray-600 hover:text-blue-600 text-lg">
                       info@bhamhouses.com
                     </a>
-                    <p className="text-sm text-gray-500 mt-1">We&apos;ll respond within 24 hours</p>
+                    <p className="text-sm text-gray-500 mt-1">We'll respond within 24 hours</p>
                   </div>
                 </div>
 
-                <div className="flex items-start">
-                  <MapPin className="h-6 w-6 text-blue-600 mr-4 mt-1" />
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-orange-600" />
+                  </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">Service Area</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Service Area</h3>
                     <p className="text-gray-600 text-lg">Birmingham, MI 48009</p>
                     <p className="text-sm text-gray-500 mt-1">Serving all Birmingham neighborhoods</p>
                   </div>
                 </div>
 
-                <div className="flex items-start">
-                  <Clock className="h-6 w-6 text-blue-600 mr-4 mt-1" />
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-purple-600" />
+                  </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">Business Hours</h3>
-                    <p className="text-gray-600 text-lg">Monday - Sunday: 8:00 AM - 8:00 PM</p>
-                    <p className="text-sm text-gray-500 mt-1">Extended hours for your convenience</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Business Hours</h3>
+                    <p className="text-gray-600 text-lg">Monday - Sunday</p>
+                    <p className="text-sm text-gray-500 mt-1">8:00 AM - 8:00 PM</p>
                   </div>
                 </div>
               </div>
 
               {/* Why Choose Us */}
-              <div className="mt-12">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Why Choose BHAM Houses?</h3>
-                <ul className="space-y-3 text-gray-600">
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
-                    <span>Birmingham, MI specialists with deep local market knowledge</span>
+              <div className="bg-blue-50 rounded-2xl p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Why Choose BHAM Houses?</h3>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                    <span>Fair cash offers in 24 hours</span>
                   </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
-                    <span>Fair cash offers within 24 hours</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                  <li className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                     <span>Close in 7 days or choose your timeline</span>
                   </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                  <li className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                     <span>No repairs, no fees, no commissions</span>
                   </li>
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
-                    <span>Professional and transparent process</span>
+                  <li className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                    <span>Birmingham specialists with local expertise</span>
                   </li>
                 </ul>
               </div>
             </div>
 
             {/* Contact Form */}
-            <div>
+            <div className="card-luxury">
               <LeadForm 
                 variant="inline"
-                title="Get Your Birmingham Cash Offer"
-                subtitle="Fill out the form below and we&apos;ll contact you within 24 hours with your fair cash offer."
+                title="Get Your Free Cash Offer"
+                subtitle="Fill out the form below and we'll contact you within 24 hours with your fair cash offer."
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Service Areas */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              We Serve All Birmingham Neighborhoods
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              From downtown condos to luxury family homes, we buy properties in every Birmingham area.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {[
-              'Downtown Birmingham',
-              'Shain Park',
-              'Bloomfield Ridge',
-              'The Village',
-              'Wellspring',
-              'Maplewood',
-              'Birmingham Estates',
-              'Birmingham Manor',
-              'Birmingham Villas',
-              'Buckingham Village',
-              'Woodward Corridor',
-              'Rouge River Area',
-              'Lincoln Hills Golf Course Area',
-              'Booth Park Area',
-              'Birmingham Theatre District'
-            ].map((area) => (
-              <div key={area} className="bg-white rounded-lg p-4 text-center shadow-sm">
-                <span className="text-gray-700 font-medium">{area}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-16 bg-blue-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Ready to Sell Your Birmingham House?
-          </h2>
-          <p className="text-xl mb-8 text-blue-100">
-            Get your fair cash offer today. No obligation, no pressure, just a straightforward process.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="tel:248XXXXXXX"
-              className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-md transition duration-200"
-            >
-              Call (248) XXX-XXXX
-            </a>
-            <a
-              href="#contact-form"
-              className="inline-flex items-center bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-md transition duration-200"
-            >
-              Get Started Online
-            </a>
+      <section className="section-padding bg-blue-900">
+        <div className="container-max text-center">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Ready to Sell Your Birmingham Home?
+            </h2>
+            <p className="text-xl text-blue-100 mb-8">
+              Don't wait - get your fair cash offer today. No obligation, no pressure, just a straightforward process.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href={`tel:${CONTACT_INFO.phoneRaw}`}
+                className="btn-secondary inline-flex items-center space-x-2"
+              >
+                <Phone className="w-5 h-5" />
+                <span>Call {CONTACT_INFO.phone}</span>
+              </a>
+              <a href="/" className="btn-outline border-white text-white hover:bg-white hover:text-blue-900">
+                Learn More
+              </a>
+            </div>
           </div>
         </div>
       </section>
-    </>
-  )
+    </div>
+  );
 } 

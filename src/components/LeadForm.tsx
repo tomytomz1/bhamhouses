@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { useState, useEffect } from 'react';
 import { MapPin, Home, Wrench, Clock, User, Phone, Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { getStoredUTMParams } from '@/utils/utmTracking';
+import { CONTACT_INFO } from '@/utils/contactInfo';
 
 const formSchema = z.object({
   address: z.string().min(1, 'Property address is required'),
@@ -289,7 +290,7 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
               <input
                 {...register('phone')}
                 type="tel"
-                placeholder="(248) XXX-XXXX"
+                placeholder={CONTACT_INFO.phone}
                 className="form-input pl-10"
                 onChange={handlePhoneChange}
               />

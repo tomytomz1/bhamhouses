@@ -1,6 +1,6 @@
 export const CONTACT_INFO = {
-  phone: '(248) 555-0123', // Replace with your actual phone number
-  phoneRaw: '2485550123', // For tel: links
+  phone: '(586) 324-1248', // Replace with your actual phone number
+  phoneRaw: '5863241248', // For tel: links
   email: 'info@bhamhouses.com',
   address: 'Birmingham, MI 48009',
   businessHours: 'Monday - Sunday: 8:00 AM - 8:00 PM',

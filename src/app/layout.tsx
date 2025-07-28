@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'BHAM Houses - Birmingham, MI Cash Home Buyers',
-  description: 'Birmingham, MI\'s dedicated cash home buyer. Fair offers in 24 hours, close in 7 days. Serving all Birmingham, Michigan neighborhoods. Call (248) XXX-XXXX',
+  description: 'Birmingham, MI\'s dedicated cash home buyer. Fair offers in 24 hours, close in 7 days. Serving all Birmingham, Michigan neighborhoods. Call (586) 324-1248',
   keywords: 'sell house fast Birmingham Michigan, Birmingham MI cash home buyers, we buy houses Birmingham MI, cash for houses Birmingham Michigan',
   openGraph: {
     title: 'BHAM Houses - Birmingham, MI Cash Home Buyers',
@@ -48,7 +48,7 @@ export default function RootLayout({
                 "addressRegion": "MI",
                 "postalCode": "48009"
               },
-              "telephone": "(248) XXX-XXXX",
+              "telephone": "(586) 324-1248",
               "areaServed": "Birmingham, MI",
               "priceRange": "$",
               "openingHours": "Mo-Su 08:00-20:00"

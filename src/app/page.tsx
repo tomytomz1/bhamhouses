@@ -5,6 +5,7 @@ import NeighborhoodsGrid from '@/components/NeighborhoodsGrid';
 import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
 import { Clock, DollarSign, MapPin, Handshake, Phone, Mail, ArrowRight } from 'lucide-react';
+import { CONTACT_INFO } from '@/utils/contactInfo';
 
 export default function HomePage() {
   return (
@@ -47,7 +48,7 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex items-center space-x-3 text-2xl font-bold text-blue-600">
                   <Phone className="w-6 h-6" />
-                  <span>Call (248) XXX-XXXX</span>
+                  <span>Call {CONTACT_INFO.phone}</span>
                 </div>
                 <div className="text-gray-600">
                   <div className="font-medium">Get Cash Offer Online</div>
@@ -177,9 +178,9 @@ export default function HomePage() {
               Get your fair cash offer today. No obligation, no pressure, just a straightforward process.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:248XXXXXXX" className="btn-secondary inline-flex items-center space-x-2">
+              <a href={`tel:${CONTACT_INFO.phoneRaw}`} className="btn-secondary inline-flex items-center space-x-2">
                 <Phone className="w-5 h-5" />
-                <span>Call (248) XXX-XXXX</span>
+                <span>Call {CONTACT_INFO.phone}</span>
               </a>
               <a href="/contact" className="btn-outline border-white text-white hover:bg-white hover:text-blue-900 inline-flex items-center space-x-2">
                 <Mail className="w-5 h-5" />
