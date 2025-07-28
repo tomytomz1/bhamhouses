@@ -100,7 +100,7 @@
     @apply grid lg:grid-cols-2 gap-8 lg:gap-12 items-center h-full;
   }
 
-  /* Ensure hero section fits properly */
+  /* Ensure hero section fits properly and starts immediately after header */
   .hero-section {
     height: 100vh;
     height: 100dvh;
@@ -109,6 +109,8 @@
     max-height: 100vh;
     max-height: 100dvh;
     overflow: hidden;
+    margin-top: 0;
+    padding-top: 0;
   }
 
   /* Compact hero form without scrollbar */
