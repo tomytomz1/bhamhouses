@@ -88,29 +88,6 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
-
-              {/* Why Choose Us */}
-              <div className="bg-blue-50 rounded-2xl p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Why Choose BHAM Houses?</h3>
-                <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <span>Fair cash offers in 24 hours</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <span>Close in 7 days or choose your timeline</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <span>No repairs, no fees, no commissions</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <span>Birmingham specialists with local expertise</span>
-                  </li>
-                </ul>
-              </div>
             </div>
 
             {/* Contact Form */}
@@ -121,6 +98,29 @@ export default function ContactPage() {
                 subtitle="Fill out the form below and we'll contact you within 24 hours with your fair cash offer."
               />
             </div>
+          </div>
+
+          {/* Why Choose Us - Full Width Row */}
+          <div className="bg-blue-50 rounded-2xl p-6 mt-8">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Why Choose BHAM Houses?</h3>
+            <ul className="space-y-2 text-gray-700">
+              <li className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                <span>Fair cash offers in 24 hours</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                <span>Close in 7 days or choose your timeline</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                <span>No repairs, no fees, no commissions</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                <span>Birmingham specialists with local expertise</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
