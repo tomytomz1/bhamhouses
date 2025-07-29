@@ -21,12 +21,12 @@ interface HeroSectionProps {
 
 const HeroSection: React.FC<HeroSectionProps> = ({
   title = "Sell Your House Fast in Birmingham, MI",
-  subtitle = "Birmingham, Michigan's dedicated cash home buyers. Get a call back in 24 hours, close in 7 days. No repairs, no fees, no commissions.",
+      subtitle = "Birmingham, Michigan's dedicated cash home buyers. Get a call back in 24 hours, close in 7-90 days. No repairs, no fees, no commissions.",
   benefits = [
-    { icon: Clock, text: "Close in 7 days", color: "blue" },
-    { icon: DollarSign, text: "No fees or commissions", color: "green" },
-    { icon: MapPin, text: "Serving Birmingham, MI", color: "orange" },
-          { icon: Handshake, text: "Call back in 24 hours", color: "blue" }
+          { icon: Clock, text: "Close in 7-90 days", color: "blue" },
+    { icon: DollarSign, text: "0 Fee/Commission", color: "green" },
+    { icon: MapPin, text: "Birmingham, MI", color: "orange" },
+          { icon: Handshake, text: "Call Back in 24h", color: "blue" }
   ],
   showForm = true,
   backgroundImage = "/images/downtown-birmingham-mi-2025.webp",
@@ -76,7 +76,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                   )}
                 </h1>
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
-                  {subtitle}
+                  Birmingham, Michigan's dedicated cash home buyers.
+                </p>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
+                  Get a call back in 24 hours, close in 7-90 days.
+                </p>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
+                  No repairs, no fees, no commissions.
                 </p>
               </div>
 
@@ -95,14 +101,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
 
               {/* Call to Action */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
-                <div className="flex items-center space-x-2 sm:space-x-3 text-base sm:text-lg md:text-xl font-bold text-blue-600">
-                  <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
-                  <span>Call {CONTACT_INFO.phone}</span>
-                </div>
-                <div className="text-gray-600">
-                  <div className="font-medium text-xs sm:text-sm">Get Cash Offer Online</div>
-                  <div className="text-xs">Get Your Birmingham Cash Offer</div>
+              <div className="flex justify-center">
+                <div className="grid grid-cols-2 gap-6 sm:gap-8 pt-2">
+                  <div className="flex items-center space-x-2 sm:space-x-3 text-base sm:text-lg md:text-xl font-bold text-blue-600">
+                    <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span>Call {CONTACT_INFO.phone}</span>
+                  </div>
+                  <div className="text-gray-600">
+                    <div className="font-medium text-xs sm:text-sm">Get Cash Offer Online</div>
+                    <div className="text-xs">Get Your Birmingham Cash Offer</div>
+                  </div>
                 </div>
               </div>
             </div>

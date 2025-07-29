@@ -85,7 +85,7 @@ export default function HowItWorksPage() {
               </div>
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Close Fast</h3>
               <p className="text-gray-600 mb-4">
-                Accept our offer and close in as little as 7 days, or choose your own timeline. 
+                Accept our offer and close in 7-90 days, or choose your own timeline. 
                 We handle everything.
               </p>
               <ul className="text-sm text-gray-500 space-y-1">
@@ -106,9 +106,9 @@ export default function HowItWorksPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Why Choose Our Process?
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto break-words">
-              Our Birmingham-focused approach makes selling your house simple, fast, and stress-free.
-            </p>
+                          <p className="text-lg text-gray-600 max-w-3xl mx-auto whitespace-nowrap">
+                Our Birmingham-focused approach makes selling your house simple, fast, and stress-free.
+              </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -118,7 +118,7 @@ export default function HowItWorksPage() {
                 <h3 className="text-lg font-semibold text-gray-900">Fast Timeline</h3>
               </div>
               <p className="text-gray-600">
-                Get a call back within 24 hours and close in as little as 7 days. 
+                Get a call back within 24 hours and close in 7-90 days. 
                 We work around your schedule, not ours.
               </p>
             </div>
@@ -273,7 +273,7 @@ export default function HowItWorksPage() {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-white text-lg">Cash in 7-14 Days</span>
+                    <span className="text-white text-lg">Cash in 7-90 Days</span>
                   </div>
                 </div>
                 

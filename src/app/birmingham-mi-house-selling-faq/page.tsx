@@ -32,7 +32,7 @@ export default function FAQPage() {
       {/* FAQ Section */}
       <section className="section-padding bg-white">
         <div className="container-max">
-          <div className="text-center mb-16">
+          <div className="text-center mb-0">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Frequently Asked Questions
             </h2>
@@ -51,9 +51,9 @@ export default function FAQPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Still Have Questions?
             </h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              We're here to help. Contact us directly for personalized answers about your specific situation.
-            </p>
+                          <p className="text-xl text-gray-700 whitespace-nowrap text-center">
+                We're here to help. Contact us directly for personalized answers about your specific situation.
+              </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
@@ -98,7 +98,7 @@ export default function FAQPage() {
                   </li>
                   <li className="flex items-start space-x-3">
                     <span className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></span>
-                    <span>Fast closing in 7 days or your timeline</span>
+                    <span>Fast closing in 7-90 days or your timeline</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <span className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></span>
@@ -113,10 +113,6 @@ export default function FAQPage() {
             </div>
 
             <div className="card-luxury">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Get Your Birmingham Cash Offer</h3>
-                <p className="text-gray-600">Fill out the form and we'll call you back to get property details.</p>
-              </div>
               <LeadForm
                 variant="inline"
                 title="Get Your Birmingham Cash Offer"
@@ -134,7 +130,7 @@ export default function FAQPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Ready to Get Started?
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-blue-100 mb-8 lg:whitespace-nowrap">
               Get your fair cash offer today. No obligation, no pressure, just straightforward answers and a simple process.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

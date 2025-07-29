@@ -12,7 +12,7 @@ export default function Footer() {
             <h3 className="text-2xl font-bold mb-4">BHAM Houses</h3>
             <p className="text-gray-300 mb-6 leading-relaxed">
               Birmingham, Michigan's dedicated cash home buyers. We buy houses fast, 
-              providing call backs in 24 hours and closing in 7 days. No repairs, 
+                              providing call backs in 24 hours and closing in 7-90 days. No repairs, 
               no fees, no commissions.
             </p>
             <div className="flex items-center space-x-4">

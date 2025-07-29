@@ -23,7 +23,7 @@ export default function AboutPage() {
     {
       icon: Clock,
       title: 'Fast & Flexible',
-      description: 'Close in 7 days or choose your timeline. We work around your schedule, not ours.',
+      description: 'Close in 7-90 days or choose your timeline. We work around your schedule, not ours.',
     },
     {
       icon: Users,
@@ -230,7 +230,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Close on Your Timeline</h3>
               <p className="text-gray-700">
-                Close in 7 days or choose your own timeline. No repairs needed, no fees, no commissions.
+                Close in 7-90 days or choose your own timeline. No repairs needed, no fees, no commissions.
               </p>
             </div>
           </div>

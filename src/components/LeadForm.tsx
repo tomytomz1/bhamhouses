@@ -369,7 +369,7 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
           )}
         </button>
 
-        <p className={`text-xs text-center lg:col-span-2 lg:whitespace-nowrap ${getDisclaimerColor()}`}>
+        <p className={`text-xs lg:text-[10px] text-center lg:col-span-2 lg:whitespace-nowrap ${getDisclaimerColor()}`}>
           By submitting this form, you agree to be contacted by BHAM Houses regarding your property.
         </p>
       </form>
@@ -608,7 +608,7 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
             )}
           </button>
 
-          <p className={`text-xs text-center mt-2 lg:whitespace-nowrap ${getDisclaimerColor()}`}>
+          <p className={`text-xs lg:text-[10px] text-center mt-2 lg:whitespace-nowrap ${getDisclaimerColor()}`}>
             By submitting this form, you agree to be contacted by BHAM Houses regarding your property.
           </p>
         </div>
@@ -848,7 +848,7 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
             </button>
           </div>
 
-          <p className="text-xs text-gray-700 text-center pt-2 lg:whitespace-nowrap">
+          <p className="text-xs lg:text-[10px] text-gray-700 text-center pt-2 lg:whitespace-nowrap">
             By submitting this form, you agree to be contacted by BHAM Houses regarding your property.
           </p>
         </form>

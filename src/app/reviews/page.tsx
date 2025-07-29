@@ -68,7 +68,10 @@ export default function ReviewsPage() {
               Why Birmingham Homeowners Choose BHAM Houses
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Our commitment to Birmingham homeowners is reflected in every review. Here&apos;s what makes us different.
+              Our commitment to Birmingham homeowners is reflected in every review.
+            </p>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Here&apos;s what makes us different.
             </p>
           </div>
 
@@ -142,7 +145,7 @@ export default function ReviewsPage() {
             <div className="bg-gray-50 rounded-lg p-6 text-center">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Job Relocation</h3>
               <p className="text-gray-600 text-sm">
-                Job transfer requiring a quick sale? We can close in as little as 7 days.
+                Job transfer requiring a quick sale? We can close in 7-90 days.
               </p>
             </div>
           </div>
@@ -185,7 +188,7 @@ export default function ReviewsPage() {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-white text-lg">Cash in 7-14 Days</span>
+                    <span className="text-white text-lg">Cash in 7-90 Days</span>
                   </div>
                 </div>
                 

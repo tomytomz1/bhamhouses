@@ -19,7 +19,7 @@ export default function BenefitsSection() {
     {
       icon: Clock,
       title: 'Fast Closing',
-      description: 'Close in as little as 7 days, or choose your own timeline. We work around your schedule.',
+      description: 'Close in 7-90 days, or choose your own timeline. We work around your schedule.',
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
     },

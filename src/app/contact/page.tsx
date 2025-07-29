@@ -19,8 +19,10 @@ export default function ContactPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Contact BHAM Houses
             </h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              Ready to sell your Birmingham home? Get in touch with us today for a fair cash offer. 
+            <p className="text-xl text-gray-700 whitespace-nowrap text-center">
+              Ready to sell your Birmingham home? Get in touch with us today for a fair cash offer.
+            </p>
+            <p className="text-xl text-gray-700 whitespace-nowrap text-center">
               No obligation, no pressure, just a straightforward conversation about your property.
             </p>
           </div>
@@ -110,7 +112,7 @@ export default function ContactPage() {
                 </div>
                 <div className="flex items-center space-x-3 justify-start">
                   <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>
-                  <span className="text-base font-medium text-left">Close in 7 days or choose your timeline</span>
+                  <span className="text-base font-medium text-left">Close in 7-90 days or choose your timeline</span>
                 </div>
                 <div className="flex items-center space-x-3 justify-start">
                   <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>

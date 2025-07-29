@@ -19,7 +19,7 @@ export default function ProcessSection() {
     {
       icon: CheckCircle,
       title: 'Close on Your Timeline',
-      description: 'Close in as little as 7 days, or choose your own timeline. We work around your schedule. No repairs needed, no fees, no commissions. Our offer is what you walk away with.',
+      description: 'Close in 7-90 days, or choose your own timeline. We work around your schedule. No repairs needed, no fees, no commissions. Our offer is what you walk away with.',
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
     },

@@ -6,7 +6,7 @@ export const testimonials: Testimonial[] = [
     name: 'Sarah M.',
     location: 'Birmingham Property Owner',
     rating: 5,
-    content: 'BHAM Houses made selling my inherited property so easy. They called me back within 24 hours to get property details and closed in just 7 days. No repairs needed!',
+    content: 'BHAM Houses made selling my inherited property so easy. They called me back within 24 hours to get property details and closed in just 7-90 days. No repairs needed!',
     propertyType: 'Inherited Property'
   },
   {

@@ -15,11 +15,11 @@ export default function MarketReportPage() {
       <section className="relative bg-gradient-to-br from-blue-600 to-blue-800 text-white">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center">
+          <div className="text-center flex flex-col items-center justify-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Birmingham, MI Real Estate Market Report
             </h1>
-            <p className="text-xl mb-8 text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl mb-8 text-blue-100 whitespace-nowrap text-center">
               Current market insights and property value trends for Birmingham, Michigan homeowners.
             </p>
           </div>
@@ -35,13 +35,13 @@ export default function MarketReportPage() {
                 Birmingham Market Overview
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Birmingham, Michigan continues to be one of the most desirable communities in Metro Detroit. 
-                With its excellent schools, walkable downtown, and strong community amenities, Birmingham 
-                maintains strong property values even in changing market conditions.
+                Birmingham, Michigan remains one of Metro Detroit's most prestigious communities. 
+                With a median home price of $875,000, excellent schools (Birmingham Public Schools), 
+                and a vibrant downtown, Birmingham continues to attract affluent families and professionals.
               </p>
               <p className="text-lg text-gray-600 mb-6">
-                The current market shows steady demand for Birmingham properties, with homes typically 
-                selling within 30-45 days when priced correctly. Our cash offers are based on current 
+                The current market shows strong demand for Birmingham properties, with homes typically 
+                selling within 18 days when priced correctly. Our cash offers are based on current 
                 market values and recent sales in Birmingham.
               </p>
               <p className="text-lg text-gray-600">
@@ -77,15 +77,15 @@ export default function MarketReportPage() {
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <DollarSign className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">$650,000</h3>
-              <p className="text-gray-600">Average Home Price</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">$875,000</h3>
+              <p className="text-gray-600">Median Home Price</p>
             </div>
 
             <div className="bg-white rounded-lg p-6 text-center shadow-md">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <TrendingUp className="h-8 w-8 text-green-600" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">35 Days</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">18 Days</h3>
               <p className="text-gray-600">Average Days on Market</p>
             </div>
 
@@ -93,15 +93,15 @@ export default function MarketReportPage() {
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Home className="h-8 w-8 text-orange-600" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">15+</h3>
-              <p className="text-gray-600">Birmingham Area</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">4.8 sq mi</h3>
+              <p className="text-gray-600">Birmingham Coverage Area</p>
             </div>
 
             <div className="bg-white rounded-lg p-6 text-center shadow-md">
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Calendar className="h-8 w-8 text-purple-600" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">7 Days</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">7-14 Days</h3>
               <p className="text-gray-600">Our Average Closing Time</p>
             </div>
           </div>
@@ -126,8 +126,9 @@ export default function MarketReportPage() {
             <div className="bg-white rounded-lg p-6 shadow-md">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Strong Demand</h3>
               <p className="text-gray-600 mb-4">
-                Birmingham continues to attract families and professionals seeking excellent schools, 
-                walkable amenities, and a strong community. Demand remains steady across all price points.
+                Birmingham continues to attract affluent families and professionals seeking excellent schools 
+                (Birmingham Public Schools), walkable downtown amenities, and a strong community. 
+                Demand remains strong across all price points, with luxury properties maintaining premium values.
               </p>
               <ul className="text-sm text-gray-600 space-y-2">
                 <li>• Family homes in good condition sell quickly</li>
@@ -139,8 +140,9 @@ export default function MarketReportPage() {
             <div className="bg-white rounded-lg p-6 shadow-md">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Price Stability</h3>
               <p className="text-gray-600 mb-4">
-                Birmingham property values have remained relatively stable, with modest appreciation 
-                across the area. Well-maintained homes continue to command premium prices.
+                Birmingham property values have shown consistent strength, with the median home price 
+                at $875,000. Well-maintained homes continue to command premium prices, especially 
+                in the downtown area and historic districts.
               </p>
               <ul className="text-sm text-gray-600 space-y-2">
                 <li>• Consistent property values across Birmingham</li>
@@ -152,8 +154,9 @@ export default function MarketReportPage() {
             <div className="bg-white rounded-lg p-6 shadow-md">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Inventory Levels</h3>
               <p className="text-gray-600 mb-4">
-                Available inventory varies across Birmingham, with some areas experiencing lower 
-                supply than demand. This creates opportunities for sellers in well-positioned properties.
+                Available inventory in Birmingham is limited, with homes selling in just 18 days on average. 
+                This creates opportunities for sellers, especially those with well-maintained properties 
+                in desirable locations.
               </p>
               <ul className="text-sm text-gray-600 space-y-2">
                 <li>• Limited inventory in popular areas</li>
@@ -214,7 +217,7 @@ export default function MarketReportPage() {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-white text-lg">Cash in 7-14 Days</span>
+                    <span className="text-white text-lg">Cash in 7-90 Days</span>
                   </div>
                 </div>
                 

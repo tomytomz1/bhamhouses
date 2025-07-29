@@ -4,7 +4,7 @@ export const faqs: FAQ[] = [
   {
     id: '1',
     question: 'How quickly can you buy my Birmingham, MI house?',
-    answer: 'We can close in as little as 7 days, or on your timeline. We call you back within 24 hours to get property condition details and provide a fair cash offer.',
+    answer: 'We can close in 7-90 days, or on your timeline. We call you back within 24 hours to get property condition details and provide a fair cash offer.',
     category: 'process'
   },
   {
