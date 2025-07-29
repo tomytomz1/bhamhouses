@@ -1,5 +1,6 @@
 import { Clock, DollarSign, MapPin, Users, Shield, CheckCircle } from 'lucide-react';
 import LeadForm from '@/components/LeadForm';
+import Image from 'next/image';
 
 export const metadata = {
   title: 'About Birmingham, MI Cash Buyers - BHAM Houses | Local Real Estate Experts',
@@ -44,46 +45,62 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 to-green-900/10"></div>
-        <div className="container-max section-padding relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  About{' '}
-                  <span className="text-gradient">BHAM Houses</span>
-                </h1>
-                <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
-                  Birmingham, Michigan's only dedicated cash home buying company. We specialize exclusively in Birmingham properties, giving us deep local market knowledge that competitors can't match.
-                </p>
+      <section className="hero-section relative">
+        {/* Background Image with Frosted Effect */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/birmingham-michigan-downtown.webp"
+            alt="Downtown Birmingham, Michigan"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Frosted Overlay */}
+          <div className="absolute inset-0 bg-white/80 backdrop-blur-sm"></div>
+        </div>
+        
+        {/* Content Container */}
+        <div className="relative z-10 w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-0 pb-8">
+          <div className="w-full max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center h-full">
+              {/* Left Column - Content */}
+              <div className="space-y-4 sm:space-y-6">
+                {/* Main Headline */}
+                <div className="space-y-3 sm:space-y-4">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+                    About{' '}
+                    <span className="text-gradient">BHAM Houses</span>
+                  </h1>
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
+                    Birmingham, Michigan's only dedicated cash home buying company. We specialize exclusively in Birmingham properties, giving us deep local market knowledge that competitors can't match.
+                  </p>
+                </div>
+
+                {/* Benefits Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
+                  <div className="flex items-center space-x-1 sm:space-x-2 text-gray-700">
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+                    <span className="text-xs sm:text-sm font-medium">Birmingham Only</span>
+                  </div>
+                  <div className="flex items-center space-x-1 sm:space-x-2 text-gray-700">
+                    <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
+                    <span className="text-xs sm:text-sm font-medium">Fair Market Value</span>
+                  </div>
+                  <div className="flex items-center space-x-1 sm:space-x-2 text-gray-700">
+                    <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
+                    <span className="text-xs sm:text-sm font-medium">Fast Closing</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                <div className="flex items-center space-x-2 text-gray-700">
-                  <MapPin className="w-5 h-5 text-blue-600" />
-                  <span className="text-sm font-medium">Birmingham Only</span>
+              {/* Right Column - Form */}
+              <div className="hero-form bg-white/90 backdrop-blur-sm rounded-3xl shadow-luxury border border-gray-200 p-4 sm:p-6 max-w-sm sm:max-w-md mx-auto lg:max-w-none">
+                <div className="text-center mb-3 sm:mb-4">
+                  <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Get Your Birmingham Cash Offer</h2>
+                  <p className="text-xs sm:text-sm text-gray-600">Fill out the form below and we'll call you back to get property details.</p>
                 </div>
-                <div className="flex items-center space-x-2 text-gray-700">
-                  <DollarSign className="w-5 h-5 text-green-600" />
-                  <span className="text-sm font-medium">Fair Market Value</span>
-                </div>
-                <div className="flex items-center space-x-2 text-gray-700">
-                  <Clock className="w-5 h-5 text-orange-600" />
-                  <span className="text-sm font-medium">Fast Closing</span>
-                </div>
+                <LeadForm variant="inline" />
               </div>
-            </div>
-
-            <div className="card-luxury">
-              <div className="text-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Get Your Birmingham Cash Offer</h2>
-                <p className="text-gray-600">Fill out the form and we'll contact you within 24 hours.</p>
-              </div>
-              <LeadForm
-                title="Get Your Birmingham Cash Offer"
-                subtitle="Fill out the form and we'll contact you within 24 hours."
-              />
             </div>
           </div>
         </div>
@@ -203,7 +220,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Get Your Offer</h3>
               <p className="text-gray-700">
-                We'll provide a fair cash offer within 24 hours based on current Birmingham market values.
+                We'll call you back to get property condition details and provide a fair cash offer within 24 hours.
               </p>
             </div>
 

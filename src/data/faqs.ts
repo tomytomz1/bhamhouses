@@ -4,7 +4,7 @@ export const faqs: FAQ[] = [
   {
     id: '1',
     question: 'How quickly can you buy my Birmingham, MI house?',
-    answer: 'We can close in as little as 7 days, or on your timeline. We give you a fair cash offer within 24 hours of seeing your property.',
+    answer: 'We can close in as little as 7 days, or on your timeline. We call you back within 24 hours to get property condition details and provide a fair cash offer.',
     category: 'process'
   },
   {
@@ -34,7 +34,7 @@ export const faqs: FAQ[] = [
   {
     id: '6',
     question: 'What if my house needs major repairs?',
-    answer: 'We buy houses in any condition - no repairs needed! Whether your house is move-in ready or needs major work, we\'ll make you a fair cash offer.',
+    answer: 'We buy houses in any condition - no repairs needed! Whether your house is move-in ready or needs major work, we\'ll call you back to get the details and make you a fair cash offer.',
     category: 'general'
   },
   {

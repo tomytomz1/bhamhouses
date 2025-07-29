@@ -21,12 +21,12 @@ export const defaultHeroConfig: SectionConfig = {
   enabled: true,
   props: {
     title: "Sell Your House Fast in Birmingham, MI",
-    subtitle: "Birmingham, Michigan's dedicated cash home buyers. Get a fair cash offer in 24 hours, close in 7 days. No repairs, no fees, no commissions.",
+    subtitle: "Birmingham, Michigan's dedicated cash home buyers. Get a call back in 24 hours, close in 7 days. No repairs, no fees, no commissions.",
     benefits: [
       { icon: Clock, text: "Close in 7 days", color: "blue" },
       { icon: DollarSign, text: "No fees or commissions", color: "green" },
       { icon: MapPin, text: "Serving all Birmingham, MI", color: "orange" },
-      { icon: Handshake, text: "Fair offers in 24 hours", color: "blue" }
+              { icon: Handshake, text: "Call back in 24 hours", color: "blue" }
     ],
     showForm: true,
             backgroundImage: "/images/downtown-birmingham-mi-2025.webp"

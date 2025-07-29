@@ -180,34 +180,97 @@ export default function MarketReportPage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-blue-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Get Your Birmingham Property Value
-          </h2>
-          <p className="text-xl mb-8 text-blue-100">
-            Find out what your Birmingham property is worth in today&apos;s market.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            <LeadForm 
-              variant="inline"
-              title="Get Your Market Value"
-              subtitle="Fill out the form and we&apos;ll provide a fair market analysis."
-            />
-            
-            <div className="bg-white bg-opacity-10 rounded-lg p-6">
-              <h3 className="text-xl font-semibold mb-4">Prefer to Call?</h3>
-              <p className="mb-4 text-blue-100">
-                Speak directly with our Birmingham market specialists
-              </p>
-                              <a
-                  href="tel:5863241248"
-                  className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-md transition duration-200"
-                >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Text Content */}
+            <div className="text-center lg:text-left">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+                Ready to Sell Your Birmingham House Fast?
+              </h2>
+              
+              {/* Benefits List */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                {/* Left Column - 3 Benefits */}
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-white text-lg">Skip Repairs</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-white text-lg">No Fees or Commissions</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-white text-lg">Cash in 7-14 Days</span>
+                  </div>
+                </div>
+                
+                {/* Right Column - 3 Benefits */}
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-white text-lg">Close on Your Timeline</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-white text-lg">No Showings</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-white text-lg">Local Cash Buyers</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Call Box - Inside Left Column */}
+              <div className="bg-white bg-opacity-15 rounded-lg p-6 text-center">
+                <h3 className="text-xl font-semibold mb-4 text-white">Prefer to Call?</h3>
+                <p className="mb-6 text-white">Speak directly with our Birmingham specialists</p>
+                <a href="tel:5863241248" className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-md transition duration-200">
                   Call (586) 324-1248
                 </a>
+              </div>
+            </div>
+            
+            {/* Right Column - Form */}
+            <div className="max-w-md mx-auto lg:max-w-none">
+                                <div className="bg-white shadow-lg rounded-xl p-3">
+                <LeadForm 
+                  variant="inline"
+                  title="Get Your Market Value"
+                  subtitle="Fill out the form and we&apos;ll call you back to get property details."
+                  textColor="light"
+                />
+              </div>
             </div>
           </div>
+
+
         </div>
       </section>
     </>

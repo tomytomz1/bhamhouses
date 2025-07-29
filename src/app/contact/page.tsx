@@ -62,7 +62,7 @@ export default function ContactPage() {
                     <a href="mailto:info@bhamhouses.com" className="text-gray-600 hover:text-blue-600 text-lg">
                       info@bhamhouses.com
                     </a>
-                    <p className="text-sm text-gray-500 mt-1">We'll respond within 24 hours</p>
+                    <p className="text-sm text-gray-500 mt-1">We'll call back within 24 hours</p>
                   </div>
                 </div>
 
@@ -95,7 +95,7 @@ export default function ContactPage() {
               <LeadForm 
                 variant="inline"
                 title="Get Your Free Cash Offer"
-                subtitle="Fill out the form below and we'll contact you within 24 hours with your fair cash offer."
+                subtitle="Fill out the form below and we'll call you back to get property details."
               />
             </div>
           </div>
@@ -103,47 +103,49 @@ export default function ContactPage() {
           {/* Why Choose Us - Full Width Row */}
           <div className="bg-blue-50 rounded-2xl p-8 mt-8 text-center">
             <h3 className="text-xl font-bold text-gray-900 mb-6">Why Choose BHAM Houses?</h3>
-            <div className="grid grid-cols-3 gap-8 text-gray-700 justify-items-center">
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>
-                <span className="text-base font-medium">Fair cash offers in 24 hours</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>
-                <span className="text-base font-medium">Close in 7 days or choose your timeline</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>
-                <span className="text-base font-medium">No repairs, no fees, no commissions</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>
-                <span className="text-base font-medium">Birmingham specialists with local expertise</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>
-                <span className="text-base font-medium">As-is purchases, no repairs needed</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>
-                <span className="text-base font-medium">Transparent process, no hidden fees</span>
-              </div>
+                                        <div className="grid grid-cols-3 gap-8 text-gray-700 max-w-6xl mx-auto">
+                <div className="flex items-center space-x-3 justify-start">
+                  <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>
+                  <span className="text-base font-medium text-left">Call back in 24 hours</span>
+                </div>
+                <div className="flex items-center space-x-3 justify-start">
+                  <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>
+                  <span className="text-base font-medium text-left">Close in 7 days or choose your timeline</span>
+                </div>
+                <div className="flex items-center space-x-3 justify-start">
+                  <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>
+                  <span className="text-base font-medium text-left">No repairs, no fees, no commissions</span>
+                </div>
+                <div className="flex items-center space-x-3 justify-start">
+                  <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>
+                  <span className="text-base font-medium text-left">Birmingham specialists with local expertise</span>
+                </div>
+                <div className="flex items-center space-x-3 justify-start">
+                  <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>
+                  <span className="text-base font-medium text-left">As-is purchases, no repairs needed</span>
+                </div>
+                <div className="flex items-center space-x-3 justify-start">
+                  <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>
+                  <span className="text-base font-medium text-left">Transparent process, no hidden fees</span>
+                </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-blue-900">
-        <div className="container-max text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready to Sell Your Birmingham Home?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Don't wait - get your fair cash offer today. No obligation, no pressure, just a straightforward process.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <section className="py-12 bg-blue-900">
+        <div className="container-max">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="text-center lg:text-left lg:flex-1">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                Ready to Sell Your Birmingham Home?
+              </h2>
+              <p className="text-lg text-blue-100">
+                Don't wait - get your fair cash offer today. No obligation, no pressure, just a straightforward process.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 lg:flex-shrink-0">
               <a
                 href={`tel:${CONTACT_INFO.phoneRaw}`}
                 className="btn-secondary inline-flex items-center space-x-2"

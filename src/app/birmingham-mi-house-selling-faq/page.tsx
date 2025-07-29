@@ -64,7 +64,7 @@ export default function FAQPage() {
                 </h3>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Have a specific question about your Birmingham property? We're here to help. 
-                  Call us or fill out the form and we'll get back to you within 24 hours.
+                  Call us or fill out the form and we'll call you back to get property details within 24 hours.
                 </p>
                 
                 <div className="space-y-4">
@@ -115,11 +115,12 @@ export default function FAQPage() {
             <div className="card-luxury">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Get Your Birmingham Cash Offer</h3>
-                <p className="text-gray-600">Fill out the form and we'll contact you within 24 hours with answers to your questions.</p>
+                <p className="text-gray-600">Fill out the form and we'll call you back to get property details.</p>
               </div>
               <LeadForm
+                variant="inline"
                 title="Get Your Birmingham Cash Offer"
-                subtitle="Fill out the form and we'll contact you within 24 hours with answers to your questions."
+                subtitle="Fill out the form and we'll call you back to get property details."
               />
             </div>
           </div>

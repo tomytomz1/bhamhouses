@@ -26,7 +26,7 @@ export default function BenefitsSection() {
     {
       icon: Home,
       title: 'Fair Cash Offers',
-      description: 'Get a competitive cash offer within 24 hours based on current Birmingham market values.',
+      description: 'Get a call back within 24 hours to discuss your property condition and provide a competitive cash offer.',
       color: 'text-green-600',
       bgColor: 'bg-green-50',
     },

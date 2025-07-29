@@ -24,10 +24,11 @@ type FormData = z.infer<typeof formSchema>;
 interface LeadFormProps {
   title?: string;
   subtitle?: string;
-  variant?: 'default' | 'inline';
+  variant?: 'default' | 'inline' | 'two-column';
+  textColor?: 'dark' | 'light';
 }
 
-export default function LeadForm({ title, subtitle, variant = 'default' }: LeadFormProps) {
+export default function LeadForm({ title, subtitle, variant = 'default', textColor = 'dark' }: LeadFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -120,14 +121,14 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
         <CheckCircle className="w-10 h-10 sm:w-12 sm:h-12 text-green-600 mx-auto mb-2 sm:mb-3" />
         <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Thank You!</h3>
         <p className="text-gray-700 mb-2 sm:mb-3 text-xs sm:text-sm">
-          We've received your information and will contact you within 24 hours with your fair cash offer.
+          We've received your information and will call you back within 24 hours to get property details.
         </p>
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 sm:p-3">
           <p className="text-xs text-blue-800">
             <strong>What happens next?</strong><br />
             • We'll review your property details<br />
             • Get a fair market analysis<br />
-            • Contact you within 24 hours<br />
+            • Call you back within 24 hours<br />
             • No obligation, no pressure
           </p>
         </div>
@@ -135,39 +136,46 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
     );
   }
 
-  const containerClass = variant === 'inline' ? 'space-y-2 sm:space-y-3' : 'space-y-3 sm:space-y-4';
+  const containerClass = variant === 'inline' ? 'space-y-4 sm:space-y-5' : 'space-y-5 sm:space-y-6';
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)} className={containerClass}>
-      {title && (
-        <div className="text-center mb-3 sm:mb-4">
-          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">{title}</h3>
-          {subtitle && <p className="text-gray-600 text-xs">{subtitle}</p>}
-        </div>
-      )}
+  // Helper functions for text colors
+  const getTitleColor = () => textColor === 'light' ? 'text-gray-900' : 'text-gray-900';
+  const getSubtitleColor = () => textColor === 'light' ? 'text-gray-600' : 'text-gray-700';
+  const getLabelColor = () => textColor === 'light' ? 'text-gray-800' : 'text-gray-900';
+  const getDisclaimerColor = () => textColor === 'light' ? 'text-gray-600' : 'text-gray-700';
 
-      {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-2 sm:p-3 flex items-start space-x-2">
-          <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4 text-red-600 mt-0.5 flex-shrink-0" />
-          <div>
-            <p className="text-xs font-medium text-red-800">Submission Error</p>
-            <p className="text-xs text-red-700 mt-1">{error}</p>
-            <button 
-              onClick={() => setError(null)}
-              className="text-xs text-red-600 hover:text-red-800 mt-1 underline"
-            >
-              Dismiss
-            </button>
+  // Handle different variants
+  if (variant === 'inline') {
+    return (
+      <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        {title && (
+          <div className="text-center mb-3 lg:col-span-2">
+            <h3 className={`text-xl sm:text-2xl lg:text-3xl font-bold mb-2 ${getTitleColor()}`}>{title}</h3>
+            {subtitle && <p className={`text-sm ${getSubtitleColor()}`}>{subtitle}</p>}
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Property Information */}
-      <div className="space-y-2 sm:space-y-3">
-        <div>
-          <label htmlFor="property-address" className="block text-xs font-semibold text-gray-900 mb-1">
-            Property Address *
-          </label>
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 sm:p-4 flex items-start space-x-3 lg:col-span-2">
+            <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-red-600 mt-0.5 flex-shrink-0" />
+            <div>
+              <p className="text-sm font-medium text-red-800">Submission Error</p>
+              <p className="text-sm text-red-700 mt-1">{error}</p>
+              <button 
+                onClick={() => setError(null)}
+                className="text-sm text-red-600 hover:text-red-800 mt-2 underline"
+              >
+                Dismiss
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Property Address - Full Width */}
+        <div className="lg:col-span-2">
+                      <label htmlFor="property-address" className={`block text-sm font-semibold mb-1 ${getLabelColor()}`}>
+              Property Address *
+            </label>
           <AddressAutocomplete
             value={watch('address') || ''}
             onChange={(value) => {
@@ -181,110 +189,107 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
             aria-describedby={errors.address ? 'address-error' : undefined}
           />
           {errors.address && (
-            <p id="address-error" className="text-red-600 text-xs mt-1" role="alert">{errors.address.message}</p>
+            <p id="address-error" className="text-red-600 text-sm mt-1" role="alert">{errors.address.message}</p>
           )}
         </div>
 
-
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
-          <div>
-            <label htmlFor="property-type" className="block text-xs font-semibold text-gray-900 mb-1">
-              Property Type *
-            </label>
-            <div className="relative">
-              <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" aria-hidden="true" />
-              <select 
-                id="property-type"
-                {...register('propertyType')} 
-                className="form-select pl-8 text-xs sm:text-sm"
-                aria-required="true"
-                aria-invalid={errors.propertyType ? 'true' : 'false'}
-                aria-describedby={errors.propertyType ? 'property-type-error' : undefined}
-              >
-                <option value="">Select property type</option>
-                <option value="single-family">Single Family Home</option>
-                <option value="condo">Condo</option>
-                <option value="townhome">Townhome</option>
-                <option value="duplex">Duplex</option>
-                <option value="multi-family">Multi-Family</option>
-              </select>
-            </div>
-            {errors.propertyType && (
-              <p id="property-type-error" className="text-red-600 text-xs mt-1" role="alert">{errors.propertyType.message}</p>
-            )}
+        {/* Property Type */}
+        <div>
+          <label htmlFor="property-type" className={`block text-sm font-semibold mb-1 ${getLabelColor()}`}>
+            Property Type *
+          </label>
+          <div className="relative">
+            <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
+            <select 
+              id="property-type"
+              {...register('propertyType')} 
+              className="form-select pl-10 text-sm sm:text-base w-full"
+              aria-required="true"
+              aria-invalid={errors.propertyType ? 'true' : 'false'}
+              aria-describedby={errors.propertyType ? 'property-type-error' : undefined}
+            >
+              <option value="">Select property type</option>
+              <option value="single-family">Single Family Home</option>
+              <option value="condo">Condo</option>
+              <option value="townhome">Townhome</option>
+              <option value="duplex">Duplex</option>
+              <option value="multi-family">Multi-Family</option>
+            </select>
           </div>
-
-          <div>
-            <label htmlFor="property-condition" className="block text-xs font-semibold text-gray-900 mb-1">
-              Property Condition *
-            </label>
-            <div className="relative">
-              <Wrench className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" aria-hidden="true" />
-              <select 
-                id="property-condition"
-                {...register('condition')} 
-                className="form-select pl-8 text-xs sm:text-sm"
-                aria-required="true"
-                aria-invalid={errors.condition ? 'true' : 'false'}
-                aria-describedby={errors.condition ? 'condition-error' : undefined}
-              >
-                <option value="">Select condition</option>
-                <option value="excellent">Excellent</option>
-                <option value="good">Good</option>
-                <option value="fair">Fair</option>
-                <option value="poor">Poor</option>
-                <option value="needs-major-work">Needs Major Work</option>
-              </select>
-            </div>
-            {errors.condition && (
-              <p id="condition-error" className="text-red-600 text-xs mt-1" role="alert">{errors.condition.message}</p>
-            )}
-          </div>
+          {errors.propertyType && (
+            <p id="property-type-error" className="text-red-600 text-sm mt-1" role="alert">{errors.propertyType.message}</p>
+          )}
         </div>
 
+        {/* Property Condition */}
         <div>
-          <label htmlFor="timeline" className="block text-xs font-semibold text-gray-900 mb-1">
+          <label htmlFor="property-condition" className={`block text-sm font-semibold mb-1 ${getLabelColor()}`}>
+            Property Condition *
+          </label>
+          <div className="relative">
+            <Wrench className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
+            <select 
+              id="property-condition"
+              {...register('condition')} 
+              className="form-select pl-10 text-sm sm:text-base w-full"
+              aria-required="true"
+              aria-invalid={errors.condition ? 'true' : 'false'}
+              aria-describedby={errors.condition ? 'condition-error' : undefined}
+            >
+              <option value="">Select condition</option>
+              <option value="excellent">Excellent</option>
+              <option value="good">Good</option>
+              <option value="fair">Fair</option>
+              <option value="poor">Poor</option>
+              <option value="needs-major-work">Needs Major Work</option>
+            </select>
+          </div>
+          {errors.condition && (
+            <p id="condition-error" className="text-red-600 text-sm mt-1" role="alert">{errors.condition.message}</p>
+          )}
+        </div>
+
+        {/* Timeline - Full Width */}
+        <div className="lg:col-span-2">
+          <label htmlFor="timeline" className={`block text-sm font-semibold mb-2 ${getLabelColor()}`}>
             Timeline *
           </label>
           <div className="relative">
-            <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" aria-hidden="true" />
+            <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
             <select 
               id="timeline"
               {...register('timeline')} 
-              className="form-select pl-8 text-xs sm:text-sm"
+              className="form-select pl-10 text-sm sm:text-base w-full text-gray-900"
               aria-required="true"
               aria-invalid={errors.timeline ? 'true' : 'false'}
               aria-describedby={errors.timeline ? 'timeline-error' : undefined}
             >
-              <option value="">Select timeline</option>
-              <option value="asap">ASAP</option>
-              <option value="30-days">Within 30 days</option>
-              <option value="60-days">Within 60 days</option>
-              <option value="90-days">Within 90 days</option>
-              <option value="just-exploring">Just exploring</option>
+              <option value="" className="text-gray-900">Select timeline</option>
+              <option value="asap" className="text-gray-900">ASAP</option>
+              <option value="30-days" className="text-gray-900">Within 30 days</option>
+              <option value="60-days" className="text-gray-900">Within 60 days</option>
+              <option value="90-days" className="text-gray-900">Within 90 days</option>
+              <option value="just-exploring" className="text-gray-900">Just exploring</option>
             </select>
           </div>
           {errors.timeline && (
-            <p id="timeline-error" className="text-red-600 text-xs mt-1" role="alert">{errors.timeline.message}</p>
+            <p id="timeline-error" className="text-red-600 text-sm mt-1" role="alert">{errors.timeline.message}</p>
           )}
         </div>
-      </div>
 
-      {/* Contact Information */}
-      <div className="space-y-2 sm:space-y-3">
-        <div>
-          <label htmlFor="full-name" className="block text-xs font-semibold text-gray-900 mb-1">
+        {/* Full Name - Full Width */}
+        <div className="lg:col-span-2">
+          <label htmlFor="full-name" className={`block text-sm font-semibold mb-2 ${getLabelColor()}`}>
             Full Name *
           </label>
           <div className="relative">
-            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" aria-hidden="true" />
+            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
             <input
               id="full-name"
               {...register('name')}
               type="text"
               placeholder="Enter your full name"
-              className="form-input pl-8 text-xs sm:text-sm"
+              className="form-input pl-10 text-sm sm:text-base w-full"
               aria-required="true"
               aria-invalid={errors.name ? 'true' : 'false'}
               aria-describedby={errors.name ? 'name-error' : undefined}
@@ -292,23 +297,259 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
             />
           </div>
           {errors.name && (
-            <p id="name-error" className="text-red-600 text-xs mt-1" role="alert">{errors.name.message}</p>
+            <p id="name-error" className="text-red-600 text-sm mt-1" role="alert">{errors.name.message}</p>
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
+        {/* Phone Number */}
+        <div>
+          <label htmlFor="phone" className={`block text-sm font-semibold mb-1 ${getLabelColor()}`}>
+            Phone Number *
+          </label>
+          <div className="relative">
+            <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
+            <input
+              id="phone"
+              {...register('phone')}
+              type="tel"
+              placeholder="Phone number"
+              className="form-input pl-10 text-sm sm:text-base w-full"
+              onChange={handlePhoneChange}
+              aria-required="true"
+              aria-invalid={errors.phone ? 'true' : 'false'}
+              aria-describedby={errors.phone ? 'phone-error' : undefined}
+              autoComplete="tel"
+            />
+          </div>
+          {errors.phone && (
+            <p id="phone-error" className="text-red-600 text-sm mt-1" role="alert">{errors.phone.message}</p>
+          )}
+        </div>
+
+        {/* Email Address */}
+        <div>
+          <label htmlFor="email" className={`block text-sm font-semibold mb-1 ${getLabelColor()}`}>
+            Email Address *
+          </label>
+          <div className="relative">
+            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
+            <input
+              id="email"
+              {...register('email')}
+              type="email"
+              placeholder="Email address"
+              className="form-input pl-10 text-sm sm:text-base w-full"
+              aria-required="true"
+              aria-invalid={errors.email ? 'true' : 'false'}
+              aria-describedby={errors.email ? 'email-error' : undefined}
+              autoComplete="email"
+            />
+          </div>
+          {errors.email && (
+            <p id="email-error" className="text-red-600 text-sm mt-1" role="alert">{errors.email.message}</p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="btn-primary w-full flex items-center justify-center space-x-2 text-sm sm:text-base py-3 sm:py-4 lg:col-span-2"
+          aria-label={isSubmitting ? 'Submitting lead form' : 'Submit lead form to get cash offer'}
+        >
+          {isSubmitting ? (
+            <>
+              <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              <span>Submitting...</span>
+            </>
+          ) : (
+            <>
+              <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span>Get My Fair Cash Offer</span>
+            </>
+          )}
+        </button>
+
+        <p className={`text-xs text-center lg:col-span-2 lg:whitespace-nowrap ${getDisclaimerColor()}`}>
+          By submitting this form, you agree to be contacted by BHAM Houses regarding your property.
+        </p>
+      </form>
+    );
+  }
+
+  if (variant === 'two-column') {
+    return (
+      <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {title && (
+          <div className="text-center mb-3 sm:mb-4 lg:col-span-2">
+            <h3 className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 ${getTitleColor()}`}>{title}</h3>
+            {subtitle && <p className={`text-sm ${getSubtitleColor()}`}>{subtitle}</p>}
+          </div>
+        )}
+
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 sm:p-4 flex items-start space-x-3 lg:col-span-2">
+            <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-red-600 mt-0.5 flex-shrink-0" />
+            <div>
+              <p className="text-sm font-medium text-red-800">Submission Error</p>
+              <p className="text-sm text-red-700 mt-1">{error}</p>
+              <button 
+                onClick={() => setError(null)}
+                className="text-sm text-red-600 hover:text-red-800 mt-2 underline"
+              >
+                Dismiss
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Left Column - Property Information */}
+        <div className="space-y-3">
+          {/* Property Address */}
           <div>
-            <label htmlFor="phone" className="block text-xs font-semibold text-gray-900 mb-1">
+            <label htmlFor="property-address" className={`block text-sm font-semibold mb-1 ${getLabelColor()}`}>
+              Property Address *
+            </label>
+            <AddressAutocomplete
+              value={watch('address') || ''}
+              onChange={(value) => {
+                setValue('address', value, { shouldValidate: true });
+              }}
+              placeholder="Enter your Birmingham property address"
+              error={errors.address?.message}
+              aria-label="Property address input with autocomplete"
+              aria-required="true"
+              aria-invalid={errors.address ? 'true' : 'false'}
+              aria-describedby={errors.address ? 'address-error' : undefined}
+            />
+            {errors.address && (
+              <p id="address-error" className="text-red-600 text-sm mt-1" role="alert">{errors.address.message}</p>
+            )}
+          </div>
+
+          {/* Property Type */}
+          <div>
+            <label htmlFor="property-type" className={`block text-sm font-semibold mb-2 ${getLabelColor()}`}>
+              Property Type *
+            </label>
+            <div className="relative">
+              <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
+              <select 
+                id="property-type"
+                {...register('propertyType')} 
+                className="form-select pl-10 text-sm sm:text-base w-full"
+                aria-required="true"
+                aria-invalid={errors.propertyType ? 'true' : 'false'}
+                aria-describedby={errors.propertyType ? 'property-type-error' : undefined}
+              >
+                <option value="" className="text-gray-500">Select property type</option>
+                <option value="single-family" className="text-gray-900">Single Family Home</option>
+                <option value="condo" className="text-gray-900">Condo</option>
+                <option value="townhome" className="text-gray-900">Townhome</option>
+                <option value="duplex" className="text-gray-900">Duplex</option>
+                <option value="multi-family" className="text-gray-900">Multi-Family</option>
+              </select>
+            </div>
+            {errors.propertyType && (
+              <p id="property-type-error" className="text-red-600 text-sm mt-1" role="alert">{errors.propertyType.message}</p>
+            )}
+          </div>
+
+          {/* Property Condition */}
+          <div>
+            <label htmlFor="property-condition" className={`block text-sm font-semibold mb-2 ${getLabelColor()}`}>
+              Property Condition *
+            </label>
+            <div className="relative">
+              <Wrench className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
+              <select 
+                id="property-condition"
+                {...register('condition')} 
+                className="form-select pl-10 text-sm sm:text-base w-full"
+                aria-required="true"
+                aria-invalid={errors.condition ? 'true' : 'false'}
+                aria-describedby={errors.condition ? 'condition-error' : undefined}
+              >
+                <option value="" className="text-gray-500">Select condition</option>
+                <option value="excellent" className="text-gray-900">Excellent</option>
+                <option value="good" className="text-gray-900">Good</option>
+                <option value="fair" className="text-gray-900">Fair</option>
+                <option value="poor" className="text-gray-900">Poor</option>
+                <option value="needs-major-work" className="text-gray-900">Needs Major Work</option>
+              </select>
+            </div>
+            {errors.condition && (
+              <p id="condition-error" className="text-red-600 text-sm mt-1" role="alert">{errors.condition.message}</p>
+            )}
+          </div>
+
+                  {/* Timeline */}
+        <div>
+          <label htmlFor="timeline" className={`block text-sm font-semibold mb-1 ${getLabelColor()}`}>
+            Timeline *
+          </label>
+            <div className="relative">
+              <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
+              <select 
+                id="timeline"
+                {...register('timeline')} 
+                className="form-select pl-10 text-sm sm:text-base w-full"
+                aria-required="true"
+                aria-invalid={errors.timeline ? 'true' : 'false'}
+                aria-describedby={errors.timeline ? 'timeline-error' : undefined}
+              >
+                <option value="" className="text-gray-500">Select timeline</option>
+                <option value="asap" className="text-gray-900">ASAP</option>
+                <option value="30-days" className="text-gray-900">Within 30 days</option>
+                <option value="60-days" className="text-gray-900">Within 60 days</option>
+                <option value="90-days" className="text-gray-900">Within 90 days</option>
+                <option value="just-exploring" className="text-gray-900">Just exploring</option>
+              </select>
+            </div>
+            {errors.timeline && (
+              <p id="timeline-error" className="text-red-600 text-sm mt-1" role="alert">{errors.timeline.message}</p>
+            )}
+          </div>
+        </div>
+
+        {/* Right Column - Contact Information */}
+        <div className="space-y-3">
+                  {/* Full Name */}
+        <div>
+          <label htmlFor="full-name" className={`block text-sm font-semibold mb-1 ${getLabelColor()}`}>
+            Full Name *
+          </label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
+              <input
+                id="full-name"
+                {...register('name')}
+                type="text"
+                placeholder="Enter your full name"
+                className="form-input pl-10 text-sm sm:text-base w-full"
+                aria-required="true"
+                aria-invalid={errors.name ? 'true' : 'false'}
+                aria-describedby={errors.name ? 'name-error' : undefined}
+                autoComplete="name"
+              />
+            </div>
+            {errors.name && (
+              <p id="name-error" className="text-red-600 text-sm mt-1" role="alert">{errors.name.message}</p>
+            )}
+          </div>
+
+          {/* Phone Number */}
+          <div>
+            <label htmlFor="phone" className={`block text-sm font-semibold mb-2 ${getLabelColor()}`}>
               Phone Number *
             </label>
             <div className="relative">
-              <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" aria-hidden="true" />
+              <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
               <input
                 id="phone"
                 {...register('phone')}
                 type="tel"
-                placeholder={CONTACT_INFO.phone}
-                className="form-input pl-8 text-xs sm:text-sm"
+                placeholder="Phone number"
+                className="form-input pl-10 text-sm sm:text-base w-full"
                 onChange={handlePhoneChange}
                 aria-required="true"
                 aria-invalid={errors.phone ? 'true' : 'false'}
@@ -317,22 +558,23 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
               />
             </div>
             {errors.phone && (
-              <p id="phone-error" className="text-red-600 text-xs mt-1" role="alert">{errors.phone.message}</p>
+              <p id="phone-error" className="text-red-600 text-sm mt-1" role="alert">{errors.phone.message}</p>
             )}
           </div>
 
+          {/* Email Address */}
           <div>
-            <label htmlFor="email" className="block text-xs font-semibold text-gray-900 mb-1">
+            <label htmlFor="email" className={`block text-sm font-semibold mb-2 ${getLabelColor()}`}>
               Email Address *
             </label>
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" aria-hidden="true" />
+              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
               <input
                 id="email"
                 {...register('email')}
                 type="email"
                 placeholder="your.email@example.com"
-                className="form-input pl-8 text-xs sm:text-sm"
+                className="form-input pl-10 text-sm sm:text-base w-full"
                 aria-required="true"
                 aria-invalid={errors.email ? 'true' : 'false'}
                 aria-describedby={errors.email ? 'email-error' : undefined}
@@ -340,34 +582,287 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
               />
             </div>
             {errors.email && (
-              <p id="email-error" className="text-red-600 text-xs mt-1" role="alert">{errors.email.message}</p>
+              <p id="email-error" className="text-red-600 text-sm mt-1" role="alert">{errors.email.message}</p>
             )}
           </div>
         </div>
+
+        {/* Submit Button - Full Width */}
+        <div className="lg:col-span-2">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="btn-primary w-full flex items-center justify-center space-x-2 text-sm sm:text-base py-3 sm:py-4"
+            aria-label={isSubmitting ? 'Submitting lead form' : 'Submit lead form to get cash offer'}
+          >
+            {isSubmitting ? (
+              <>
+                <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span>Submitting...</span>
+              </>
+            ) : (
+              <>
+                <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span>Get My Fair Cash Offer</span>
+              </>
+            )}
+          </button>
+
+          <p className={`text-xs text-center mt-2 lg:whitespace-nowrap ${getDisclaimerColor()}`}>
+            By submitting this form, you agree to be contacted by BHAM Houses regarding your property.
+          </p>
+        </div>
+      </form>
+    );
+  }
+
+  // Default variant
+  return (
+    <div className="space-y-3">
+      {/* Form Section */}
+      <div className="bg-white border border-gray-200 rounded-lg p-6">
+        {title && (
+          <div className="text-center mb-4">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">{title}</h3>
+            {subtitle && <p className="text-gray-700 text-sm">{subtitle}</p>}
+          </div>
+        )}
+
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 sm:p-4 flex items-start space-x-3 mb-6">
+            <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-red-600 mt-0.5 flex-shrink-0" />
+            <div>
+              <p className="text-sm font-medium text-red-800">Submission Error</p>
+              <p className="text-sm text-red-700 mt-1">{error}</p>
+              <button 
+                onClick={() => setError(null)}
+                className="text-sm text-red-600 hover:text-red-800 mt-2 underline"
+              >
+                Dismiss
+              </button>
+            </div>
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+          {/* Property Address - Full Width */}
+          <div className="border-b border-gray-200 pb-4">
+            <label htmlFor="property-address" className="block text-sm font-semibold text-gray-900 mb-2">
+              Property Address:
+            </label>
+            <AddressAutocomplete
+              value={watch('address') || ''}
+              onChange={(value) => {
+                setValue('address', value, { shouldValidate: true });
+              }}
+              placeholder="Enter your Birmingham property address"
+              error={errors.address?.message}
+              aria-label="Property address input with autocomplete"
+              aria-required="true"
+              aria-invalid={errors.address ? 'true' : 'false'}
+              aria-describedby={errors.address ? 'address-error' : undefined}
+            />
+            {errors.address && (
+              <p id="address-error" className="text-red-600 text-sm mt-1" role="alert">{errors.address.message}</p>
+            )}
+          </div>
+
+          {/* Property Type and Condition - Side by Side */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 border-b border-gray-200 pb-4">
+            <div>
+              <label htmlFor="property-type" className="block text-sm font-semibold text-gray-900 mb-2">
+                Property Type:
+              </label>
+              <div className="relative">
+                <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
+                <select 
+                  id="property-type"
+                  {...register('propertyType')} 
+                  className="form-select pl-10 text-sm sm:text-base w-full text-gray-400"
+                  aria-required="true"
+                  aria-invalid={errors.propertyType ? 'true' : 'false'}
+                  aria-describedby={errors.propertyType ? 'property-type-error' : undefined}
+                >
+                  <option value="" className="text-gray-400">Select property type</option>
+                  <option value="single-family" className="text-gray-900">Single Family Home</option>
+                  <option value="condo" className="text-gray-900">Condo</option>
+                  <option value="townhome" className="text-gray-900">Townhome</option>
+                  <option value="duplex" className="text-gray-900">Duplex</option>
+                  <option value="multi-family" className="text-gray-900">Multi-Family</option>
+                </select>
+              </div>
+              {errors.propertyType && (
+                <p id="property-type-error" className="text-red-600 text-sm mt-1" role="alert">{errors.propertyType.message}</p>
+              )}
+            </div>
+
+            <div>
+              <label htmlFor="property-condition" className="block text-sm font-semibold text-gray-900 mb-2">
+                Property Condition:
+              </label>
+              <div className="relative">
+                <Wrench className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
+                <select 
+                  id="property-condition"
+                  {...register('condition')} 
+                  className="form-select pl-10 text-sm sm:text-base w-full text-gray-400"
+                  aria-required="true"
+                  aria-invalid={errors.condition ? 'true' : 'false'}
+                  aria-describedby={errors.condition ? 'condition-error' : undefined}
+                >
+                  <option value="" className="text-gray-400">Select condition</option>
+                  <option value="excellent" className="text-gray-900">Excellent</option>
+                  <option value="good" className="text-gray-900">Good</option>
+                  <option value="fair" className="text-gray-900">Fair</option>
+                  <option value="poor" className="text-gray-900">Poor</option>
+                  <option value="needs-major-work" className="text-gray-900">Needs Major Work</option>
+                </select>
+              </div>
+              {errors.condition && (
+                <p id="condition-error" className="text-red-600 text-sm mt-1" role="alert">{errors.condition.message}</p>
+              )}
+            </div>
+          </div>
+
+          {/* Timeline - Full Width */}
+          <div className="border-b border-gray-200 pb-4">
+            <label htmlFor="timeline" className="block text-sm font-semibold text-gray-900 mb-2">
+              Timeline:
+            </label>
+            <div className="relative">
+              <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
+              <select 
+                id="timeline"
+                {...register('timeline')} 
+                className="form-select pl-10 text-sm sm:text-base w-full"
+                aria-required="true"
+                aria-invalid={errors.timeline ? 'true' : 'false'}
+                aria-describedby={errors.timeline ? 'timeline-error' : undefined}
+              >
+                <option value="" className="text-gray-500">Select timeline</option>
+                <option value="asap" className="text-gray-900">ASAP</option>
+                <option value="30-days" className="text-gray-900">Within 30 days</option>
+                <option value="60-days" className="text-gray-900">Within 60 days</option>
+                <option value="90-days" className="text-gray-900">Within 90 days</option>
+                <option value="just-exploring" className="text-gray-900">Just exploring</option>
+              </select>
+            </div>
+            {errors.timeline && (
+              <p id="timeline-error" className="text-red-600 text-sm mt-1" role="alert">{errors.timeline.message}</p>
+            )}
+          </div>
+
+          {/* Full Name - Full Width */}
+          <div className="border-b border-gray-200 pb-4">
+            <label htmlFor="full-name" className="block text-sm font-semibold text-gray-900 mb-2">
+              Full Name:
+            </label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
+              <input
+                id="full-name"
+                {...register('name')}
+                type="text"
+                placeholder="Enter your full name"
+                className="form-input pl-10 text-sm sm:text-base w-full"
+                aria-required="true"
+                aria-invalid={errors.name ? 'true' : 'false'}
+                aria-describedby={errors.name ? 'name-error' : undefined}
+                autoComplete="name"
+              />
+            </div>
+            {errors.name && (
+              <p id="name-error" className="text-red-600 text-sm mt-1" role="alert">{errors.name.message}</p>
+            )}
+          </div>
+
+          {/* Phone Number and Email - Side by Side */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 border-b border-gray-200 pb-4">
+            <div>
+              <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
+                Phone Number:
+              </label>
+              <div className="relative">
+                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
+                <input
+                  id="phone"
+                  {...register('phone')}
+                  type="tel"
+                  placeholder="Phone number"
+                  className="form-input pl-10 text-sm sm:text-base w-full"
+                  onChange={handlePhoneChange}
+                  aria-required="true"
+                  aria-invalid={errors.phone ? 'true' : 'false'}
+                  aria-describedby={errors.phone ? 'phone-error' : undefined}
+                  autoComplete="tel"
+                />
+              </div>
+              {errors.phone && (
+                <p id="phone-error" className="text-red-600 text-sm mt-1" role="alert">{errors.phone.message}</p>
+              )}
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
+                Email Address:
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
+                <input
+                  id="email"
+                  {...register('email')}
+                  type="email"
+                  placeholder="Email address"
+                  className="form-input pl-10 text-sm sm:text-base w-full"
+                  aria-required="true"
+                  aria-invalid={errors.email ? 'true' : 'false'}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
+                  autoComplete="email"
+                />
+              </div>
+              {errors.email && (
+                <p id="email-error" className="text-red-600 text-sm mt-1" role="alert">{errors.email.message}</p>
+              )}
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <div className="pt-4">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="btn-primary w-full flex items-center justify-center space-x-2 text-sm sm:text-base py-3 sm:py-4"
+              aria-label={isSubmitting ? 'Submitting lead form' : 'Submit lead form to get cash offer'}
+            >
+              {isSubmitting ? (
+                <>
+                  <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <span>Submitting...</span>
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span>Get My Fair Cash Offer</span>
+                </>
+              )}
+            </button>
+          </div>
+
+          <p className="text-xs text-gray-700 text-center pt-2 lg:whitespace-nowrap">
+            By submitting this form, you agree to be contacted by BHAM Houses regarding your property.
+          </p>
+        </form>
       </div>
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="btn-primary w-full flex items-center justify-center space-x-2 text-xs sm:text-sm py-2 sm:py-3"
-        aria-label={isSubmitting ? 'Submitting lead form' : 'Submit lead form to get cash offer'}
-      >
-        {isSubmitting ? (
-          <>
-            <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-            <span>Submitting...</span>
-          </>
-        ) : (
-          <>
-            <Send className="w-3 h-3 sm:w-4 sm:h-4" />
-            <span>Get My Fair Cash Offer</span>
-          </>
-        )}
-      </button>
-
-      <p className="text-xs text-gray-500 text-center">
-        By submitting this form, you agree to be contacted by BHAM Houses regarding your property.
-      </p>
-    </form>
+      {/* Call Section */}
+      <div className="bg-white border border-gray-200 rounded-lg p-6 text-center">
+        <h3 className="text-xl font-semibold mb-4 text-gray-900">Prefer to Call?</h3>
+        <p className="mb-6 text-gray-700">Speak directly with our Birmingham specialists</p>
+        <a href={`tel:${CONTACT_INFO.phoneRaw}`} className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-md transition duration-200">
+          <Phone className="w-5 h-5 mr-2" />
+          Call {CONTACT_INFO.phone}
+        </a>
+      </div>
+    </div>
   );
 } 

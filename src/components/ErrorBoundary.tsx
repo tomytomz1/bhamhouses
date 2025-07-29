@@ -53,7 +53,7 @@ export default class ErrorBoundary extends Component<Props, State> {
                 Need to Sell Your Birmingham Home?
               </h2>
               <p className="text-gray-700 mb-6">
-                Get your fair cash offer in 24 hours. No repairs, no fees, no commissions.
+                Get a call back in 24 hours. No repairs, no fees, no commissions.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

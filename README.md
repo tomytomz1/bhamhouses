@@ -4,7 +4,7 @@ A professional, conversion-optimized website for BHAM Houses, Birmingham, Michig
 
 ## 🏠 About
 
-BHAM Houses specializes exclusively in Birmingham, MI properties, providing fair cash offers and fast closings to homeowners throughout the area. This website is designed to dominate Birmingham, MI cash buyer searches through hyper-focused local content and SEO optimization.
+BHAM Houses specializes exclusively in Birmingham, MI properties, providing call backs and fast closings to homeowners throughout the area. This website is designed to dominate Birmingham, MI cash buyer searches through hyper-focused local content and SEO optimization.
 
 ## 🚀 Features
 

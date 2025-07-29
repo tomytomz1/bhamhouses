@@ -21,12 +21,12 @@ interface HeroSectionProps {
 
 const HeroSection: React.FC<HeroSectionProps> = ({
   title = "Sell Your House Fast in Birmingham, MI",
-  subtitle = "Birmingham, Michigan's dedicated cash home buyers. Get a fair cash offer in 24 hours, close in 7 days. No repairs, no fees, no commissions.",
+  subtitle = "Birmingham, Michigan's dedicated cash home buyers. Get a call back in 24 hours, close in 7 days. No repairs, no fees, no commissions.",
   benefits = [
     { icon: Clock, text: "Close in 7 days", color: "blue" },
     { icon: DollarSign, text: "No fees or commissions", color: "green" },
     { icon: MapPin, text: "Serving Birmingham, MI", color: "orange" },
-    { icon: Handshake, text: "Fair offers in 24 hours", color: "blue" }
+          { icon: Handshake, text: "Call back in 24 hours", color: "blue" }
   ],
   showForm = true,
   backgroundImage = "/images/downtown-birmingham-mi-2025.webp",
@@ -112,9 +112,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               <div className="hero-form bg-white/90 backdrop-blur-sm rounded-3xl shadow-luxury border border-gray-200 p-4 sm:p-6 max-w-sm sm:max-w-md mx-auto lg:max-w-none">
                 <div className="text-center mb-3 sm:mb-4">
                   <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Get Your Birmingham Cash Offer</h2>
-                  <p className="text-xs sm:text-sm text-gray-600">Fill out the form below and we'll contact you within 24 hours with your fair cash offer.</p>
+                  <p className="text-xs sm:text-sm text-gray-600">Fill out the form below and we'll call you back to get property details.</p>
                 </div>
-                <LeadForm />
+                <LeadForm variant="inline" />
               </div>
             )}
           </div>

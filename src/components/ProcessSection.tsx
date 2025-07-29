@@ -12,7 +12,7 @@ export default function ProcessSection() {
     {
       icon: FileText,
       title: 'Get Your Cash Offer',
-      description: 'We\'ll provide a fair cash offer within 24 hours based on current Birmingham market values. Our offer is based on recent sales in Birmingham, property condition, and current market trends.',
+      description: 'We\'ll call you back to get property condition details and provide a fair cash offer within 24 hours based on current Birmingham market values.',
       color: 'text-green-600',
       bgColor: 'bg-green-50',
     },
@@ -32,9 +32,10 @@ export default function ProcessSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
             How It Works
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Selling your Birmingham, MI house for cash is simple. Here's our straightforward 3-step process.
-          </p>
+          <div className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="mb-2">Selling your Birmingham, MI house for cash is simple.</p>
+            <p>Here's our straightforward 3-step process.</p>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -68,7 +69,7 @@ export default function ProcessSection() {
 
         <div className="text-center mt-12">
           <p className="text-xl text-gray-700 mb-6">
-            Ready to get started? It only takes a few minutes.
+            Ready to get started? We'll call you back to get the details we need.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/contact" className="btn-primary inline-flex items-center space-x-2">
