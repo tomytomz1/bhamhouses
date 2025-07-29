@@ -29,7 +29,7 @@ export const defaultHeroConfig: SectionConfig = {
       { icon: Handshake, text: "Fair offers in 24 hours", color: "blue" }
     ],
     showForm: true,
-    backgroundImage: "/images/downtown-birmingham-mi-2025.jpg"
+            backgroundImage: "/images/downtown-birmingham-mi-2025.webp"
   }
 };
 
