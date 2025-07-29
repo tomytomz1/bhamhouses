@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { MapPin, ChevronDown, Loader2, AlertCircle } from 'lucide-react';
 import { cn } from '@/utils/cn';
 
@@ -26,8 +26,6 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
   className,
   error
 }) => {
-  // Debug: Log the value prop
-  console.log('AddressAutocomplete value prop:', value);
   const [isOpen, setIsOpen] = useState(false);
   const [suggestions, setSuggestions] = useState<AddressSuggestion[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -38,32 +36,26 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
   const [justSelected, setJustSelected] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
-  // Instant response - no debounce for maximum speed
+  // Debounce input value
   useEffect(() => {
-    setDebouncedValue(value);
+    const timer = setTimeout(() => {
+      setDebouncedValue(value);
+    }, 300);
+    
+    return () => clearTimeout(timer);
   }, [value]);
 
-  // Fetch address suggestions immediately
-  useEffect(() => {
-    console.log('useEffect triggered - debouncedValue:', debouncedValue, 'justSelected:', justSelected); // Debug log
-    
-    // Don't fetch if we just selected an address
-    if (justSelected) {
-      console.log('Skipping fetch because justSelected is true'); // Debug log
-      setJustSelected(false);
-      return;
-    }
+  // Memoized zip code extraction
+  const extractZipCode = useCallback((address: string): string => {
+    const zipMatch = address.match(/\b48009\b/);
+    return zipMatch ? zipMatch[0] : '48009';
+  }, []);
 
-    // Don't fetch if the current value is a complete Birmingham address
-    if (debouncedValue.includes('Birmingham, MI, USA')) {
-      console.log('Skipping fetch because value is a complete Birmingham address'); // Debug log
-      setSuggestions([]);
-      setIsOpen(false);
-      return;
-    }
-
-    if (debouncedValue.length < 1) {
+  // Memoized fetch function with abort controller
+  const fetchAddresses = useCallback(async (query: string) => {
+    if (query.length < 1) {
       setSuggestions([]);
       setIsOpen(false);
       setValidationMessage('');
@@ -71,86 +63,113 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
       return;
     }
 
-    const fetchAddresses = async () => {
-      console.log('Fetching addresses for:', debouncedValue); // Debug log
-      setIsLoading(true);
-      try {
-        const response = await fetch(`/api/address-suggestions?query=${encodeURIComponent(debouncedValue)}`);
+    // Abort previous request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+
+    abortControllerRef.current = new AbortController();
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(`/api/address-suggestions?query=${encodeURIComponent(query)}`, {
+        signal: abortControllerRef.current.signal
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
         
-        console.log('API Response status:', response.status); // Debug log
-        
-        if (response.ok) {
-          const data = await response.json();
-          console.log('API Response data:', data); // Debug log
-          
-          if (data.error) {
-            console.error('API Error:', data.error, data.message);
-            setSuggestions([]);
-            setIsOpen(false);
-            setValidationMessage('');
-            return;
-          }
-          
-          const formattedSuggestions = data.predictions.map((prediction: { 
-            structured_formatting?: { main_text?: string }, 
-            description: string 
-          }, index: number) => ({
-            id: `suggestion-${index}`,
-            address: prediction.structured_formatting?.main_text || prediction.description,
-            fullAddress: prediction.description,
-            zipCode: extractZipCode(prediction.description)
-          }));
-          
-          setSuggestions(formattedSuggestions);
-          // Don't show dropdown if we just selected an address or if the current value is a complete address
-          const shouldShowDropdown = formattedSuggestions.length > 0 && !justSelected && !value.includes('Birmingham, MI, USA');
-          setIsOpen(shouldShowDropdown);
-          
-          // Check if current value is a valid Birmingham address
-          const isBirminghamAddress = formattedSuggestions.some((suggestion: AddressSuggestion) => 
-            suggestion.fullAddress.toLowerCase().includes('birmingham') && 
-            suggestion.fullAddress.toLowerCase().includes('mi')
-          );
-          
-          setHasValidBirminghamAddress(isBirminghamAddress);
-          
-          // Show validation message if user typed something but no Birmingham addresses found
-          if (debouncedValue.length > 2 && formattedSuggestions.length === 0) {
-            setValidationMessage('Please enter a valid Birmingham, MI address. We only serve Birmingham, Michigan properties.');
-          } else if (debouncedValue.length > 2 && !isBirminghamAddress) {
-            setValidationMessage('Please select a Birmingham, MI address from the suggestions above.');
-          } else {
-            setValidationMessage('');
-          }
-        } else {
-          console.error('API response not ok:', response.status);
+        if (data.error) {
           setSuggestions([]);
           setIsOpen(false);
           setValidationMessage('');
+          return;
         }
-      } catch (error) {
-        console.error('Error fetching addresses:', error);
+        
+        const formattedSuggestions = data.predictions.map((prediction: { 
+          structured_formatting?: { main_text?: string }, 
+          description: string 
+        }, index: number) => ({
+          id: `suggestion-${index}`,
+          address: prediction.structured_formatting?.main_text || prediction.description,
+          fullAddress: prediction.description,
+          zipCode: extractZipCode(prediction.description)
+        }));
+        
+        setSuggestions(formattedSuggestions);
+        const shouldShowDropdown = formattedSuggestions.length > 0 && !justSelected && !value.includes('Birmingham, MI, USA');
+        setIsOpen(shouldShowDropdown);
+        
+        const isBirminghamAddress = formattedSuggestions.some((suggestion: AddressSuggestion) => 
+          suggestion.fullAddress.toLowerCase().includes('birmingham') && 
+          suggestion.fullAddress.toLowerCase().includes('mi')
+        );
+        
+        setHasValidBirminghamAddress(isBirminghamAddress);
+        
+        if (query.length > 2 && formattedSuggestions.length === 0) {
+          setValidationMessage('Please enter a valid Birmingham, MI address. We only serve Birmingham, Michigan properties.');
+        } else if (query.length > 2 && !isBirminghamAddress) {
+          setValidationMessage('Please select a Birmingham, MI address from the suggestions above.');
+        } else {
+          setValidationMessage('');
+        }
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name !== 'AbortError') {
         setSuggestions([]);
         setIsOpen(false);
         setValidationMessage('');
-      } finally {
-        setIsLoading(false);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }, [justSelected, value, extractZipCode]);
+  
+  // Fetch address suggestions with debounce
+  useEffect(() => {
+    // Don't fetch if we just selected an address
+    if (justSelected) {
+      setJustSelected(false);
+      return;
+    }
+
+    // Don't fetch if the current value is a complete Birmingham address
+    if (debouncedValue.includes('Birmingham, MI, USA')) {
+      setSuggestions([]);
+      setIsOpen(false);
+      return;
+    }
+
+    fetchAddresses(debouncedValue);
+  }, [debouncedValue, justSelected, fetchAddresses]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
       }
     };
+  }, []);
 
-    fetchAddresses();
-  }, [debouncedValue, justSelected]);
+  // Memoized address selection handler
+  const selectAddress = useCallback((address: AddressSuggestion) => {
+    setJustSelected(true);
+    onChange(address.fullAddress);
+    setIsOpen(false);
+    setSelectedIndex(-1);
+    setSuggestions([]);
+    setValidationMessage('');
+    setHasValidBirminghamAddress(true);
+    
+    if (inputRef.current) {
+      inputRef.current.value = address.fullAddress;
+    }
+  }, [onChange]);
 
-
-
-  // Extract zip code from address
-  const extractZipCode = (address: string): string => {
-    const zipMatch = address.match(/\b48009\b/);
-    return zipMatch ? zipMatch[0] : '48009';
-  };
-
-  // Handle keyboard navigation
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  // Memoized keyboard handler
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (!isOpen) return;
 
     switch (e.key) {
@@ -175,45 +194,13 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
         setSelectedIndex(-1);
         break;
     }
-  };
+  }, [isOpen, suggestions, selectedIndex, selectAddress]);
 
-  // Select an address from suggestions
-  const selectAddress = (address: AddressSuggestion) => {
-    console.log('Selecting address:', address.fullAddress); // Debug log
-    
-    // Mark that we just selected an address to prevent refetching
-    setJustSelected(true);
-    
-    // Update the input value first
-    onChange(address.fullAddress);
-    
-
-    
-    // Clear all state immediately and prevent dropdown from showing
-    setIsOpen(false);
-    setSelectedIndex(-1);
-    setSuggestions([]);
-    setValidationMessage('');
-    setHasValidBirminghamAddress(true);
-    
-    // Ensure the input value is properly updated
-    if (inputRef.current) {
-      inputRef.current.value = address.fullAddress;
-    }
-    
-    // Force clear any pending timeouts
-    setTimeout(() => {
-      setIsOpen(false);
-      setSuggestions([]);
-    }, 0);
-  };
-
-  // Handle input change with immediate feedback
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Memoized input change handler
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     onChange(newValue);
     
-    // Only show dropdown if there's text and we're not selecting
     if (newValue.length > 0 && !isOpen) {
       setIsOpen(true);
     } else if (newValue.length === 0) {
@@ -222,33 +209,30 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
       setValidationMessage('');
       setHasValidBirminghamAddress(false);
     }
-  };
+  }, [onChange, isOpen]);
 
-  // Handle input focus - show suggestions immediately if there's text
-  const handleInputFocus = () => {
+  // Memoized focus handler
+  const handleInputFocus = useCallback(() => {
     if (value.length > 0 && suggestions.length > 0) {
       setIsOpen(true);
     }
-  };
+  }, [value.length, suggestions.length]);
 
-  // Handle input blur - close dropdown when focus is lost
-  const handleInputBlur = () => {
-    // Much longer delay to allow for clicking on suggestions
+  // Memoized blur handler
+  const handleInputBlur = useCallback(() => {
     setTimeout(() => {
       setIsOpen(false);
       setSelectedIndex(-1);
-    }, 300);
-  };
+    }, 200);
+  }, []);
 
   // Handle click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // Check if click is outside both input and dropdown
       const isOutsideInput = inputRef.current && !inputRef.current.contains(event.target as Node);
       const isOutsideDropdown = dropdownRef.current && !dropdownRef.current.contains(event.target as Node);
       
       if (isOutsideInput && isOutsideDropdown) {
-        // Longer delay to allow for suggestion clicks
         setTimeout(() => {
           setIsOpen(false);
           setSelectedIndex(-1);
@@ -274,6 +258,42 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
     };
   }, []);
 
+  // Memoized suggestion items to prevent unnecessary re-renders
+  const suggestionItems = useMemo(() => (
+    suggestions.map((suggestion, index) => (
+      <button
+        key={suggestion.id}
+        id={`suggestion-${index}`}
+        type="button"
+        role="option"
+        aria-selected={selectedIndex === index}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          selectAddress(suggestion);
+        }}
+        onMouseDown={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+        className={cn(
+          "w-full px-4 py-3 text-left text-sm hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition-colors",
+          selectedIndex === index && "bg-blue-50 text-blue-900"
+        )}
+      >
+        <div className="flex items-center space-x-3">
+          <MapPin className="w-4 h-4 text-gray-400 flex-shrink-0" aria-hidden="true" />
+          <div className="flex-1">
+            <div className="font-medium text-gray-900">{suggestion.address}</div>
+            <div className="text-gray-500 text-xs mt-1">
+              Birmingham, MI • {suggestion.zipCode}
+            </div>
+          </div>
+        </div>
+      </button>
+    ))
+  ), [suggestions, selectedIndex, selectAddress]);
+
   return (
     <div className="relative">
       <div className="relative">
@@ -287,14 +307,22 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
           onKeyDown={handleKeyDown}
           onBlur={handleInputBlur}
           placeholder={placeholder}
-          autoComplete="off"
-          aria-invalid="false"
-          aria-required="false"
+          autoComplete="address-line1"
+          aria-invalid={error || validationMessage ? "true" : "false"}
+          aria-required="true"
+          aria-describedby={`${error ? 'address-error-external ' : ''}${validationMessage ? 'address-validation-message' : ''}`.trim() || undefined}
+          aria-label="Property address input with autocomplete suggestions"
+          role="combobox"
+          aria-controls="address-suggestions"
+          aria-expanded={isOpen}
+          aria-haspopup="listbox"
+          aria-owns={isOpen ? "address-suggestions" : undefined}
+          aria-activedescendant={selectedIndex >= 0 ? `suggestion-${selectedIndex}` : undefined}
           className={cn(
             "form-input pl-8 text-xs sm:text-sm w-full",
-            "mdc-text-field__input", // Google's input class
-            "cdk-text-field-autofill-monitored", // Google's autofill class
-            "pac-target-input", // Google's autocomplete target class
+            "mdc-text-field__input",
+            "cdk-text-field-autofill-monitored",
+            "pac-target-input",
             validationMessage && !hasValidBirminghamAddress && "border-red-300 focus:border-red-500",
             className
           )}
@@ -307,57 +335,32 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
         )}
       </div>
 
-      {/* Dropdown Suggestions - Google Maps style */}
+      {/* Dropdown Suggestions */}
       {isOpen && suggestions.length > 0 && (
         <div
+          id="address-suggestions"
           ref={dropdownRef}
+          role="listbox"
+          aria-label="Address suggestions"
           className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto"
         >
-          {suggestions.map((suggestion, index) => (
-            <button
-              key={suggestion.id}
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                selectAddress(suggestion);
-              }}
-              onMouseDown={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-              className={cn(
-                "w-full px-4 py-3 text-left text-sm hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition-colors",
-                selectedIndex === index && "bg-blue-50 text-blue-900"
-              )}
-            >
-              <div className="flex items-center space-x-3">
-                <MapPin className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                <div className="flex-1">
-                  <div className="font-medium text-gray-900">{suggestion.address}</div>
-                  <div className="text-gray-500 text-xs mt-1">
-                    Birmingham, MI • {suggestion.zipCode}
-                  </div>
-                </div>
-              </div>
-            </button>
-          ))}
+          {suggestionItems}
         </div>
       )}
 
       {/* Validation Message */}
       {validationMessage && (
         <div className="flex items-center space-x-2 mt-2 text-sm">
-          <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
-          <p className="text-red-600">{validationMessage}</p>
+          <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" aria-hidden="true" />
+          <p id="address-validation-message" className="text-red-600" role="alert">{validationMessage}</p>
         </div>
       )}
 
       {error && (
-        <p className="text-red-600 text-xs mt-1">{error}</p>
+        <p id="address-error-external" className="text-red-600 text-xs mt-1" role="alert">{error}</p>
       )}
     </div>
   );
 };
 
-export default AddressAutocomplete; 
+export default AddressAutocomplete;

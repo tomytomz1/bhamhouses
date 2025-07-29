@@ -1,10 +1,10 @@
-import { Clock, DollarSign, MapPin, Handshake, Phone, Mail, ArrowRight } from 'lucide-react';
+import { Clock, DollarSign, MapPin, Handshake, Phone, Mail } from 'lucide-react';
 import { CONTACT_INFO } from '@/utils/contactInfo';
 
 export interface SectionConfig {
   id: string;
   type: 'hero' | 'benefits' | 'process' | 'testimonials' | 'faq' | 'cta' | 'specialization';
-  props: Record<string, any>;
+  props: Record<string, unknown>;
   enabled?: boolean;
 }
 

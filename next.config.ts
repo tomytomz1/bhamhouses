@@ -2,14 +2,11 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   // Performance optimizations
-  experimental: {
-    // Enable Turbopack for faster builds
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
       },
     },
   },
@@ -41,16 +38,14 @@ const nextConfig: NextConfig = {
   // React strict mode
   reactStrictMode: true,
   
-  // TypeScript
+  // TypeScript - only ignore in CI, not local development
   typescript: {
-    // Don't run TypeScript during builds in development
-    ignoreBuildErrors: process.env.NODE_ENV === 'development',
+    ignoreBuildErrors: process.env.CI === 'true' && process.env.NODE_ENV === 'production',
   },
   
-  // ESLint
+  // ESLint - only ignore in CI if needed
   eslint: {
-    // Don't run ESLint during builds in development
-    ignoreDuringBuilds: process.env.NODE_ENV === 'development',
+    ignoreDuringBuilds: process.env.CI === 'true' && process.env.SKIP_LINT === 'true',
   },
 }
 

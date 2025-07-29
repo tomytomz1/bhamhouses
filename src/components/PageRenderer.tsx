@@ -6,16 +6,44 @@ import ProcessSection from '@/components/ProcessSection';
 import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
 import Section from '@/components/ui/Section';
-import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
-import { CONTACT_INFO } from '@/utils/contactInfo';
+import { LucideIcon } from 'lucide-react';
 
 interface PageRendererProps {
   config: PageConfig;
 }
 
+interface FeatureItem {
+  icon: LucideIcon;
+  color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'error';
+  title: string;
+  description: string;
+}
+
+interface ActionItem {
+  href: string;
+  variant?: string;
+  secondary?: boolean;
+  icon?: LucideIcon;
+  text?: string;
+  children: React.ReactNode;
+}
+
+interface SpecializationProps extends SectionConfig {
+  title: string;
+  subtitle: string;
+  features: FeatureItem[];
+}
+
+interface CTAProps extends SectionConfig {
+  title: string;
+  subtitle: string;
+  variant?: 'default' | 'light' | 'dark' | 'gradient';
+  actions: ActionItem[];
+}
+
 // Section component mapping
-const sectionComponents: Record<string, React.ComponentType<any>> = {
+const sectionComponents: Record<string, React.ComponentType<Record<string, unknown>>> = {
   hero: HeroSection,
   benefits: BenefitsSection,
   process: ProcessSection,
@@ -24,7 +52,7 @@ const sectionComponents: Record<string, React.ComponentType<any>> = {
 };
 
 // Specialized section renderers
-const renderSpecializationSection = (props: any) => (
+const renderSpecializationSection = (props: SpecializationProps) => (
   <Section variant="default">
     <div className="text-center mb-16">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -36,7 +64,7 @@ const renderSpecializationSection = (props: any) => (
     </div>
 
     <div className="grid md:grid-cols-3 gap-8">
-      {props.features.map((feature: any, index: number) => (
+      {props.features.map((feature: FeatureItem, index: number) => (
         <div key={index} className="card text-center">
           <div className={`w-16 h-16 bg-${feature.color}-100 rounded-2xl flex items-center justify-center mx-auto mb-6`}>
             <Icon icon={feature.icon} size="xl" color={feature.color} />
@@ -49,7 +77,7 @@ const renderSpecializationSection = (props: any) => (
   </Section>
 );
 
-const renderCTASection = (props: any) => (
+const renderCTASection = (props: CTAProps) => (
   <Section variant={props.variant || 'dark'} className="bg-blue-900">
     <div className="text-center">
       <div className="max-w-4xl mx-auto">
@@ -60,7 +88,7 @@ const renderCTASection = (props: any) => (
           {props.subtitle}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          {props.actions.map((action: any, index: number) => (
+          {props.actions.map((action: ActionItem, index: number) => (
             <a
               key={index}
               href={action.href}
@@ -70,7 +98,7 @@ const renderCTASection = (props: any) => (
                   : 'bg-white text-blue-900 hover:bg-gray-100'
               }`}
             >
-              <Icon icon={action.icon} size="md" />
+              {action.icon && <Icon icon={action.icon} size="md" />}
               <span>{action.text}</span>
             </a>
           ))}
@@ -88,11 +116,11 @@ const PageRenderer: React.FC<PageRendererProps> = ({ config }) => {
 
     // Handle specialized sections
     if (type === 'specialization') {
-      return renderSpecializationSection(props);
+      return renderSpecializationSection(props as unknown as SpecializationProps);
     }
 
     if (type === 'cta') {
-      return renderCTASection(props);
+      return renderCTASection(props as unknown as CTAProps);
     }
 
     // Handle standard sections

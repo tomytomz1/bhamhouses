@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import { Clock, DollarSign, MapPin, Handshake, Phone, Mail, ArrowRight, Star, Users, Shield, CheckCircle } from 'lucide-react';
+import { Clock, DollarSign, MapPin, Users, Shield, CheckCircle } from 'lucide-react';
 import LeadForm from '@/components/LeadForm';
 
 export const metadata = {

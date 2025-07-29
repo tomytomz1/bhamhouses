@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.0",
+    "@types/dompurify": "^3.0.5",
     "@types/nodemailer": "^6.4.17",
     "airtable": "^0.12.2",
     "clsx": "^2.1.1",
+    "dompurify": "^3.2.6",
+    "isomorphic-dompurify": "^2.26.0",
     "lucide-react": "^0.532.0",
     "next": "15.4.4",
     "nodemailer": "^7.0.5",

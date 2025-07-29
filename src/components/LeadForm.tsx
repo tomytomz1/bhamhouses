@@ -3,8 +3,8 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useState, useEffect } from 'react';
-import { MapPin, Home, Wrench, Clock, User, Phone, Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { useState, useCallback } from 'react';
+import { Home, Wrench, Clock, User, Phone, Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { getStoredUTMParams } from '@/utils/utmTracking';
 import { CONTACT_INFO } from '@/utils/contactInfo';
 import AddressAutocomplete from '@/components/AddressAutocomplete';
@@ -43,45 +43,50 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
     resolver: zodResolver(formSchema),
   });
 
-  // Debug: Log current address value (moved after useForm)
-  const currentAddress = watch('address');
-  console.log('Current address value:', currentAddress);
+
+  const submitLead = useCallback(async (data: FormData) => {
+    const utmParams = getStoredUTMParams();
+    
+    const response = await fetch('/api/submit-lead', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        propertyAddress: data.address,
+        propertyType: data.propertyType,
+        propertyCondition: data.condition,
+        timeline: data.timeline,
+        fullName: data.name,
+        phone: data.phone,
+        email: data.email,
+        utmSource: utmParams.utm_source,
+        utmMedium: utmParams.utm_medium,
+        utmCampaign: utmParams.utm_campaign,
+        utmTerm: utmParams.utm_term,
+        utmContent: utmParams.utm_content,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      // Handle rate limiting specifically
+      if (response.status === 429) {
+        throw new Error('You\'ve submitted too many requests. Please wait a few minutes and try again.');
+      }
+      throw new Error(result.error || 'Failed to submit lead');
+    }
+
+    return result;
+  }, []);
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     setError(null);
     
     try {
-      // Get UTM parameters
-      const utmParams = getStoredUTMParams();
-      
-      const response = await fetch('/api/submit-lead', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          propertyAddress: data.address,
-          propertyType: data.propertyType,
-          propertyCondition: data.condition,
-          timeline: data.timeline,
-          fullName: data.name,
-          phone: data.phone,
-          email: data.email,
-          utmSource: utmParams.utm_source,
-          utmMedium: utmParams.utm_medium,
-          utmCampaign: utmParams.utm_campaign,
-          utmTerm: utmParams.utm_term,
-          utmContent: utmParams.utm_content,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to submit lead');
-      }
-
+      await submitLead(data);
       setIsSubmitted(true);
       
       // Reset form after 5 seconds
@@ -91,7 +96,6 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
       }, 5000);
 
     } catch (err) {
-      console.error('Lead submission error:', err);
       setError(err instanceof Error ? err.message : 'Failed to submit lead. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -148,6 +152,12 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
           <div>
             <p className="text-xs font-medium text-red-800">Submission Error</p>
             <p className="text-xs text-red-700 mt-1">{error}</p>
+            <button 
+              onClick={() => setError(null)}
+              className="text-xs text-red-600 hover:text-red-800 mt-1 underline"
+            >
+              Dismiss
+            </button>
           </div>
         </div>
       )}
@@ -155,30 +165,43 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
       {/* Property Information */}
       <div className="space-y-2 sm:space-y-3">
         <div>
-          <label className="block text-xs font-semibold text-gray-900 mb-1">
+          <label htmlFor="property-address" className="block text-xs font-semibold text-gray-900 mb-1">
             Property Address *
           </label>
           <AddressAutocomplete
             value={watch('address') || ''}
             onChange={(value) => {
-              console.log('Setting address value:', value); // Debug log
               setValue('address', value, { shouldValidate: true });
             }}
             placeholder="Enter your Birmingham property address"
             error={errors.address?.message}
+            aria-label="Property address input with autocomplete"
+            aria-required="true"
+            aria-invalid={errors.address ? 'true' : 'false'}
+            aria-describedby={errors.address ? 'address-error' : undefined}
           />
+          {errors.address && (
+            <p id="address-error" className="text-red-600 text-xs mt-1" role="alert">{errors.address.message}</p>
+          )}
         </div>
 
 
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
           <div>
-            <label className="block text-xs font-semibold text-gray-900 mb-1">
+            <label htmlFor="property-type" className="block text-xs font-semibold text-gray-900 mb-1">
               Property Type *
             </label>
             <div className="relative">
-              <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
-              <select {...register('propertyType')} className="form-select pl-8 text-xs sm:text-sm">
+              <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" aria-hidden="true" />
+              <select 
+                id="property-type"
+                {...register('propertyType')} 
+                className="form-select pl-8 text-xs sm:text-sm"
+                aria-required="true"
+                aria-invalid={errors.propertyType ? 'true' : 'false'}
+                aria-describedby={errors.propertyType ? 'property-type-error' : undefined}
+              >
                 <option value="">Select property type</option>
                 <option value="single-family">Single Family Home</option>
                 <option value="condo">Condo</option>
@@ -188,17 +211,24 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
               </select>
             </div>
             {errors.propertyType && (
-              <p className="text-red-600 text-xs mt-1">{errors.propertyType.message}</p>
+              <p id="property-type-error" className="text-red-600 text-xs mt-1" role="alert">{errors.propertyType.message}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-900 mb-1">
+            <label htmlFor="property-condition" className="block text-xs font-semibold text-gray-900 mb-1">
               Property Condition *
             </label>
             <div className="relative">
-              <Wrench className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
-              <select {...register('condition')} className="form-select pl-8 text-xs sm:text-sm">
+              <Wrench className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" aria-hidden="true" />
+              <select 
+                id="property-condition"
+                {...register('condition')} 
+                className="form-select pl-8 text-xs sm:text-sm"
+                aria-required="true"
+                aria-invalid={errors.condition ? 'true' : 'false'}
+                aria-describedby={errors.condition ? 'condition-error' : undefined}
+              >
                 <option value="">Select condition</option>
                 <option value="excellent">Excellent</option>
                 <option value="good">Good</option>
@@ -208,18 +238,25 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
               </select>
             </div>
             {errors.condition && (
-              <p className="text-red-600 text-xs mt-1">{errors.condition.message}</p>
+              <p id="condition-error" className="text-red-600 text-xs mt-1" role="alert">{errors.condition.message}</p>
             )}
           </div>
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-gray-900 mb-1">
+          <label htmlFor="timeline" className="block text-xs font-semibold text-gray-900 mb-1">
             Timeline *
           </label>
           <div className="relative">
-            <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
-            <select {...register('timeline')} className="form-select pl-8 text-xs sm:text-sm">
+            <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" aria-hidden="true" />
+            <select 
+              id="timeline"
+              {...register('timeline')} 
+              className="form-select pl-8 text-xs sm:text-sm"
+              aria-required="true"
+              aria-invalid={errors.timeline ? 'true' : 'false'}
+              aria-describedby={errors.timeline ? 'timeline-error' : undefined}
+            >
               <option value="">Select timeline</option>
               <option value="asap">ASAP</option>
               <option value="30-days">Within 30 days</option>
@@ -229,7 +266,7 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
             </select>
           </div>
           {errors.timeline && (
-            <p className="text-red-600 text-xs mt-1">{errors.timeline.message}</p>
+            <p id="timeline-error" className="text-red-600 text-xs mt-1" role="alert">{errors.timeline.message}</p>
           )}
         </div>
       </div>
@@ -237,58 +274,73 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
       {/* Contact Information */}
       <div className="space-y-2 sm:space-y-3">
         <div>
-          <label className="block text-xs font-semibold text-gray-900 mb-1">
+          <label htmlFor="full-name" className="block text-xs font-semibold text-gray-900 mb-1">
             Full Name *
           </label>
           <div className="relative">
-            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
+            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" aria-hidden="true" />
             <input
+              id="full-name"
               {...register('name')}
               type="text"
               placeholder="Enter your full name"
               className="form-input pl-8 text-xs sm:text-sm"
+              aria-required="true"
+              aria-invalid={errors.name ? 'true' : 'false'}
+              aria-describedby={errors.name ? 'name-error' : undefined}
+              autoComplete="name"
             />
           </div>
           {errors.name && (
-            <p className="text-red-600 text-xs mt-1">{errors.name.message}</p>
+            <p id="name-error" className="text-red-600 text-xs mt-1" role="alert">{errors.name.message}</p>
           )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
           <div>
-            <label className="block text-xs font-semibold text-gray-900 mb-1">
+            <label htmlFor="phone" className="block text-xs font-semibold text-gray-900 mb-1">
               Phone Number *
             </label>
             <div className="relative">
-              <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
+              <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" aria-hidden="true" />
               <input
+                id="phone"
                 {...register('phone')}
                 type="tel"
                 placeholder={CONTACT_INFO.phone}
                 className="form-input pl-8 text-xs sm:text-sm"
                 onChange={handlePhoneChange}
+                aria-required="true"
+                aria-invalid={errors.phone ? 'true' : 'false'}
+                aria-describedby={errors.phone ? 'phone-error' : undefined}
+                autoComplete="tel"
               />
             </div>
             {errors.phone && (
-              <p className="text-red-600 text-xs mt-1">{errors.phone.message}</p>
+              <p id="phone-error" className="text-red-600 text-xs mt-1" role="alert">{errors.phone.message}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-900 mb-1">
+            <label htmlFor="email" className="block text-xs font-semibold text-gray-900 mb-1">
               Email Address *
             </label>
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
+              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" aria-hidden="true" />
               <input
+                id="email"
                 {...register('email')}
                 type="email"
                 placeholder="your.email@example.com"
                 className="form-input pl-8 text-xs sm:text-sm"
+                aria-required="true"
+                aria-invalid={errors.email ? 'true' : 'false'}
+                aria-describedby={errors.email ? 'email-error' : undefined}
+                autoComplete="email"
               />
             </div>
             {errors.email && (
-              <p className="text-red-600 text-xs mt-1">{errors.email.message}</p>
+              <p id="email-error" className="text-red-600 text-xs mt-1" role="alert">{errors.email.message}</p>
             )}
           </div>
         </div>
@@ -298,6 +350,7 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
         type="submit"
         disabled={isSubmitting}
         className="btn-primary w-full flex items-center justify-center space-x-2 text-xs sm:text-sm py-2 sm:py-3"
+        aria-label={isSubmitting ? 'Submitting lead form' : 'Submit lead form to get cash offer'}
       >
         {isSubmitting ? (
           <>

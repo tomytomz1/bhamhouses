@@ -3,6 +3,7 @@
 import { Component, ReactNode } from 'react';
 import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
 import Link from 'next/link';
+import { CONTACT_INFO } from '@/utils/contactInfo';
 
 interface Props {
   children: ReactNode;
@@ -78,7 +79,7 @@ export default class ErrorBoundary extends Component<Props, State> {
             <div className="text-gray-600">
               <p className="mb-2">Still having trouble?</p>
               <p className="font-medium">
-                Call us directly: <a href="tel:2485550123" className="text-blue-600 hover:text-blue-700">(248) 555-0123</a>
+                Call us directly: <a href={`tel:${CONTACT_INFO.phoneRaw}`} className="text-blue-600 hover:text-blue-700">{CONTACT_INFO.phone}</a>
               </p>
             </div>
           </div>

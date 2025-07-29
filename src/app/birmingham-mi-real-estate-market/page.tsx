@@ -1,8 +1,6 @@
 import { Metadata } from 'next'
-import Link from 'next/link';
-import { Clock, DollarSign, Handshake, Phone, Mail, ArrowRight, TrendingUp, BarChart3, Home, Users, Calendar } from 'lucide-react';
+import { DollarSign, TrendingUp, Home, Calendar } from 'lucide-react';
 import LeadForm from '@/components/LeadForm';
-import { CONTACT_INFO } from '@/utils/contactInfo';
 
 export const metadata: Metadata = {
   title: 'Birmingham, MI Real Estate Market Report - Cash Home Buyers | BHAM Houses',
