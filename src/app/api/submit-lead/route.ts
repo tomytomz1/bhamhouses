@@ -19,7 +19,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const {
       propertyAddress,
-      neighborhood,
       propertyType,
       propertyCondition,
       timeline,
@@ -34,7 +33,7 @@ export async function POST(request: NextRequest) {
     } = body;
 
     // Validate required fields
-    if (!propertyAddress || !neighborhood || !propertyType || !propertyCondition || !timeline || !fullName) {
+    if (!propertyAddress || !propertyType || !propertyCondition || !timeline || !fullName) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -46,7 +45,6 @@ export async function POST(request: NextRequest) {
       {
         fields: {
           'Property Address': propertyAddress,
-          'Neighborhood': neighborhood,
           'Property Type': propertyType,
           'Property Condition': propertyCondition,
           'Timeline': timeline,
@@ -69,7 +67,6 @@ export async function POST(request: NextRequest) {
       <h2>New Lead Received - BHAM Houses</h2>
       <p><strong>Name:</strong> ${fullName}</p>
       <p><strong>Property Address:</strong> ${propertyAddress}</p>
-      <p><strong>Neighborhood:</strong> ${neighborhood}</p>
       <p><strong>Property Type:</strong> ${propertyType}</p>
       <p><strong>Property Condition:</strong> ${propertyCondition}</p>
       <p><strong>Timeline:</strong> ${timeline}</p>
@@ -83,7 +80,7 @@ export async function POST(request: NextRequest) {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: 'tomasbeltran2014@gmail.com',
-      subject: `New Lead: ${fullName} - ${neighborhood}`,
+      subject: `New Lead: ${fullName} - Birmingham, MI`,
       html: emailContent,
     });
 

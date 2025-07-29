@@ -7,10 +7,10 @@ import { useState, useEffect } from 'react';
 import { MapPin, Home, Wrench, Clock, User, Phone, Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { getStoredUTMParams } from '@/utils/utmTracking';
 import { CONTACT_INFO } from '@/utils/contactInfo';
+import AddressAutocomplete from '@/components/AddressAutocomplete';
 
 const formSchema = z.object({
   address: z.string().min(1, 'Property address is required'),
-  neighborhood: z.string().min(1, 'Please select your neighborhood'),
   propertyType: z.string().min(1, 'Please select property type'),
   condition: z.string().min(1, 'Please select property condition'),
   timeline: z.string().min(1, 'Please select your timeline'),
@@ -35,11 +35,17 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
     reset,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
+
+  // Debug: Log current address value (moved after useForm)
+  const currentAddress = watch('address');
+  console.log('Current address value:', currentAddress);
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
@@ -56,7 +62,6 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
         },
         body: JSON.stringify({
           propertyAddress: data.address,
-          neighborhood: data.neighborhood,
           propertyType: data.propertyType,
           propertyCondition: data.condition,
           timeline: data.timeline,
@@ -153,49 +158,18 @@ export default function LeadForm({ title, subtitle, variant = 'default' }: LeadF
           <label className="block text-xs font-semibold text-gray-900 mb-1">
             Property Address *
           </label>
-          <div className="relative">
-            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
-            <input
-              {...register('address')}
-              type="text"
-              placeholder="Enter your Birmingham property address"
-              className="form-input pl-8 text-xs sm:text-sm"
-            />
-          </div>
-          {errors.address && (
-            <p className="text-red-600 text-xs mt-1">{errors.address.message}</p>
-          )}
+          <AddressAutocomplete
+            value={watch('address') || ''}
+            onChange={(value) => {
+              console.log('Setting address value:', value); // Debug log
+              setValue('address', value, { shouldValidate: true });
+            }}
+            placeholder="Enter your Birmingham property address"
+            error={errors.address?.message}
+          />
         </div>
 
-        <div>
-          <label className="block text-xs font-semibold text-gray-900 mb-1">
-            Birmingham Neighborhood *
-          </label>
-          <div className="relative">
-            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
-            <select {...register('neighborhood')} className="form-select pl-8 text-xs sm:text-sm">
-              <option value="">Select your neighborhood</option>
-              <option value="downtown">Downtown Birmingham</option>
-              <option value="shain-park">Shain Park</option>
-              <option value="bloomfield-ridge">Bloomfield Ridge</option>
-              <option value="village">The Village</option>
-              <option value="wellspring">Wellspring</option>
-              <option value="maplewood">Maplewood</option>
-              <option value="estates">Birmingham Estates</option>
-              <option value="manor">Birmingham Manor</option>
-              <option value="villas">Birmingham Villas</option>
-              <option value="buckingham-village">Buckingham Village</option>
-              <option value="woodward-corridor">Woodward Corridor</option>
-              <option value="rouge-river">Rouge River Area</option>
-              <option value="lincoln-hills">Lincoln Hills Golf Course Area</option>
-              <option value="booth-park">Booth Park Area</option>
-              <option value="theatre-district">Birmingham Theatre District</option>
-            </select>
-          </div>
-          {errors.neighborhood && (
-            <p className="text-red-600 text-xs mt-1">{errors.neighborhood.message}</p>
-          )}
-        </div>
+
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
           <div>
