@@ -103,7 +103,7 @@ export default function ContactPage() {
           {/* Why Choose Us - Full Width Row */}
           <div className="bg-blue-50 rounded-2xl p-8 mt-8 text-center">
             <h3 className="text-xl font-bold text-gray-900 mb-6">Why Choose BHAM Houses?</h3>
-            <div className="grid grid-cols-2 gap-8 text-gray-700">
+            <div className="grid grid-cols-3 gap-8 text-gray-700">
               <div className="flex items-center space-x-3">
                 <div className="w-3 h-3 bg-blue-600 rounded-full flex-shrink-0"></div>
                 <span className="text-base font-medium">Fair cash offers in 24 hours</span>
