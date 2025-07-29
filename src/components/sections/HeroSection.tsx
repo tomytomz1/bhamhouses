@@ -63,7 +63,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Left Column - Content */}
             <div className="space-y-4 sm:space-y-6">
               {/* Main Headline */}
-              <div className="space-y-3 sm:space-y-4">
+              <div className="space-y-3 sm:space-y-4 text-center">
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
                   {title.includes('Birmingham, MI') ? (
                     <>
