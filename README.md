@@ -150,7 +150,7 @@ Create a `.env.local` file for environment-specific settings:
 
 ```env
 NEXT_PUBLIC_SITE_URL=https://bhamhouses.com
-NEXT_PUBLIC_PHONE_NUMBER=(248) XXX-XXXX
+NEXT_PUBLIC_PHONE_NUMBER=(586) 324-1248
 NEXT_PUBLIC_EMAIL=info@bhamhouses.com
 ```
 
@@ -184,7 +184,7 @@ The site can be deployed to any platform that supports Next.js:
 
 ## 📞 Contact Information
 
-- **Phone**: (248) XXX-XXXX
+- **Phone**: (586) 324-1248
 - **Email**: info@bhamhouses.com
 - **Service Area**: Birmingham, MI 48009
 - **Business Hours**: Monday - Sunday: 8:00 AM - 8:00 PM

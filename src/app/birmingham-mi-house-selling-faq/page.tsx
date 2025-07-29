@@ -70,7 +70,7 @@ export default function FAQPage() {
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
                     <Phone className="w-5 h-5 text-blue-600" />
-                    <span className="text-gray-700 font-medium">(248) XXX-XXXX</span>
+                    <span className="text-gray-700 font-medium">(586) 324-1248</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Mail className="w-5 h-5 text-green-600" />
@@ -137,10 +137,10 @@ export default function FAQPage() {
               Get your fair cash offer today. No obligation, no pressure, just straightforward answers and a simple process.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:248XXXXXXX" className="btn-secondary inline-flex items-center space-x-2">
-                <Phone className="w-5 h-5" />
-                <span>Call (248) XXX-XXXX</span>
-              </a>
+                              <a href="tel:5863241248" className="btn-secondary inline-flex items-center space-x-2">
+                  <Phone className="w-5 h-5" />
+                  <span>Call (586) 324-1248</span>
+                </a>
               <a href="/contact" className="btn-outline border-white text-white hover:bg-white hover:text-blue-900 inline-flex items-center space-x-2">
                 <Mail className="w-5 h-5" />
                 <span>Contact Us</span>

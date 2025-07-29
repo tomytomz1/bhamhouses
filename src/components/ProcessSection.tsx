@@ -74,9 +74,9 @@ export default function ProcessSection() {
             <a href="/contact" className="btn-primary inline-flex items-center space-x-2">
               <span>Get Started Today</span>
             </a>
-            <a href="tel:248XXXXXXX" className="btn-outline inline-flex items-center space-x-2">
+            <a href="tel:5863241248" className="btn-outline inline-flex items-center space-x-2">
               <Phone className="w-5 h-5" />
-              <span>Call (248) XXX-XXXX</span>
+              <span>Call (586) 324-1248</span>
             </a>
           </div>
         </div>

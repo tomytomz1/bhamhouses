@@ -231,8 +231,8 @@ export default function AboutPage() {
               Get your fair cash offer today. No obligation, no pressure, just a straightforward process.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:248XXXXXXX" className="btn-secondary inline-flex items-center space-x-2">
-                <span>Call (248) XXX-XXXX</span>
+              <a href="tel:5863241248" className="btn-secondary inline-flex items-center space-x-2">
+                <span>Call (586) 324-1248</span>
               </a>
               <a href="/contact" className="btn-outline border-white text-white hover:bg-white hover:text-blue-900 inline-flex items-center space-x-2">
                 <span>Contact Us</span>

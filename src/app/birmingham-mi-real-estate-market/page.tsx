@@ -200,12 +200,12 @@ export default function MarketReportPage() {
               <p className="mb-4 text-blue-100">
                 Speak directly with our Birmingham market specialists
               </p>
-              <a
-                href="tel:248XXXXXXX"
-                className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-md transition duration-200"
-              >
-                Call (248) XXX-XXXX
-              </a>
+                              <a
+                  href="tel:5863241248"
+                  className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-md transition duration-200"
+                >
+                  Call (586) 324-1248
+                </a>
             </div>
           </div>
         </div>
