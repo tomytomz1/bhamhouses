@@ -25,7 +25,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   benefits = [
     { icon: Clock, text: "Close in 7 days", color: "blue" },
     { icon: DollarSign, text: "No fees or commissions", color: "green" },
-    { icon: MapPin, text: "Serving all Birmingham neighborhoods", color: "orange" },
+    { icon: MapPin, text: "Serving Birmingham, MI", color: "orange" },
     { icon: Handshake, text: "Fair offers in 24 hours", color: "blue" }
   ],
   showForm = true,

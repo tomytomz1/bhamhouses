@@ -12,7 +12,7 @@ export default function ProcessSection() {
     {
       icon: FileText,
       title: 'Get Your Cash Offer',
-      description: 'We\'ll provide a fair cash offer within 24 hours based on current Birmingham market values. Our offer is based on recent sales in your neighborhood, property condition, and current market trends.',
+      description: 'We\'ll provide a fair cash offer within 24 hours based on current Birmingham market values. Our offer is based on recent sales in Birmingham, property condition, and current market trends.',
       color: 'text-green-600',
       bgColor: 'bg-green-50',
     },

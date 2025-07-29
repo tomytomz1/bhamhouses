@@ -10,7 +10,7 @@ export const faqs: FAQ[] = [
   {
     id: '2',
     question: 'Do you buy houses in Birmingham\'s historic districts?',
-    answer: 'Yes, we buy properties in all Birmingham neighborhoods including historic districts. We understand the unique requirements and can work with any property condition.',
+    answer: 'Yes, we buy properties throughout Birmingham including historic districts. We understand the unique requirements and can work with any property condition.',
     category: 'birmingham-specific'
   },
   {
@@ -28,7 +28,7 @@ export const faqs: FAQ[] = [
   {
     id: '5',
     question: 'How do you determine your cash offer?',
-    answer: 'We analyze recent sales in your Birmingham neighborhood, property condition, and current market trends to provide a fair, competitive offer.',
+    answer: 'We analyze recent sales in Birmingham, property condition, and current market trends to provide a fair, competitive offer.',
     category: 'process'
   },
   {

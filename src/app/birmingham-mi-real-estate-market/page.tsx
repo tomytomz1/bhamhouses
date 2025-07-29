@@ -44,7 +44,7 @@ export default function MarketReportPage() {
               <p className="text-lg text-gray-600 mb-6">
                 The current market shows steady demand for Birmingham properties, with homes typically 
                 selling within 30-45 days when priced correctly. Our cash offers are based on current 
-                market values and recent sales in your specific neighborhood.
+                market values and recent sales in Birmingham.
               </p>
               <p className="text-lg text-gray-600">
                 Whether you&apos;re looking to sell quickly or want to understand your property&apos;s current value, 
@@ -96,7 +96,7 @@ export default function MarketReportPage() {
                 <Home className="h-8 w-8 text-orange-600" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">15+</h3>
-              <p className="text-gray-600">Neighborhoods Served</p>
+              <p className="text-gray-600">Birmingham Area</p>
             </div>
 
             <div className="bg-white rounded-lg p-6 text-center shadow-md">
@@ -110,123 +110,7 @@ export default function MarketReportPage() {
         </div>
       </section>
 
-      {/* Neighborhood Analysis */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Birmingham Neighborhood Analysis
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Property values and market activity vary by neighborhood. Here&apos;s what we&apos;re seeing in key Birmingham areas.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Downtown Birmingham</h3>
-              <p className="text-gray-600 mb-4">
-                Premium condos and historic buildings. Strong demand for walkable lifestyle.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span>Avg. Price:</span>
-                  <span className="font-semibold">$450,000</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Property Types:</span>
-                  <span>Condos, Historic</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Bloomfield Ridge</h3>
-              <p className="text-gray-600 mb-4">
-                Luxury family homes with large lots. High-end market with premium values.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span>Avg. Price:</span>
-                  <span className="font-semibold">$850,000</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Property Types:</span>
-                  <span>Luxury Homes</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Shain Park</h3>
-              <p className="text-gray-600 mb-4">
-                Central family neighborhood with excellent schools. Consistent demand.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span>Avg. Price:</span>
-                  <span className="font-semibold">$650,000</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Property Types:</span>
-                  <span>Single Family</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">The Village</h3>
-              <p className="text-gray-600 mb-4">
-                Walkable area with mixed housing. Popular for its amenities and convenience.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span>Avg. Price:</span>
-                  <span className="font-semibold">$550,000</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Property Types:</span>
-                  <span>Mixed</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Wellspring</h3>
-              <p className="text-gray-600 mb-4">
-                Newer development with modern homes. Growing area with good value.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span>Avg. Price:</span>
-                  <span className="font-semibold">$700,000</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Property Types:</span>
-                  <span>New Construction</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Maplewood</h3>
-              <p className="text-gray-600 mb-4">
-                Mid-century homes with established character. Good value for family homes.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span>Avg. Price:</span>
-                  <span className="font-semibold">$600,000</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Property Types:</span>
-                  <span>Mid-Century</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Market Trends */}
       <section className="py-16 bg-gray-50">
@@ -258,10 +142,10 @@ export default function MarketReportPage() {
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Price Stability</h3>
               <p className="text-gray-600 mb-4">
                 Birmingham property values have remained relatively stable, with modest appreciation 
-                in most neighborhoods. Well-maintained homes continue to command premium prices.
+                across the area. Well-maintained homes continue to command premium prices.
               </p>
               <ul className="text-sm text-gray-600 space-y-2">
-                <li>• Consistent property values across neighborhoods</li>
+                <li>• Consistent property values across Birmingham</li>
                 <li>• Good condition homes sell at or above asking</li>
                 <li>• Investment properties show steady returns</li>
               </ul>
@@ -270,11 +154,11 @@ export default function MarketReportPage() {
             <div className="bg-white rounded-lg p-6 shadow-md">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Inventory Levels</h3>
               <p className="text-gray-600 mb-4">
-                Available inventory varies by neighborhood, with some areas experiencing lower 
+                Available inventory varies across Birmingham, with some areas experiencing lower 
                 supply than demand. This creates opportunities for sellers in well-positioned properties.
               </p>
               <ul className="text-sm text-gray-600 space-y-2">
-                <li>• Limited inventory in popular neighborhoods</li>
+                <li>• Limited inventory in popular areas</li>
                 <li>• New construction filling some gaps</li>
                 <li>• Opportunities for quick sales</li>
               </ul>

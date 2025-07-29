@@ -45,7 +45,7 @@ export default function HowItWorksPage() {
                 condition, and timeline.
               </p>
               <ul className="text-sm text-gray-500 space-y-1">
-                <li>• Property address and neighborhood</li>
+                <li>• Property address</li>
                 <li>• Property type and condition</li>
                 <li>• Your preferred timeline</li>
                 <li>• Contact information</li>
@@ -63,7 +63,7 @@ export default function HowItWorksPage() {
               </div>
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Get Your Cash Offer</h3>
               <p className="text-gray-600 mb-4">
-                We&apos;ll analyze recent sales in your Birmingham neighborhood and provide a fair cash offer within 24 hours.
+                We&apos;ll analyze recent sales in Birmingham and provide a fair cash offer within 24 hours.
               </p>
               <ul className="text-sm text-gray-500 space-y-1">
                 <li>• Market analysis of your area</li>
@@ -199,7 +199,7 @@ export default function HowItWorksPage() {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Single Family Homes</h3>
               <p className="text-gray-600 text-sm">
-                From starter homes to luxury estates in all Birmingham neighborhoods
+                From starter homes to luxury estates throughout Birmingham
               </p>
             </div>
 

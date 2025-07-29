@@ -10,13 +10,13 @@ BHAM Houses specializes exclusively in Birmingham, MI properties, providing fair
 
 ### Core Functionality
 - **Lead Capture Forms**: Multiple strategically placed forms with React Hook Form and Zod validation
-- **Neighborhood Pages**: 15+ individual pages for Birmingham neighborhoods with local SEO optimization
+- **Local SEO**: Optimized for Birmingham, MI market with local content
 - **Responsive Design**: Mobile-first design with excellent Core Web Vitals scores
 - **SEO Optimized**: Built-in Next.js SEO with structured data and sitemap generation
 
 ### Pages & Content
-- **Homepage**: Hero section, benefits, process, neighborhoods grid, testimonials, FAQ
-- **Neighborhood Pages**: Dynamic pages for all Birmingham areas with local content
+- **Homepage**: Hero section, benefits, process, testimonials, FAQ
+- **Market Report**: Birmingham real estate market analysis
 - **About Page**: Company story and Birmingham focus
 - **How It Works**: Detailed 3-step process explanation
 - **FAQ Page**: Birmingham-specific questions and answers
@@ -37,7 +37,7 @@ BHAM Houses specializes exclusively in Birmingham, MI properties, providing fair
 ```
 src/
 ├── app/                    # Next.js App Router pages
-│   ├── [neighborhood]/     # Dynamic neighborhood pages
+│   ├── about-birmingham-mi-cash-buyers/
 │   ├── about-birmingham-mi-cash-buyers/
 │   ├── birmingham-mi-house-selling-faq/
 │   ├── birmingham-mi-real-estate-market/
@@ -55,12 +55,12 @@ src/
 │   ├── Footer.tsx
 │   ├── Header.tsx
 │   ├── LeadForm.tsx
-│   ├── NeighborhoodsGrid.tsx
+│   ├── ProcessSection.tsx
 │   ├── ProcessSection.tsx
 │   └── Testimonials.tsx
 ├── data/                  # Static data and content
 │   ├── faqs.ts
-│   ├── neighborhoods.ts
+│   ├── testimonials.ts
 │   └── testimonials.ts
 └── types/                 # TypeScript type definitions
     └── index.ts
@@ -71,7 +71,7 @@ src/
 ### Target Keywords
 - Primary: "sell my house fast Birmingham Michigan"
 - Secondary: "Birmingham MI cash home buyers", "we buy houses Birmingham MI"
-- Long-tail: Neighborhood-specific keywords for all 15+ Birmingham areas
+- Long-tail: Birmingham-specific keywords and local market terms
 
 ### SEO Features
 - **Structured Data**: LocalBusiness schema markup on all pages
@@ -156,7 +156,7 @@ NEXT_PUBLIC_EMAIL=info@bhamhouses.com
 
 ### Customization
 - Update contact information in `src/components/Header.tsx` and `src/components/Footer.tsx`
-- Modify neighborhood data in `src/data/neighborhoods.ts`
+- Update content in `src/data/faqs.ts` and `src/data/testimonials.ts`
 - Update testimonials in `src/data/testimonials.ts`
 - Customize FAQ content in `src/data/faqs.ts`
 

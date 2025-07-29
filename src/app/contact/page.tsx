@@ -73,7 +73,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Service Area</h3>
                     <p className="text-gray-600 text-lg">Birmingham, MI 48009</p>
-                    <p className="text-sm text-gray-500 mt-1">Serving all Birmingham neighborhoods</p>
+                    <p className="text-sm text-gray-500 mt-1">Serving Birmingham, MI</p>
                   </div>
                 </div>
 

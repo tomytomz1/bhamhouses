@@ -18,7 +18,7 @@ export default function AboutPage() {
     {
       icon: DollarSign,
       title: 'Fair Market Value',
-      description: 'Our offers are based on current Birmingham market values and recent sales in your specific neighborhood.',
+      description: 'Our offers are based on current Birmingham market values and recent sales in the area.',
     },
     {
       icon: Clock,
@@ -28,7 +28,7 @@ export default function AboutPage() {
     {
       icon: Users,
       title: 'Local Expertise',
-      description: 'We know every Birmingham neighborhood, from downtown condos to luxury family homes in Bloomfield Ridge.',
+      description: 'We know Birmingham, from downtown condos to luxury family homes throughout the area.',
     },
     {
       icon: Shield,
@@ -106,7 +106,7 @@ export default function AboutPage() {
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-gray-900">Our Birmingham Focus</h3>
               <p className="text-gray-700 leading-relaxed">
-                Birmingham is a unique market with its own characteristics, challenges, and opportunities. By focusing exclusively here, we've developed deep expertise in every neighborhood, from downtown condos to luxury family homes in Bloomfield Ridge.
+                Birmingham is a unique market with its own characteristics, challenges, and opportunities. By focusing exclusively here, we've developed deep expertise in Birmingham, from downtown condos to luxury family homes throughout the area.
               </p>
               <p className="text-gray-700 leading-relaxed">
                 We understand Birmingham's zoning laws, historic district requirements, property tax implications, and market trends better than any competitor. This specialized knowledge translates into better offers and smoother transactions for Birmingham homeowners.
@@ -121,7 +121,7 @@ export default function AboutPage() {
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>Deep knowledge of all 15+ Birmingham neighborhoods</span>
+                  <span>Deep knowledge of Birmingham, MI</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
