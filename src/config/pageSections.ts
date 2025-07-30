@@ -20,13 +20,13 @@ export const defaultHeroConfig: SectionConfig = {
   type: 'hero',
   enabled: true,
   props: {
-    title: "Sell Your House Fast in Birmingham, MI",
-    subtitle: "Birmingham, Michigan's dedicated cash home buyers. Get a call back in 24 hours, close in 7-90 days. No repairs, no fees, no commissions.",
+    title: "Birmingham Property Nightmare? House Falling Apart? We Specialize in Impossible Situations",
+    subtitle: "When your Birmingham house becomes a burden instead of an asset, we step in. Military deployment, bankruptcy, death in family, disability, business failure, rental nightmares, legal troubles, foreclosure, foundation collapse, fire damage, hoarding, elderly care costs - we've solved them all.",
     benefits: [
-              { icon: Clock, text: "Close in 7-90 days", color: "blue" },
-      { icon: DollarSign, text: "0 Fee/Commission", color: "green" },
-      { icon: MapPin, text: "Birmingham, MI", color: "orange" },
-              { icon: Handshake, text: "Call Back in 24h", color: "blue" }
+              { icon: Clock, text: "Emergency Closings", color: "blue" },
+      { icon: DollarSign, text: "Nightmare Properties", color: "green" },
+      { icon: MapPin, text: "Birmingham Only", color: "orange" },
+              { icon: Handshake, text: "Crisis Specialists", color: "blue" }
     ],
     showForm: true,
             backgroundImage: "/images/downtown-birmingham-mi-2025.webp"
@@ -39,25 +39,25 @@ export const birminghamSpecializationConfig: SectionConfig = {
   type: 'specialization',
   enabled: true,
   props: {
-    title: "Birmingham, MI's Only Dedicated Cash Home Buyer",
-    subtitle: "While other companies spread themselves thin across 50+ cities, we focus exclusively on Birmingham, Michigan. This specialization gives us deep local market knowledge and allows us to provide better service to Birmingham homeowners.",
+    title: "Birmingham's ONLY Property Disaster Specialists",
+    subtitle: "We DO NOT buy nice Birmingham homes. We exclusively help Birmingham residents escape property nightmares that traditional real estate can't handle. If your Birmingham house is in good condition, please use a realtor.",
     features: [
       {
         icon: MapPin,
-        title: "Birmingham Specialists",
-        description: "We know every Birmingham area, from downtown condos to luxury family homes throughout the city.",
+        title: "Birmingham Disasters Only",
+        description: "Birmingham fire damage, Michigan foundation collapse, city code violations, Birmingham hoarding complaints, inherited disasters - the bigger the Birmingham nightmare, the better.",
         color: "blue"
       },
       {
         icon: DollarSign,
-        title: "Fair Market Offers",
-        description: "Our offers are based on current Birmingham market values and recent sales in your area.",
+        title: "Birmingham Emergency Response",
+        description: "Birmingham health crisis? Michigan divorce? Auto industry job loss? Oakland County liens? Detroit-area probate nightmare? We specialize in desperate Michigan situations.",
         color: "green"
       },
       {
         icon: Clock,
-        title: "Fast & Flexible",
-        description: "Close in 7-90 days or choose your timeline. We work around your schedule, not ours.",
+        title: "Oakland County Crisis Closings",
+        description: "Oakland County foreclosure next week? Birmingham house condemned? We can close emergency Michigan deals in days when Birmingham families are desperate.",
         color: "orange"
       }
     ]
@@ -70,8 +70,8 @@ export const bottomCTAConfig: SectionConfig = {
   type: 'cta',
   enabled: true,
   props: {
-    title: "Ready to Sell Your Birmingham Home?",
-    subtitle: "Get your fair cash offer today. No obligation, no pressure, just a straightforward process.",
+    title: "Got a Birmingham Property Nightmare?",
+    subtitle: "We specialize in problems others won't touch. Emergency situations, distressed properties, and impossible cases are our specialty.",
     actions: [
       {
         type: 'phone',

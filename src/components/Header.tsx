@@ -27,8 +27,8 @@ export default function Header() {
             <Link href="/" className="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
               BHAM Houses
             </Link>
-            <div className="hidden lg:block text-sm text-gray-600 border-l border-gray-300 pl-4">
-              Birmingham, MI Cash Buyers
+            <div className="hidden lg:block text-sm text-red-600 border-l border-gray-300 pl-4 font-semibold">
+              Problem Properties Only ⚠️
             </div>
           </div>
 
@@ -58,7 +58,7 @@ export default function Header() {
               href="/contact"
               className="btn-primary text-sm px-4 py-2"
             >
-              Get Cash Offer
+              Sell Problem Property
             </Link>
           </div>
 

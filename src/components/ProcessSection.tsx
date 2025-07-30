@@ -4,22 +4,22 @@ export default function ProcessSection() {
   const steps = [
     {
       icon: Phone,
-      title: 'Contact Us',
-      description: 'Fill out our form or call us. We\'ll ask a few questions about your Birmingham property. Tell us about your property address, condition, and timeline. No pressure, just information gathering.',
+      title: 'Tell Us Your Birmingham Disaster',
+      description: 'Call our Birmingham crisis line. Describe your nightmare: foundation damage from Michigan freeze-thaw, fire from faulty furnace, Birmingham code violations, Oakland County foreclosure, inherited family disaster - the worse, the better.',
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
     },
     {
       icon: FileText,
-      title: 'Get Your Cash Offer',
-      description: 'We\'ll call you back to get property condition details and provide a fair cash offer within 24 hours based on current Birmingham market values.',
+      title: 'We Visit Your Birmingham Nightmare',
+      description: 'We\'ll drive to your Birmingham property and assess the disaster. Structural collapse? Mold from Michigan humidity? Neighbor complaints? City fines? No judgment - we make cash offers on disasters.',
       color: 'text-green-600',
       bgColor: 'bg-green-50',
     },
     {
       icon: CheckCircle,
-      title: 'Close on Your Timeline',
-      description: 'Close in 7-90 days, or choose your own timeline. We work around your schedule. No repairs needed, no fees, no commissions. Our offer is what you walk away with.',
+      title: 'Birmingham Emergency Closings',
+      description: 'Foreclosure hearing in Oakland County next week? Birmingham code enforcement deadline? Hospital bills crushing you? We close emergency deals in Michigan in days, not months.',
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
     },
@@ -30,11 +30,11 @@ export default function ProcessSection() {
       <div className="container-max">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            How It Works
+            How We Solve Birmingham Property Disasters
           </h2>
           <div className="text-xl text-gray-700 max-w-3xl mx-auto">
-            <p className="mb-2">Selling your Birmingham, MI house for cash is simple.</p>
-            <p>Here's our straightforward 3-step process.</p>
+            <p className="mb-2">Birmingham homeowner facing property crisis? Here's our emergency response process.</p>
+            <p className="font-semibold text-red-600">Birmingham disasters get priority response - we move fast when you're desperate.</p>
           </div>
         </div>
 
@@ -68,16 +68,24 @@ export default function ProcessSection() {
         </div>
 
         <div className="text-center mt-12">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
+            <div className="text-yellow-800 font-bold text-lg mb-2">
+              🚨 Birmingham Property Emergency? Don't Wait!
+            </div>
+            <p className="text-yellow-700 text-sm">
+              Oakland County foreclosure notice? Birmingham code enforcement breathing down your neck? House falling apart and can't afford repairs? We respond to Birmingham crises immediately.
+            </p>
+          </div>
           <p className="text-xl text-gray-700 mb-6">
-            Ready to get started? We'll call you back to get the details we need.
+            Birmingham homeowner ready to escape your property nightmare? We turn impossible situations into cash.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/contact" className="btn-primary inline-flex items-center space-x-2">
-              <span>Get Started Today</span>
+              <span>Get Birmingham Emergency Help</span>
             </a>
             <a href="tel:5863241248" className="btn-outline inline-flex items-center space-x-2">
               <Phone className="w-5 h-5" />
-              <span>Call (586) 324-1248</span>
+              <span>Birmingham Crisis Line: (586) 324-1248</span>
             </a>
           </div>
         </div>

@@ -4,43 +4,43 @@ export default function BenefitsSection() {
   const benefits = [
     {
       icon: CheckCircle,
-      title: 'No Repairs Needed',
-      description: 'We buy houses in any condition - no repairs, cleaning, or improvements required.',
+      title: 'Birmingham Nightmare Properties Only',
+      description: 'Foundation collapse in Birmingham neighborhoods? House condemned by the city? Structural damage from Michigan winters? Perfect - these disasters are exactly what we buy.',
       color: 'text-green-600',
       bgColor: 'bg-green-50',
     },
     {
       icon: DollarSign,
-      title: 'Zero Fees or Commissions',
-      description: 'No realtor fees, closing costs, or hidden charges. Our offer is what you get.',
+      title: 'Birmingham Crisis Response Team',
+      description: 'Detroit-area drug houses, Oakland County hoarding situations, Oakland County foreclosures, probate nightmares - we handle Birmingham Metro disasters.',
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
     },
     {
       icon: Clock,
-      title: 'Fast Closing',
-      description: 'Close in 7-90 days, or choose your own timeline. We work around your schedule.',
+      title: 'Birmingham Life Crisis Response',
+      description: 'Military deployment orders? Bankruptcy filing? Death in family requiring estate sale? Business failure? Lost auto job? Nightmare tenants destroying rental? We understand desperate Birmingham situations.',
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
     },
     {
       icon: Home,
-      title: 'Fair Cash Offers',
-      description: 'Get a call back within 24 hours to discuss your property condition and provide a competitive cash offer.',
+      title: 'Birmingham\'s No-Judgment Experts',
+      description: 'Birmingham neighbors gossiping? City code enforcement threatening fines? Can\'t maintain property anymore? We\'ve helped hundreds of Birmingham families.',
       color: 'text-green-600',
       bgColor: 'bg-green-50',
     },
     {
       icon: Shield,
-      title: 'As-Is Purchase',
-      description: 'Sell your house exactly as it is. No inspections, appraisals, or contingencies.',
+      title: 'When Birmingham Contractors Flee',
+      description: 'Birmingham contractors won\'t even estimate? Local real estate agents refuse your listing? Other investors won\'t return calls? That\'s when we step in.',
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
     },
     {
       icon: Calendar,
-      title: 'Choose Your Closing Date',
-      description: 'Need to close quickly or wait for your new home? We accommodate your timeline.',
+      title: 'Birmingham Crisis Timing',
+      description: 'Military PCS orders in 30 days? Foreclosure hearing next week? Elderly parent needs nursing home deposit? Bankruptcy court deadline? IRS lien threatening seizure? Desperate timelines are our specialty.',
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
     },
@@ -51,10 +51,10 @@ export default function BenefitsSection() {
       <div className="container-max">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            Why Choose BHAM Houses?
+            Why Birmingham Homeowners Choose Us for Their Property Disasters
           </h2>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Birmingham, MI's dedicated cash home buyers. We make selling your house simple, fast, and stress-free.
+            <strong>Birmingham residents facing impossible property situations:</strong> We specialize in disasters, emergencies, and houses that make other buyers run away. If your Birmingham home is a burden, we're your solution.
           </p>
         </div>
 
@@ -75,12 +75,21 @@ export default function BenefitsSection() {
         </div>
 
         <div className="text-center mt-12">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+            <div className="text-red-800 font-bold text-lg mb-2">
+              🚨 BIRMINGHAM PROPERTY DISASTERS ONLY 🚨
+            </div>
+            <p className="text-red-700 text-sm">
+              We DO NOT buy nice Birmingham homes that could sell through traditional real estate. If your Birmingham property is in good condition, please use a realtor. 
+              We exclusively help Birmingham residents with property emergencies, disasters, and impossible situations.
+            </p>
+          </div>
           <div className="inline-flex items-center space-x-2 text-blue-600 font-semibold">
-            <span>Ready to experience the BHAM Houses difference?</span>
+            <span>Birmingham homeowner facing property disaster? We're here to help.</span>
           </div>
           <div className="mt-4">
             <a href="/contact" className="btn-primary inline-flex items-center space-x-2">
-              <span>Get Your Cash Offer Today</span>
+              <span>Get Birmingham Property Emergency Help</span>
             </a>
           </div>
         </div>

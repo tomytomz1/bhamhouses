@@ -10,13 +10,13 @@ import { CONTACT_INFO } from '@/utils/contactInfo';
 import AddressAutocomplete from '@/components/AddressAutocomplete';
 
 const formSchema = z.object({
-  address: z.string().min(1, 'Property address is required'),
-  propertyType: z.string().min(1, 'Please select property type'),
-  condition: z.string().min(1, 'Please select property condition'),
-  timeline: z.string().min(1, 'Please select your timeline'),
+  address: z.string().min(1, 'Birmingham property address is required'),
+  propertyType: z.string().min(1, 'Please select your problem property type'),
+  condition: z.string().min(1, 'Please tell us what\'s wrong with your property'),
+  timeline: z.string().min(1, 'Please select your emergency timeline'),
   name: z.string().min(1, 'Full name is required'),
-  phone: z.string().min(10, 'Valid phone number is required'),
-  email: z.string().email('Valid email is required'),
+  phone: z.string().min(10, 'Valid phone number is required for emergency response'),
+  email: z.string().email('Valid email is required for property updates'),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -209,11 +209,13 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
               aria-describedby={errors.propertyType ? 'property-type-error' : undefined}
             >
               <option value="">Select property type</option>
-              <option value="single-family">Single Family Home</option>
-              <option value="condo">Condo</option>
-              <option value="townhome">Townhome</option>
-              <option value="duplex">Duplex</option>
-              <option value="multi-family">Multi-Family</option>
+              <option value="single-family">Single Family Home (Problem Property)</option>
+              <option value="condo">Condo (Distressed)</option>
+              <option value="townhome">Townhome (Needs Help)</option>
+              <option value="duplex">Duplex (Problem Property)</option>
+              <option value="multi-family">Multi-Family (Distressed)</option>
+              <option value="vacant-land">Vacant Land (Problem/Liens)</option>
+              <option value="commercial">Commercial Property (Distressed)</option>
             </select>
           </div>
           {errors.propertyType && (
@@ -224,7 +226,7 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
         {/* Property Condition */}
         <div>
           <label htmlFor="property-condition" className={`block text-sm font-semibold mb-1 ${getLabelColor()}`}>
-            Property Condition *
+            What's Wrong With Your Property? *
           </label>
           <div className="relative">
             <Wrench className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
@@ -236,12 +238,25 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
               aria-invalid={errors.condition ? 'true' : 'false'}
               aria-describedby={errors.condition ? 'condition-error' : undefined}
             >
-              <option value="">Select condition</option>
-              <option value="excellent">Excellent</option>
-              <option value="good">Good</option>
-              <option value="fair">Fair</option>
-              <option value="poor">Poor</option>
-              <option value="needs-major-work">Needs Major Work</option>
+              <option value="">Select problem</option>
+              <option value="military-deployment">Military Deployment/PCS Orders</option>
+              <option value="bankruptcy-financial">Bankruptcy/Financial Emergency</option>
+              <option value="death-estate-sale">Death in Family/Estate Sale</option>
+              <option value="elderly-care-costs">Elderly Parent Care Costs</option>
+              <option value="rental-nightmare">Rental Property Nightmare</option>
+              <option value="business-failure">Business Failure/Job Loss</option>
+              <option value="fire-flood-damage">Fire/Flood/Storm Damage</option>
+              <option value="foundation-structural">Foundation/Structural Issues</option>
+              <option value="code-violations">Code Violations/Condemned</option>
+              <option value="hoarding-situation">Hoarding Situation</option>
+              <option value="foreclosure">Foreclosure/Liens</option>
+              <option value="drug-house">Former Drug House/Crime Scene</option>
+              <option value="inheritance-probate">Inheritance/Probate Nightmare</option>
+              <option value="health-emergency">Health Emergency/Can't Maintain</option>
+              <option value="disability-relocation">Disability/Forced Relocation</option>
+              <option value="lawsuit-legal">Lawsuit/Legal Troubles</option>
+              <option value="major-repairs-needed">Major Repairs Needed</option>
+              <option value="other-emergency">Other Emergency Situation</option>
             </select>
           </div>
           {errors.condition && (
@@ -265,11 +280,12 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
               aria-describedby={errors.timeline ? 'timeline-error' : undefined}
             >
               <option value="" className="text-gray-900">Select timeline</option>
-              <option value="asap" className="text-gray-900">ASAP</option>
+              <option value="emergency" className="text-gray-900">EMERGENCY - Need to close this week</option>
+              <option value="asap" className="text-gray-900">ASAP - Within 2 weeks</option>
               <option value="30-days" className="text-gray-900">Within 30 days</option>
               <option value="60-days" className="text-gray-900">Within 60 days</option>
               <option value="90-days" className="text-gray-900">Within 90 days</option>
-              <option value="just-exploring" className="text-gray-900">Just exploring</option>
+              <option value="just-exploring" className="text-gray-900">Just exploring options</option>
             </select>
           </div>
           {errors.timeline && (
@@ -364,13 +380,13 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
           ) : (
             <>
               <Send className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span>Get My Fair Cash Offer</span>
+              <span>Get Help With My Problem Property</span>
             </>
           )}
         </button>
 
         <p className={`text-xs lg:text-[10px] text-center lg:col-span-2 lg:whitespace-nowrap ${getDisclaimerColor()}`}>
-          By submitting this form, you agree to be contacted by BHAM Houses regarding your property.
+          By submitting this form, you agree to be contacted by BHAM Houses regarding your PROBLEM property. We specialize in distressed situations only.
         </p>
       </form>
     );
@@ -442,11 +458,13 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
                 aria-describedby={errors.propertyType ? 'property-type-error' : undefined}
               >
                 <option value="" className="text-gray-500">Select property type</option>
-                <option value="single-family" className="text-gray-900">Single Family Home</option>
-                <option value="condo" className="text-gray-900">Condo</option>
-                <option value="townhome" className="text-gray-900">Townhome</option>
-                <option value="duplex" className="text-gray-900">Duplex</option>
-                <option value="multi-family" className="text-gray-900">Multi-Family</option>
+                <option value="single-family" className="text-gray-900">Single Family Home (Problem Property)</option>
+                <option value="condo" className="text-gray-900">Condo (Distressed)</option>
+                <option value="townhome" className="text-gray-900">Townhome (Needs Help)</option>
+                <option value="duplex" className="text-gray-900">Duplex (Problem Property)</option>
+                <option value="multi-family" className="text-gray-900">Multi-Family (Distressed)</option>
+                <option value="vacant-land" className="text-gray-900">Vacant Land (Problem/Liens)</option>
+                <option value="commercial" className="text-gray-900">Commercial Property (Distressed)</option>
               </select>
             </div>
             {errors.propertyType && (
@@ -457,7 +475,7 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
           {/* Property Condition */}
           <div>
             <label htmlFor="property-condition" className={`block text-sm font-semibold mb-2 ${getLabelColor()}`}>
-              Property Condition *
+              What's Wrong With Your Property? *
             </label>
             <div className="relative">
               <Wrench className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
@@ -469,12 +487,17 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
                 aria-invalid={errors.condition ? 'true' : 'false'}
                 aria-describedby={errors.condition ? 'condition-error' : undefined}
               >
-                <option value="" className="text-gray-500">Select condition</option>
-                <option value="excellent" className="text-gray-900">Excellent</option>
-                <option value="good" className="text-gray-900">Good</option>
-                <option value="fair" className="text-gray-900">Fair</option>
-                <option value="poor" className="text-gray-900">Poor</option>
-                <option value="needs-major-work" className="text-gray-900">Needs Major Work</option>
+                <option value="" className="text-gray-500">Select your property problem</option>
+                <option value="fire-flood-damage" className="text-gray-900">Fire/Flood/Storm Damage</option>
+                <option value="foundation-structural" className="text-gray-900">Foundation/Structural Issues</option>
+                <option value="code-violations" className="text-gray-900">Code Violations/Condemned</option>
+                <option value="hoarding-situation" className="text-gray-900">Hoarding Situation</option>
+                <option value="foreclosure" className="text-gray-900">Foreclosure/Liens</option>
+                <option value="drug-house" className="text-gray-900">Former Drug House/Crime Scene</option>
+                <option value="inheritance-probate" className="text-gray-900">Inheritance/Probate Nightmare</option>
+                <option value="health-emergency" className="text-gray-900">Health Emergency/Can't Maintain</option>
+                <option value="major-repairs-needed" className="text-gray-900">Major Repairs Needed</option>
+                <option value="other-problem" className="text-gray-900">Other Serious Problem</option>
               </select>
             </div>
             {errors.condition && (
@@ -498,11 +521,12 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
                 aria-describedby={errors.timeline ? 'timeline-error' : undefined}
               >
                 <option value="" className="text-gray-500">Select timeline</option>
-                <option value="asap" className="text-gray-900">ASAP</option>
+                <option value="emergency" className="text-gray-900">EMERGENCY - Need to close this week</option>
+                <option value="asap" className="text-gray-900">ASAP - Within 2 weeks</option>
                 <option value="30-days" className="text-gray-900">Within 30 days</option>
                 <option value="60-days" className="text-gray-900">Within 60 days</option>
                 <option value="90-days" className="text-gray-900">Within 90 days</option>
-                <option value="just-exploring" className="text-gray-900">Just exploring</option>
+                <option value="just-exploring" className="text-gray-900">Just exploring options</option>
               </select>
             </div>
             {errors.timeline && (
@@ -603,13 +627,13 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
             ) : (
               <>
                 <Send className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span>Get My Fair Cash Offer</span>
+                <span>Get Help With My Problem Property</span>
               </>
             )}
           </button>
 
           <p className={`text-xs lg:text-[10px] text-center mt-2 lg:whitespace-nowrap ${getDisclaimerColor()}`}>
-            By submitting this form, you agree to be contacted by BHAM Houses regarding your property.
+            By submitting this form, you agree to be contacted by BHAM Houses regarding your PROBLEM property. We specialize in distressed situations only.
           </p>
         </div>
       </form>
@@ -684,11 +708,13 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
                   aria-describedby={errors.propertyType ? 'property-type-error' : undefined}
                 >
                   <option value="" className="text-gray-400">Select property type</option>
-                  <option value="single-family" className="text-gray-900">Single Family Home</option>
-                  <option value="condo" className="text-gray-900">Condo</option>
-                  <option value="townhome" className="text-gray-900">Townhome</option>
-                  <option value="duplex" className="text-gray-900">Duplex</option>
-                  <option value="multi-family" className="text-gray-900">Multi-Family</option>
+                  <option value="single-family" className="text-gray-900">Single Family Home (Problem Property)</option>
+                  <option value="condo" className="text-gray-900">Condo (Distressed)</option>
+                  <option value="townhome" className="text-gray-900">Townhome (Needs Help)</option>
+                  <option value="duplex" className="text-gray-900">Duplex (Problem Property)</option>
+                  <option value="multi-family" className="text-gray-900">Multi-Family (Distressed)</option>
+                  <option value="vacant-land" className="text-gray-900">Vacant Land (Problem/Liens)</option>
+                  <option value="commercial" className="text-gray-900">Commercial Property (Distressed)</option>
                 </select>
               </div>
               {errors.propertyType && (
@@ -698,7 +724,7 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
 
             <div>
               <label htmlFor="property-condition" className="block text-sm font-semibold text-gray-900 mb-2">
-                Property Condition:
+                What's Wrong With Your Property?:
               </label>
               <div className="relative">
                 <Wrench className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" aria-hidden="true" />
@@ -710,12 +736,17 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
                   aria-invalid={errors.condition ? 'true' : 'false'}
                   aria-describedby={errors.condition ? 'condition-error' : undefined}
                 >
-                  <option value="" className="text-gray-400">Select condition</option>
-                  <option value="excellent" className="text-gray-900">Excellent</option>
-                  <option value="good" className="text-gray-900">Good</option>
-                  <option value="fair" className="text-gray-900">Fair</option>
-                  <option value="poor" className="text-gray-900">Poor</option>
-                  <option value="needs-major-work" className="text-gray-900">Needs Major Work</option>
+                  <option value="" className="text-gray-400">Select your property problem</option>
+                  <option value="fire-flood-damage" className="text-gray-900">Fire/Flood/Storm Damage</option>
+                  <option value="foundation-structural" className="text-gray-900">Foundation/Structural Issues</option>
+                  <option value="code-violations" className="text-gray-900">Code Violations/Condemned</option>
+                  <option value="hoarding-situation" className="text-gray-900">Hoarding Situation</option>
+                  <option value="foreclosure" className="text-gray-900">Foreclosure/Liens</option>
+                  <option value="drug-house" className="text-gray-900">Former Drug House/Crime Scene</option>
+                  <option value="inheritance-probate" className="text-gray-900">Inheritance/Probate Nightmare</option>
+                  <option value="health-emergency" className="text-gray-900">Health Emergency/Can't Maintain</option>
+                  <option value="major-repairs-needed" className="text-gray-900">Major Repairs Needed</option>
+                  <option value="other-problem" className="text-gray-900">Other Serious Problem</option>
                 </select>
               </div>
               {errors.condition && (
@@ -740,11 +771,12 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
                 aria-describedby={errors.timeline ? 'timeline-error' : undefined}
               >
                 <option value="" className="text-gray-500">Select timeline</option>
-                <option value="asap" className="text-gray-900">ASAP</option>
+                <option value="emergency" className="text-gray-900">EMERGENCY - Need to close this week</option>
+                <option value="asap" className="text-gray-900">ASAP - Within 2 weeks</option>
                 <option value="30-days" className="text-gray-900">Within 30 days</option>
                 <option value="60-days" className="text-gray-900">Within 60 days</option>
                 <option value="90-days" className="text-gray-900">Within 90 days</option>
-                <option value="just-exploring" className="text-gray-900">Just exploring</option>
+                <option value="just-exploring" className="text-gray-900">Just exploring options</option>
               </select>
             </div>
             {errors.timeline && (
@@ -842,14 +874,14 @@ export default function LeadForm({ title, subtitle, variant = 'default', textCol
               ) : (
                 <>
                   <Send className="w-4 h-4 sm:w-5 sm:h-5" />
-                  <span>Get My Fair Cash Offer</span>
+                  <span>Get Help With My Problem Property</span>
                 </>
               )}
             </button>
           </div>
 
           <p className="text-xs lg:text-[10px] text-gray-700 text-center pt-2 lg:whitespace-nowrap">
-            By submitting this form, you agree to be contacted by BHAM Houses regarding your property.
+            By submitting this form, you agree to be contacted by BHAM Houses regarding your PROBLEM property. We specialize in distressed situations only.
           </p>
         </form>
       </div>

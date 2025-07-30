@@ -7,10 +7,10 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            What Birmingham Homeowners Say
+            Real Birmingham Property Disasters We've Solved
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Don't just take our word for it. Here's what Birmingham, MI homeowners have to say about their experience with BHAM Houses.
+            These Birmingham and Oakland County residents faced property emergencies that seemed impossible. Here's how we turned their nightmares into cash and gave them their lives back.
           </p>
         </div>
 
@@ -44,14 +44,22 @@ export default function Testimonials() {
 
         {/* CTA */}
         <div className="text-center mt-12">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+            <div className="text-red-800 font-bold text-lg mb-2">
+              🆘 Facing a Property Emergency?
+            </div>
+            <p className="text-red-700 text-sm">
+              Don't suffer in silence. These homeowners thought their situations were hopeless too. We specialize in impossible cases.
+            </p>
+          </div>
           <p className="text-lg text-gray-700 mb-4">
-            Ready to join these satisfied Birmingham homeowners?
+            Ready to turn your property nightmare into cash?
           </p>
           <a
             href="tel:5863241248"
-            className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-md transition duration-200"
+            className="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-md transition duration-200"
           >
-            Call (586) 324-1248
+            Emergency Help: (586) 324-1248
           </a>
         </div>
       </div>

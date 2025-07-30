@@ -5,7 +5,7 @@ export const CONTACT_INFO = {
   address: 'Birmingham, MI 48009',
   businessHours: 'Monday - Sunday: 8:00 AM - 8:00 PM',
   companyName: 'BHAM Houses',
-  tagline: 'Birmingham, MI Cash Home Buyers',
+  tagline: 'Birmingham Problem Property Emergency Response',
 } as const;
 
 export const formatPhone = (phone: string) => {

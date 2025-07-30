@@ -20,13 +20,13 @@ interface HeroSectionProps {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
-  title = "Sell Your House Fast in Birmingham, MI",
-      subtitle = "Birmingham, Michigan's dedicated cash home buyers. Get a call back in 24 hours, close in 7-90 days. No repairs, no fees, no commissions.",
+  title = "Birmingham Property Nightmare? House Falling Apart? We Specialize in Impossible Situations",
+      subtitle = "When your Birmingham house becomes a burden instead of an asset, we step in. Military deployment, bankruptcy, death in family, disability, business failure, rental nightmares, legal troubles, foreclosure, foundation collapse, fire damage, hoarding, elderly care costs - we've solved them all.",
   benefits = [
-          { icon: Clock, text: "Close in 7-90 days", color: "blue" },
-    { icon: DollarSign, text: "0 Fee/Commission", color: "green" },
-    { icon: MapPin, text: "Birmingham, MI", color: "orange" },
-          { icon: Handshake, text: "Call Back in 24h", color: "blue" }
+          { icon: Clock, text: "Emergency Closings", color: "blue" },
+    { icon: DollarSign, text: "Nightmare Properties", color: "green" },
+    { icon: MapPin, text: "Birmingham Only", color: "orange" },
+          { icon: Handshake, text: "Crisis Specialists", color: "blue" }
   ],
   showForm = true,
   backgroundImage = "/images/downtown-birmingham-mi-2025.webp",
@@ -76,13 +76,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                   )}
                 </h1>
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
-                  Birmingham, Michigan's dedicated cash home buyers.
+                  Military orders? Bankruptcy filing? Death in family? Disability forcing relocation? Business failed?
                 </p>
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
-                  Get a call back in 24 hours, close in 7-90 days.
+                  Nightmare tenants? Lawsuit forcing sale? Elderly care costs? Can't maintain property anymore?
                 </p>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
-                  No repairs, no fees, no commissions.
+                <p className="text-sm sm:text-bold md:text-lg lg:text-xl text-red-700 leading-relaxed font-semibold">
+                  We turn Birmingham property disasters into cash - fast.
                 </p>
               </div>
 
@@ -108,8 +108,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                     <span>Call {CONTACT_INFO.phone}</span>
                   </div>
                   <div className="text-gray-600">
-                    <div className="font-medium text-xs sm:text-sm">Get Cash Offer Online</div>
-                    <div className="text-xs">Get Your Birmingham Cash Offer</div>
+                    <div className="font-medium text-xs sm:text-sm">Birmingham Crisis Response</div>
+                    <div className="text-xs">No Situation Too Desperate</div>
                   </div>
                 </div>
               </div>
@@ -119,8 +119,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             {showForm && (
               <div className="hero-form bg-white/90 backdrop-blur-sm rounded-3xl shadow-luxury border border-gray-200 p-4 sm:p-6 max-w-sm sm:max-w-md mx-auto lg:max-w-none">
                 <div className="text-center mb-3 sm:mb-4">
-                  <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Get Your Birmingham Cash Offer</h2>
-                  <p className="text-xs sm:text-sm text-gray-600">Fill out the form below and we'll call you back to get property details.</p>
+                  <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Birmingham Property Emergency? Get Help Now</h2>
+                  <p className="text-xs sm:text-sm text-gray-600">Facing foreclosure? House condemned? Health crisis? We specialize in impossible Birmingham property situations.</p>
                 </div>
                 <LeadForm variant="inline" />
               </div>
