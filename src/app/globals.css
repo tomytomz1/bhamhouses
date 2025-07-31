@@ -128,6 +128,83 @@
     max-height: 100%;
     overflow: visible;
   }
+
+  /* ========================================
+     NEW FORM IMPROVEMENTS & ANIMATIONS
+     ======================================== */
+
+  /* Form animations */
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .animate-slideDown {
+    animation: slideDown 0.2s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px) scaleY(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scaleY(1);
+    }
+  }
+
+  /* Improved form input focus states */
+  .form-input:focus {
+    @apply ring-2 ring-blue-500 ring-opacity-50 border-blue-500 outline-none;
+  }
+
+  .form-input:focus-within {
+    @apply ring-2 ring-blue-500 ring-opacity-50 border-blue-500;
+  }
+
+  /* Enhanced button states */
+  .btn-primary:focus {
+    @apply ring-2 ring-blue-500 ring-opacity-50 outline-none;
+  }
+
+  .btn-primary:disabled {
+    @apply opacity-50 cursor-not-allowed transform-none hover:shadow-soft;
+  }
+
+  /* Improved checkbox styling */
+  input[type="checkbox"]:focus {
+    @apply ring-2 ring-blue-500 ring-opacity-50 outline-none;
+  }
+
+  /* Custom scrollbar for dropdown */
+  .dropdown-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .dropdown-scroll::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 2px;
+  }
+
+  .dropdown-scroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 2px;
+  }
+
+  .dropdown-scroll::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
 }
 
 @layer utilities {
@@ -178,5 +255,22 @@
 
   .hero-grid-layout {
     @apply grid lg:grid-cols-2 gap-8 lg:gap-12 items-center h-full;
+  }
+
+  /* ========================================
+     NEW UTILITY IMPROVEMENTS
+     ======================================== */
+
+  /* Utility for truncating text with ellipsis */
+  .truncate-120 {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Focus visible utilities for better accessibility */
+  .focus-visible-ring {
+    @apply focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-opacity-50 focus-visible:outline-none;
   }
 }

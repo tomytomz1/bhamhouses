@@ -3,8 +3,8 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useState, useCallback } from 'react';
-import { MapPin, Wrench, User, Phone, Send, CheckCircle, AlertCircle, X } from 'lucide-react';
+import { useState, useCallback, useRef, useEffect } from 'react';
+import { MapPin, Wrench, User, Phone, Send, CheckCircle, AlertCircle, X, ChevronDown } from 'lucide-react';
 import { getStoredUTMParams } from '@/utils/utmTracking';
 import AddressAutocomplete from '@/components/AddressAutocomplete';
 import React from 'react';
@@ -42,6 +42,7 @@ export default function LeadForm({
   const [error, setError] = useState<string | null>(null);
   const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const {
     register,
@@ -72,11 +73,11 @@ export default function LeadForm({
     setSelectedConditions(prev => {
       if (prev.includes(value)) {
         const newConditions = prev.filter(c => c !== value);
-        setValue('condition', newConditions);
+        setValue('condition', newConditions, { shouldValidate: true });
         return newConditions;
       } else {
         const newConditions = [...prev, value];
-        setValue('condition', newConditions);
+        setValue('condition', newConditions, { shouldValidate: true });
         return newConditions;
       }
     });
@@ -85,7 +86,7 @@ export default function LeadForm({
   const removeCondition = (value: string) => {
     setSelectedConditions(prev => {
       const newConditions = prev.filter(c => c !== value);
-      setValue('condition', newConditions);
+      setValue('condition', newConditions, { shouldValidate: true });
       return newConditions;
     });
   };
@@ -125,14 +126,13 @@ export default function LeadForm({
 
   // Close dropdown when clicking outside
   const handleClickOutside = useCallback((event: MouseEvent) => {
-    const target = event.target as Element;
-    if (!target.closest('.multi-select-dropdown')) {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
       setIsDropdownOpen(false);
     }
   }, []);
 
   // Add click outside listener
-  React.useEffect(() => {
+  useEffect(() => {
     if (isDropdownOpen) {
       document.addEventListener('mousedown', handleClickOutside);
       return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -237,21 +237,25 @@ export default function LeadForm({
           </div>
         </div>
 
-        {/* Property Condition */}
+        {/* Property Condition - IMPROVED */}
         <div>
           <label htmlFor="property-condition" className="block text-sm font-semibold mb-1 text-gray-900">
             What's Wrong With Your Property? *
           </label>
-          <div className="relative">
-            <div className="relative multi-select-dropdown">
-              <button
-                type="button"
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="form-input pl-10 text-sm w-full text-left flex items-center justify-between text-gray-500"
-                aria-describedby={errors.condition ? 'condition-error' : undefined}
-              >
-                <Wrench className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" aria-hidden="true" />
-                <span>
+          <div className="relative" ref={dropdownRef}>
+            <button
+              type="button"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className={`form-input text-sm w-full text-left flex items-center justify-between transition-colors ${
+                errors.condition ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
+              } ${selectedConditions.length > 0 ? 'text-gray-900' : 'text-gray-500'}`}
+              aria-describedby={errors.condition ? 'condition-error' : undefined}
+              aria-expanded={isDropdownOpen}
+              aria-haspopup="listbox"
+            >
+              <div className="flex items-center">
+                <Wrench className="w-4 h-4 text-gray-400 mr-3 flex-shrink-0" aria-hidden="true" />
+                <span className="truncate">
                   {selectedConditions.length === 0 
                     ? 'Select problems' 
                     : selectedConditions.length === 1 
@@ -259,60 +263,73 @@ export default function LeadForm({
                     : `${selectedConditions.length} problems selected`
                   }
                 </span>
-                <svg className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-
-              {/* Selected conditions display */}
-              <div className="mt-2 min-h-[32px]">
-                {selectedConditions.length > 0 && (
-                  <div className="flex flex-wrap gap-1">
-                    {selectedConditions.map(condition => {
-                      const displayText = propertyConditions.find(c => c.value === condition)?.label;
-                      return (
-                        <span
-                          key={condition}
-                          className="inline-flex items-center gap-1 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full"
-                        >
-                          {displayText}
-                          <button
-                            type="button"
-                            onClick={() => removeCondition(condition)}
-                            className="hover:bg-blue-200 rounded-full p-0.5"
-                          >
-                            <X className="w-3 h-3" />
-                          </button>
-                        </span>
-                      );
-                    })}
-                  </div>
-                )}
               </div>
+              <ChevronDown 
+                className={`w-4 h-4 text-gray-400 transition-transform duration-200 ml-2 flex-shrink-0 ${
+                  isDropdownOpen ? 'rotate-180' : ''
+                }`} 
+              />
+            </button>
 
-              {/* Dropdown options */}
-              {isDropdownOpen && (
-                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto">
-                  {propertyConditions.map(condition => (
+            {/* Selected conditions display - Only show if conditions are selected */}
+            {selectedConditions.length > 0 && (
+              <div className="mt-2">
+                <div className="flex flex-wrap gap-1">
+                  {selectedConditions.map(condition => {
+                    const displayText = propertyConditions.find(c => c.value === condition)?.label;
+                    return (
+                      <span
+                        key={condition}
+                        className="inline-flex items-center gap-1 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full animate-fadeIn"
+                      >
+                        <span className="truncate max-w-[120px]">{displayText}</span>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            removeCondition(condition);
+                          }}
+                          className="hover:bg-blue-200 rounded-full p-0.5 transition-colors"
+                          aria-label={`Remove ${displayText}`}
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Dropdown options */}
+            {isDropdownOpen && (
+              <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-xl shadow-lg max-h-60 overflow-auto animate-slideDown">
+                <div className="py-1">
+                  {propertyConditions.map((condition, index) => (
                     <label
                       key={condition.value}
-                      className="flex items-center px-3 py-2 hover:bg-gray-100 cursor-pointer"
+                      className="flex items-center px-3 py-2 hover:bg-gray-50 cursor-pointer transition-colors"
+                      role="option"
+                      aria-selected={selectedConditions.includes(condition.value)}
                     >
                       <input
                         type="checkbox"
                         checked={selectedConditions.includes(condition.value)}
                         onChange={() => toggleCondition(condition.value)}
-                        className="mr-2"
+                        className="mr-3 h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+                        tabIndex={-1}
                       />
-                      <span className="text-sm">{condition.label}</span>
+                      <span className="text-sm text-gray-700 select-none">{condition.label}</span>
                     </label>
                   ))}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
           {errors.condition && (
-            <p id="condition-error" className="text-red-600 text-sm mt-1" role="alert">{errors.condition.message}</p>
+            <p id="condition-error" className="text-red-600 text-sm mt-1 animate-fadeIn" role="alert">
+              {errors.condition.message}
+            </p>
           )}
         </div>
 
@@ -337,7 +354,9 @@ export default function LeadForm({
             />
           </div>
           {errors.name && (
-            <p id="name-error" className="text-red-600 text-sm mt-1" role="alert">{errors.name.message}</p>
+            <p id="name-error" className="text-red-600 text-sm mt-1 animate-fadeIn" role="alert">
+              {errors.name.message}
+            </p>
           )}
         </div>
 
@@ -363,14 +382,16 @@ export default function LeadForm({
             />
           </div>
           {errors.phone && (
-            <p id="phone-error" className="text-red-600 text-sm mt-1" role="alert">{errors.phone.message}</p>
+            <p id="phone-error" className="text-red-600 text-sm mt-1 animate-fadeIn" role="alert">
+              {errors.phone.message}
+            </p>
           )}
         </div>
 
         <button
           type="submit"
           disabled={isSubmitting}
-          className="btn-primary w-full flex items-center justify-center space-x-2 text-sm py-3"
+          className="btn-primary w-full flex items-center justify-center space-x-2 text-sm py-3 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label={isSubmitting ? 'Submitting form' : 'Submit form to get cash offer'}
         >
           {isSubmitting ? (
@@ -392,4 +413,4 @@ export default function LeadForm({
       </form>
     </div>
   );
-} 
+}
