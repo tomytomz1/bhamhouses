@@ -130,7 +130,7 @@
   }
 
   /* ========================================
-     NEW FORM IMPROVEMENTS & ANIMATIONS
+     FORM IMPROVEMENTS & ANIMATIONS
      ======================================== */
 
   /* Form animations */
@@ -142,29 +142,15 @@
     animation: slideDown 0.2s ease-out;
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-4px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .animate-slideUp {
+    animation: slideUp 0.2s ease-out;
   }
 
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-8px) scaleY(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scaleY(1);
-    }
+  .animate-bounce-in {
+    animation: bounceIn 0.4s ease-out;
   }
 
-  /* Improved form input focus states */
+  /* Enhanced form input states */
   .form-input:focus {
     @apply ring-2 ring-blue-500 ring-opacity-50 border-blue-500 outline-none;
   }
@@ -173,37 +159,120 @@
     @apply ring-2 ring-blue-500 ring-opacity-50 border-blue-500;
   }
 
+  .form-input[aria-invalid="true"] {
+    @apply border-red-300 focus:border-red-500 focus:ring-red-500;
+  }
+
+  .form-input:disabled {
+    @apply opacity-50 cursor-not-allowed bg-gray-50;
+  }
+
   /* Enhanced button states */
   .btn-primary:focus {
     @apply ring-2 ring-blue-500 ring-opacity-50 outline-none;
   }
 
   .btn-primary:disabled {
-    @apply opacity-50 cursor-not-allowed transform-none hover:shadow-soft;
+    @apply opacity-50 cursor-not-allowed transform-none hover:shadow-soft hover:bg-blue-600;
   }
 
-  /* Improved checkbox styling */
-  input[type="checkbox"]:focus {
+  .btn-secondary:focus {
+    @apply ring-2 ring-green-500 ring-opacity-50 outline-none;
+  }
+
+  .btn-secondary:disabled {
+    @apply opacity-50 cursor-not-allowed transform-none hover:shadow-soft hover:bg-green-600;
+  }
+
+  .btn-outline:focus {
     @apply ring-2 ring-blue-500 ring-opacity-50 outline-none;
   }
 
-  /* Custom scrollbar for dropdown */
+  /* Improved checkbox and radio styling */
+  input[type="checkbox"]:focus,
+  input[type="radio"]:focus {
+    @apply ring-2 ring-blue-500 ring-opacity-50 outline-none;
+  }
+
+  input[type="checkbox"] {
+    @apply rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus:ring-opacity-50;
+  }
+
+  /* Enhanced dropdown styling */
+  .dropdown-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+  }
+
   .dropdown-scroll::-webkit-scrollbar {
-    width: 4px;
+    width: 6px;
   }
 
   .dropdown-scroll::-webkit-scrollbar-track {
     background: #f1f5f9;
-    border-radius: 2px;
+    border-radius: 3px;
   }
 
   .dropdown-scroll::-webkit-scrollbar-thumb {
     background: #cbd5e1;
-    border-radius: 2px;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
   }
 
   .dropdown-scroll::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
+  }
+
+  /* Loading spinner component */
+  .loading-spinner {
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  /* Success/Error states for inputs */
+  .input-success {
+    @apply border-green-300 focus:border-green-500 focus:ring-green-500;
+  }
+
+  .input-error {
+    @apply border-red-300 focus:border-red-500 focus:ring-red-500;
+  }
+
+  /* Tooltip styling */
+  .tooltip {
+    @apply absolute z-50 px-2 py-1 text-xs text-white bg-gray-900 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-200;
+  }
+
+  .tooltip.show {
+    @apply opacity-100;
+  }
+
+  /* Enhanced card hover effects */
+  .card-interactive {
+    @apply cursor-pointer hover:scale-105 active:scale-95;
+  }
+
+  /* Alert/notification components */
+  .alert {
+    @apply p-4 rounded-lg border flex items-start space-x-3;
+  }
+
+  .alert-success {
+    @apply bg-green-50 border-green-200 text-green-800;
+  }
+
+  .alert-error {
+    @apply bg-red-50 border-red-200 text-red-800;
+  }
+
+  .alert-warning {
+    @apply bg-amber-50 border-amber-200 text-amber-800;
+  }
+
+  .alert-info {
+    @apply bg-blue-50 border-blue-200 text-blue-800;
   }
 }
 
@@ -228,6 +297,19 @@
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
 
+  /* Enhanced shadow utilities */
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+  }
+
+  .shadow-glow-green {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.15);
+  }
+
+  .shadow-inner-soft {
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  }
+
   /* Viewport Height Utilities */
   .vh-screen {
     min-height: 100vh;
@@ -241,29 +323,16 @@
     padding-bottom: env(safe-area-inset-bottom);
   }
 
-  /* Hero Section Specific Utilities */
-  .hero-full-height {
-    height: 100vh;
-    height: 100dvh;
-    min-height: 100vh;
-    min-height: 100dvh;
-  }
-
-  .hero-content-container {
-    @apply relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16;
-  }
-
-  .hero-grid-layout {
-    @apply grid lg:grid-cols-2 gap-8 lg:gap-12 items-center h-full;
-  }
-
-  /* ========================================
-     NEW UTILITY IMPROVEMENTS
-     ======================================== */
-
-  /* Utility for truncating text with ellipsis */
+  /* Text and content utilities */
   .truncate-120 {
     max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .truncate-200 {
+    max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -273,4 +342,213 @@
   .focus-visible-ring {
     @apply focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-opacity-50 focus-visible:outline-none;
   }
+
+  /* Interactive state utilities */
+  .hover-lift {
+    @apply transition-transform duration-200 hover:-translate-y-1;
+  }
+
+  .hover-grow {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+
+  .active-press {
+    @apply transition-transform duration-75 active:scale-95;
+  }
+
+  /* Gradient utilities */
+  .gradient-blue {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  }
+
+  .gradient-green {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  }
+
+  .gradient-purple {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  }
+
+  /* Layout utilities */
+  .safe-area-inset {
+    padding-top: env(safe-area-inset-top);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+  }
+
+  /* Scrollbar utilities */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ========================================
+   KEYFRAME ANIMATIONS
+   ======================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scaleY(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scaleY(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-2px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(2px);
+  }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN ENHANCEMENTS
+   ======================================== */
+
+/* Mobile-first responsive typography */
+@media (max-width: 640px) {
+  .hero-section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .hero-form {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+  
+  .form-input {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hero-section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .form-input {
+    border-width: 2px;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    border: 2px solid transparent;
+  }
+  
+  .btn-outline {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-fadeIn,
+  .animate-slideDown,
+  .animate-slideUp,
+  .animate-bounce-in {
+    animation: none;
+  }
+}
+
+/* Dark mode preparation (if needed later) */
+@media (prefers-color-scheme: dark) {
+  /* Dark mode styles can be added here when needed */
 }

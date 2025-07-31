@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { MapPin, Wrench, User, Phone, Send, CheckCircle, AlertCircle, X, ChevronDown } from 'lucide-react';
+import { Wrench, User, Phone, Send, CheckCircle, AlertCircle, X, ChevronDown } from 'lucide-react';
 import { getStoredUTMParams } from '@/utils/utmTracking';
 import AddressAutocomplete from '@/components/AddressAutocomplete';
 import React from 'react';
@@ -176,20 +176,25 @@ export default function LeadForm({
   if (isSubmitted) {
     return (
       <div className="hero-form bg-white/90 backdrop-blur-sm rounded-3xl shadow-luxury border border-gray-200 p-6 max-w-sm sm:max-w-md mx-auto lg:max-w-none">
-        <div className="text-center py-4">
-          <CheckCircle className="w-10 h-10 text-green-600 mx-auto mb-3" />
+        <div className="text-center py-4 animate-bounceIn">
+          <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-4" />
           <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
-          <p className="text-gray-700 mb-3 text-sm">
+          <p className="text-gray-700 mb-4 text-sm leading-relaxed">
             We've received your information and will call you back within 24 hours to get property details.
           </p>
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-            <p className="text-xs text-blue-800">
-              <strong>What happens next?</strong><br />
-              • We'll review your property details<br />
-              • Get a fair market analysis<br />
-              • Call you back within 24 hours<br />
-              • No obligation, no pressure
-            </p>
+          <div className="alert alert-info">
+            <div className="flex items-start space-x-2">
+              <CheckCircle className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+              <div className="text-left">
+                <p className="text-sm font-medium text-blue-800 mb-1">What happens next?</p>
+                <ul className="text-xs text-blue-700 space-y-0.5">
+                  <li>• We'll review your property details</li>
+                  <li>• Get a fair market analysis</li>
+                  <li>• Call you back within 24 hours</li>
+                  <li>• No obligation, no pressure</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -204,15 +209,17 @@ export default function LeadForm({
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {/* Error Alert */}
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-start space-x-3">
-            <AlertCircle className="w-4 h-4 text-red-600 mt-0.5 flex-shrink-0" />
-            <div>
+          <div className="alert alert-error animate-fadeIn">
+            <AlertCircle className="w-4 h-4 text-red-600 flex-shrink-0" />
+            <div className="flex-1">
               <p className="text-sm font-medium text-red-800">Submission Error</p>
               <p className="text-sm text-red-700 mt-1">{error}</p>
               <button 
+                type="button"
                 onClick={() => setError(null)}
-                className="text-sm text-red-600 hover:text-red-800 mt-2 underline"
+                className="text-sm text-red-600 hover:text-red-800 mt-2 underline focus-visible-ring"
               >
                 Dismiss
               </button>
@@ -220,24 +227,23 @@ export default function LeadForm({
           </div>
         )}
 
-        {/* Property Address */}
+        {/* Property Address - Enhanced */}
         <div>
           <label htmlFor="property-address" className="block text-sm font-semibold mb-1 text-gray-900">
             Property Address *
           </label>
-          <div className="relative">
-            <AddressAutocomplete
-              value={watch('address') || ''}
-              onChange={(value) => {
-                setValue('address', value, { shouldValidate: true });
-              }}
-              placeholder="Enter your Birmingham property address"
-              error={errors.address?.message}
-            />
-          </div>
+          <AddressAutocomplete
+            value={watch('address') || ''}
+            onChange={(value) => {
+              setValue('address', value, { shouldValidate: true });
+            }}
+            placeholder="Enter your Birmingham property address"
+            error={errors.address?.message}
+            className={errors.address ? 'input-error' : watch('address') && watch('address').toLowerCase().includes('birmingham') ? 'input-success' : ''}
+          />
         </div>
 
-        {/* Property Condition - IMPROVED */}
+        {/* Property Condition - Enhanced with better animations */}
         <div>
           <label htmlFor="property-condition" className="block text-sm font-semibold mb-1 text-gray-900">
             What's Wrong With Your Property? *
@@ -246,8 +252,8 @@ export default function LeadForm({
             <button
               type="button"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className={`form-input text-sm w-full text-left flex items-center justify-between transition-colors ${
-                errors.condition ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
+              className={`form-input text-sm w-full text-left flex items-center justify-between transition-all duration-200 hover-lift focus-visible-ring ${
+                errors.condition ? 'input-error' : 'hover:border-blue-400'
               } ${selectedConditions.length > 0 ? 'text-gray-900' : 'text-gray-500'}`}
               aria-describedby={errors.condition ? 'condition-error' : undefined}
               aria-expanded={isDropdownOpen}
@@ -271,25 +277,25 @@ export default function LeadForm({
               />
             </button>
 
-            {/* Selected conditions display - Only show if conditions are selected */}
+            {/* Selected conditions display */}
             {selectedConditions.length > 0 && (
-              <div className="mt-2">
+              <div className="mt-2 animate-fadeIn">
                 <div className="flex flex-wrap gap-1">
                   {selectedConditions.map(condition => {
                     const displayText = propertyConditions.find(c => c.value === condition)?.label;
                     return (
                       <span
                         key={condition}
-                        className="inline-flex items-center gap-1 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full animate-fadeIn"
+                        className="inline-flex items-center gap-1 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full animate-fadeIn hover-grow"
                       >
-                        <span className="truncate max-w-[120px]">{displayText}</span>
+                        <span className="truncate-120">{displayText}</span>
                         <button
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
                             removeCondition(condition);
                           }}
-                          className="hover:bg-blue-200 rounded-full p-0.5 transition-colors"
+                          className="hover:bg-blue-200 rounded-full p-0.5 transition-colors active-press focus-visible-ring"
                           aria-label={`Remove ${displayText}`}
                         >
                           <X className="w-3 h-3" />
@@ -301,14 +307,14 @@ export default function LeadForm({
               </div>
             )}
 
-            {/* Dropdown options */}
+            {/* Dropdown options - Enhanced */}
             {isDropdownOpen && (
-              <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-xl shadow-lg max-h-60 overflow-auto animate-slideDown">
+              <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-xl shadow-luxury max-h-60 overflow-auto animate-slideDown dropdown-scroll">
                 <div className="py-1">
-                  {propertyConditions.map((condition, index) => (
+                  {propertyConditions.map((condition) => (
                     <label
                       key={condition.value}
-                      className="flex items-center px-3 py-2 hover:bg-gray-50 cursor-pointer transition-colors"
+                      className="flex items-center px-3 py-2 hover:bg-gray-50 cursor-pointer transition-colors hover-lift"
                       role="option"
                       aria-selected={selectedConditions.includes(condition.value)}
                     >
@@ -316,7 +322,7 @@ export default function LeadForm({
                         type="checkbox"
                         checked={selectedConditions.includes(condition.value)}
                         onChange={() => toggleCondition(condition.value)}
-                        className="mr-3 h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+                        className="mr-3 h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 focus-visible-ring"
                         tabIndex={-1}
                       />
                       <span className="text-sm text-gray-700 select-none">{condition.label}</span>
@@ -327,13 +333,14 @@ export default function LeadForm({
             )}
           </div>
           {errors.condition && (
-            <p id="condition-error" className="text-red-600 text-sm mt-1 animate-fadeIn" role="alert">
-              {errors.condition.message}
+            <p id="condition-error" className="text-red-600 text-sm mt-1 animate-fadeIn flex items-center space-x-1" role="alert">
+              <AlertCircle className="w-3 h-3" />
+              <span>{errors.condition.message}</span>
             </p>
           )}
         </div>
 
-        {/* Full Name */}
+        {/* Full Name - Enhanced */}
         <div>
           <label htmlFor="full-name" className="block text-sm font-semibold mb-1 text-gray-900">
             Full Name *
@@ -345,22 +352,24 @@ export default function LeadForm({
               {...register('name')}
               type="text"
               placeholder="Enter your full name"
-              className="form-input pl-10 text-sm w-full"
+              className={`form-input pl-10 text-sm w-full transition-all duration-200 hover-lift focus-visible-ring ${
+                errors.name ? 'input-error' : watch('name') ? 'input-success' : ''
+              }`}
               aria-required="true"
               aria-invalid={errors.name ? 'true' : 'false'}
               aria-describedby={errors.name ? 'name-error' : undefined}
               autoComplete="name"
-              name="name"
             />
           </div>
           {errors.name && (
-            <p id="name-error" className="text-red-600 text-sm mt-1 animate-fadeIn" role="alert">
-              {errors.name.message}
+            <p id="name-error" className="text-red-600 text-sm mt-1 animate-fadeIn flex items-center space-x-1" role="alert">
+              <AlertCircle className="w-3 h-3" />
+              <span>{errors.name.message}</span>
             </p>
           )}
         </div>
 
-        {/* Phone Number */}
+        {/* Phone Number - Enhanced */}
         <div>
           <label htmlFor="phone" className="block text-sm font-semibold mb-1 text-gray-900">
             Phone Number *
@@ -372,31 +381,34 @@ export default function LeadForm({
               {...register('phone')}
               type="tel"
               placeholder="Phone number"
-              className="form-input pl-10 text-sm w-full"
+              className={`form-input pl-10 text-sm w-full transition-all duration-200 hover-lift focus-visible-ring ${
+                errors.phone ? 'input-error' : watch('phone') && watch('phone').length >= 10 ? 'input-success' : ''
+              }`}
               onChange={handlePhoneChange}
               aria-required="true"
               aria-invalid={errors.phone ? 'true' : 'false'}
               aria-describedby={errors.phone ? 'phone-error' : undefined}
               autoComplete="tel"
-              name="phone"
             />
           </div>
           {errors.phone && (
-            <p id="phone-error" className="text-red-600 text-sm mt-1 animate-fadeIn" role="alert">
-              {errors.phone.message}
+            <p id="phone-error" className="text-red-600 text-sm mt-1 animate-fadeIn flex items-center space-x-1" role="alert">
+              <AlertCircle className="w-3 h-3" />
+              <span>{errors.phone.message}</span>
             </p>
           )}
         </div>
 
+        {/* Submit Button - Enhanced */}
         <button
           type="submit"
           disabled={isSubmitting}
-          className="btn-primary w-full flex items-center justify-center space-x-2 text-sm py-3 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="btn-primary w-full flex items-center justify-center space-x-2 text-sm py-3 transition-all duration-200 hover-lift active-press focus-visible-ring disabled:transform-none disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label={isSubmitting ? 'Submitting form' : 'Submit form to get cash offer'}
         >
           {isSubmitting ? (
             <>
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              <div className="loading-spinner w-4 h-4"></div>
               <span>Submitting...</span>
             </>
           ) : (
@@ -407,7 +419,8 @@ export default function LeadForm({
           )}
         </button>
 
-        <p className="text-xs text-center text-gray-700">
+        {/* Privacy Notice */}
+        <p className="text-xs text-center text-gray-700 leading-relaxed">
           By submitting this form, you agree to be contacted by BHAM Houses regarding your property.
         </p>
       </form>
