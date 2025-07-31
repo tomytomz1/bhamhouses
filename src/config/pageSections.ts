@@ -39,25 +39,25 @@ export const birminghamSpecializationConfig: SectionConfig = {
   type: 'specialization',
   enabled: true,
   props: {
-    title: "Birmingham's ONLY Property Disaster Specialists",
-    subtitle: "We DO NOT buy nice Birmingham homes. We exclusively help Birmingham residents escape property nightmares that traditional real estate can't handle. If your Birmingham house is in good condition, please use a realtor.",
+    title: "Birmingham's Cash Home Buyers for Distressed Properties",
+    subtitle: "We buy houses that are difficult or impossible to sell on MLS - distressed properties, properties with title issues, homes that need significant work, foreclosures, and situations where you need to sell fast. If your Birmingham house is in good condition and you have months to wait for the right buyer, we recommend working with a realtor for the best price.",
     features: [
       {
         icon: MapPin,
-        title: "Birmingham Disasters Only",
-        description: "Birmingham fire damage, Michigan foundation collapse, city code violations, Birmingham hoarding complaints, inherited disasters - the bigger the Birmingham nightmare, the better.",
+        title: "Distressed Properties",
+        description: "Birmingham fire damage, foundation issues, city code violations, inherited properties, probate situations - we buy properties that need special attention.",
         color: "blue"
       },
       {
         icon: DollarSign,
-        title: "Birmingham Emergency Response",
-        description: "Birmingham health crisis? Michigan divorce? Auto industry job loss? Oakland County liens? Detroit-area probate nightmare? We specialize in desperate Michigan situations.",
+        title: "Fair Cash Offers",
+        description: "Relocating for work? Inherited a property? Need to sell quickly? We provide fair cash offers for challenging situations.",
         color: "green"
       },
       {
         icon: Clock,
-        title: "Oakland County Crisis Closings",
-        description: "Oakland County foreclosure next week? Birmingham house condemned? We can close emergency Michigan deals in days when Birmingham families are desperate.",
+        title: "Quick Closings",
+        description: "Need to close quickly? We can accommodate your timeline. Whether it's 7 days or 90 days, we work with your schedule.",
         color: "orange"
       }
     ]
@@ -70,8 +70,8 @@ export const bottomCTAConfig: SectionConfig = {
   type: 'cta',
   enabled: true,
   props: {
-    title: "Got a Birmingham Property Nightmare?",
-    subtitle: "We specialize in problems others won't touch. Emergency situations, distressed properties, and impossible cases are our specialty.",
+    title: "Need to Sell Your Birmingham Home?",
+    subtitle: "We provide fair cash offers for properties that are difficult to sell through traditional real estate. Whether it's condition, timing, or circumstances - we're here to help.",
     actions: [
       {
         type: 'phone',

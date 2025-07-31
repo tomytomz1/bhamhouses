@@ -73,5 +73,5 @@ export const leadSubmissionLimiter = rateLimit({
 
 export const addressSearchLimiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
-  maxRequests: 30, // 30 address searches per minute per IP
+  maxRequests: 100, // 100 address searches per minute per IP (increased from 30)
 });

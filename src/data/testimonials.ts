@@ -3,34 +3,34 @@ import { Testimonial } from '@/types';
 export const testimonials: Testimonial[] = [
   {
     id: '1',
-    name: 'Staff Sgt. Mike T.',
+    name: 'Mike T.',
     location: 'Birmingham Military Family',
     rating: 5,
-    content: 'Got PCS orders to Germany with 30 days notice. Birmingham house had tenant damage - holes in walls, carpet destroyed, kitchen trashed. Military housing office said "impossible timeline." BHAM Houses closed in 18 days, saved my military career.',
-    propertyType: 'Military PCS Emergency'
+    content: 'Got PCS orders with 30 days notice. Our Birmingham house needed repairs and we didn\'t have time to fix it up. BHAM Houses gave us a fair offer and closed in 18 days, making our military move stress-free.',
+    propertyType: 'Military Relocation'
   },
   {
     id: '2',
     name: 'Rebecca S.',
-    location: 'Oakland County Bankruptcy',
+    location: 'Oakland County',
     rating: 5,
-    content: 'Small business failed, bankruptcy filing deadline approaching. Birmingham house was only asset left but needed $50K in repairs. Lawyer said "you\'re screwed." BHAM Houses bought it as-is, gave me funds to start over.',
-    propertyType: 'Business Failure + Bankruptcy'
+    content: 'Inherited my parents\' Birmingham home but it needed significant repairs. I couldn\'t afford to fix it up and didn\'t want to deal with contractors. BHAM Houses bought it as-is and gave me a fair price.',
+    propertyType: 'Inherited Property'
   },
   {
     id: '3',
     name: 'Tom & Linda M.',
-    location: 'Birmingham Elderly Care Crisis',
+    location: 'Birmingham',
     rating: 5,
-    content: 'Mom\'s dementia got worse, needed memory care facility deposit of $75K immediately. Birmingham house was our only asset but needed foundation work. BHAM Houses understood the emergency and closed in 12 days. Mom got the care she needed.',
-    propertyType: 'Elderly Parent Care Emergency'
+    content: 'Needed to sell our Birmingham home quickly to move closer to family. The house needed some work and we didn\'t want to deal with showings and repairs. BHAM Houses made the process simple and fair.',
+    propertyType: 'Quick Sale Needed'
   },
   {
     id: '4',
     name: 'Carlos R.',
-    location: 'Birmingham Rental Nightmare',
+    location: 'Birmingham',
     rating: 5,
-    content: 'Tenant from hell destroyed my rental property - meth lab in basement, house condemned, $100K in damage. Insurance denied claim, I was bankrupt paying mortgage on uninhabitable house. BHAM Houses bought my nightmare and saved my credit.',
-    propertyType: 'Rental Property Disaster'
+    content: 'Had a rental property with extensive damage from tenants. The repairs were too expensive and I wanted out. BHAM Houses bought it as-is and saved me from a financial headache.',
+    propertyType: 'Rental Property Issues'
   }
 ]; 

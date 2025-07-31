@@ -4,22 +4,22 @@ export default function ProcessSection() {
   const steps = [
     {
       icon: Phone,
-      title: 'Tell Us Your Birmingham Disaster',
-      description: 'Call our Birmingham crisis line. Describe your nightmare: foundation damage from Michigan freeze-thaw, fire from faulty furnace, Birmingham code violations, Oakland County foreclosure, inherited family disaster - the worse, the better.',
+      title: 'Tell Us About Your Situation',
+      description: 'Call our Birmingham office or fill out our form. Describe your property and circumstances - whether it\'s condition issues, timing constraints, or other challenges that make selling difficult.',
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
     },
     {
       icon: FileText,
-      title: 'We Visit Your Birmingham Nightmare',
-      description: 'We\'ll drive to your Birmingham property and assess the disaster. Structural collapse? Mold from Michigan humidity? Neighbor complaints? City fines? No judgment - we make cash offers on disasters.',
+      title: 'We Assess Your Property',
+      description: 'We\'ll visit your Birmingham property to understand its condition and your situation. We provide honest assessments and fair cash offers based on what we see.',
       color: 'text-green-600',
       bgColor: 'bg-green-50',
     },
     {
       icon: CheckCircle,
-      title: 'Birmingham Emergency Closings',
-      description: 'Foreclosure hearing in Oakland County next week? Birmingham code enforcement deadline? Hospital bills crushing you? We close emergency deals in Michigan in days, not months.',
+      title: 'Quick, Hassle-Free Closing',
+      description: 'Need to close quickly? We can accommodate your timeline. Whether it\'s 7 days or 90 days, we work with your schedule to make the process as smooth as possible.',
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
     },
@@ -30,11 +30,11 @@ export default function ProcessSection() {
       <div className="container-max">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            How We Solve Birmingham Property Disasters
+            How We Help Birmingham Homeowners Sell Difficult Properties
           </h2>
           <div className="text-xl text-gray-700 max-w-3xl mx-auto">
-            <p className="mb-2">Birmingham homeowner facing property crisis? Here's our emergency response process.</p>
-            <p className="font-semibold text-red-600">Birmingham disasters get priority response - we move fast when you're desperate.</p>
+            <p className="mb-2">Birmingham homeowner with a challenging property situation? Here\'s our simple, professional process.</p>
+            <p className="font-semibold text-blue-600">We provide fair cash offers and work with your timeline to make selling as easy as possible.</p>
           </div>
         </div>
 
@@ -68,24 +68,24 @@ export default function ProcessSection() {
         </div>
 
         <div className="text-center mt-12">
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
-            <div className="text-yellow-800 font-bold text-lg mb-2">
-              🚨 Birmingham Property Emergency? Don't Wait!
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+            <div className="text-blue-800 font-bold text-lg mb-2">
+              💡 Need to Sell Your Birmingham Home Quickly?
             </div>
-            <p className="text-yellow-700 text-sm">
-              Oakland County foreclosure notice? Birmingham code enforcement breathing down your neck? House falling apart and can't afford repairs? We respond to Birmingham crises immediately.
+            <p className="text-blue-700 text-sm">
+              Whether it\'s condition issues, timing constraints, or other circumstances - we provide fair cash offers for properties that are difficult to sell through traditional real estate.
             </p>
           </div>
           <p className="text-xl text-gray-700 mb-6">
-            Birmingham homeowner ready to escape your property nightmare? We turn impossible situations into cash.
+            Birmingham homeowner ready to sell your challenging property? We\'re here to help with a fair, professional solution.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/contact" className="btn-primary inline-flex items-center space-x-2">
-              <span>Get Birmingham Emergency Help</span>
+              <span>Get Your Fair Cash Offer</span>
             </a>
             <a href="tel:5863241248" className="btn-outline inline-flex items-center space-x-2">
               <Phone className="w-5 h-5" />
-              <span>Birmingham Crisis Line: (586) 324-1248</span>
+              <span>Call (586) 324-1248</span>
             </a>
           </div>
         </div>

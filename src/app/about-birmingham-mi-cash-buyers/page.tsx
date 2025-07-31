@@ -72,7 +72,7 @@ export default function AboutPage() {
                     <span className="text-gradient">BHAM Houses</span>
                   </h1>
                   <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
-                    Birmingham, Michigan's only dedicated cash home buying company. We specialize exclusively in Birmingham properties, giving us deep local market knowledge that competitors can't match.
+                    Birmingham, Michigan's dedicated cash home buying company. We specialize in Birmingham properties, giving us deep local market knowledge that competitors can't match.
                   </p>
                 </div>
 
@@ -80,7 +80,7 @@ export default function AboutPage() {
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
                   <div className="flex items-center space-x-1 sm:space-x-2 text-gray-700">
                     <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
-                    <span className="text-xs sm:text-sm font-medium">Birmingham Only</span>
+                    <span className="text-xs sm:text-sm font-medium">Birmingham Focus</span>
                   </div>
                   <div className="flex items-center space-x-1 sm:space-x-2 text-gray-700">
                     <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />

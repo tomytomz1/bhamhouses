@@ -6,11 +6,9 @@ import { Phone, Menu, X } from 'lucide-react';
 import { CONTACT_INFO } from '@/utils/contactInfo';
 
 const navigation = [
-  { name: 'Home', href: '/' },
   { name: 'How It Works', href: '/how-it-works' },
   { name: 'About Us', href: '/about-birmingham-mi-cash-buyers' },
   { name: 'Reviews', href: '/reviews' },
-  { name: 'Market Report', href: '/birmingham-mi-real-estate-market' },
   { name: 'FAQ', href: '/birmingham-mi-house-selling-faq' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -22,14 +20,11 @@ export default function Header() {
     <header className="bg-white shadow-soft sticky top-0 z-40">
       <div className="container-max">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo and Tagline */}
-          <div className="flex items-center space-x-4">
+          {/* Logo */}
+          <div className="flex items-center">
             <Link href="/" className="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
               BHAM Houses
             </Link>
-            <div className="hidden lg:block text-sm text-red-600 border-l border-gray-300 pl-4 font-semibold">
-              Problem Properties Only ⚠️
-            </div>
           </div>
 
           {/* Desktop Navigation - Centered */}
@@ -45,7 +40,7 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Contact Info and CTA */}
+          {/* Contact Info */}
           <div className="hidden lg:flex items-center space-x-4">
             <a
               href={`tel:${CONTACT_INFO.phoneRaw}`}
@@ -58,7 +53,7 @@ export default function Header() {
               href="/contact"
               className="btn-primary text-sm px-4 py-2"
             >
-              Sell Problem Property
+              Get Cash Offer
             </Link>
           </div>
 

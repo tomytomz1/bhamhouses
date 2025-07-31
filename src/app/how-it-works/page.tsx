@@ -140,8 +140,8 @@ export default function HowItWorksPage() {
                 <h3 className="text-lg font-semibold text-gray-900">As-Is Purchase</h3>
               </div>
               <p className="text-gray-600">
-                We buy Birmingham problem properties only. Fire damage, foundation collapse, 
-                hoarding situations - the worse the condition, the better.
+                We buy Birmingham properties that are difficult to sell through traditional real estate. Fire damage, foundation issues, 
+                inherited properties - we handle challenging situations.
               </p>
             </div>
 

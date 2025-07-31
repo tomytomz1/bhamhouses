@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Clock, DollarSign, MapPin, Handshake, Phone } from 'lucide-react';
+import { Clock, DollarSign, MapPin, Phone } from 'lucide-react';
 import LeadForm from '@/components/LeadForm';
 import { CONTACT_INFO } from '@/utils/contactInfo';
 import Icon from '@/components/ui/Icon';
@@ -20,13 +20,12 @@ interface HeroSectionProps {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
-  title = "Birmingham Property Nightmare? House Falling Apart? We Specialize in Impossible Situations",
-      subtitle = "When your Birmingham house becomes a burden instead of an asset, we step in. Military deployment, bankruptcy, death in family, disability, business failure, rental nightmares, legal troubles, foreclosure, foundation collapse, fire damage, hoarding, elderly care costs - we've solved them all.",
+  title = "Sell Your Birmingham Home Fast",
+      subtitle = "We buy houses that are difficult to sell through traditional real estate. Fair cash offers, quick closings, no repairs needed.",
   benefits = [
-          { icon: Clock, text: "Emergency Closings", color: "blue" },
-    { icon: DollarSign, text: "Nightmare Properties", color: "green" },
-    { icon: MapPin, text: "Birmingham Only", color: "orange" },
-          { icon: Handshake, text: "Crisis Specialists", color: "blue" }
+          { icon: Clock, text: "Quick Closings", color: "blue" },
+    { icon: DollarSign, text: "Fair Cash Offers", color: "green" },
+    { icon: MapPin, text: "Birmingham Focus", color: "orange" }
   ],
   showForm = true,
   backgroundImage = "/images/downtown-birmingham-mi-2025.webp",
@@ -61,10 +60,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="w-full max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center h-full">
             {/* Left Column - Content */}
-            <div className="space-y-4 sm:space-y-6">
+            <div className="space-y-6">
               {/* Main Headline */}
-              <div className="space-y-3 sm:space-y-4 text-center">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+              <div className="space-y-4 text-center lg:text-left">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                   {title.includes('Birmingham, MI') ? (
                     <>
                       {title.split('Birmingham, MI')[0]}
@@ -75,55 +74,37 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                     title
                   )}
                 </h1>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
-                  Military orders? Bankruptcy filing? Death in family? Disability forcing relocation? Business failed?
-                </p>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
-                  Nightmare tenants? Lawsuit forcing sale? Elderly care costs? Can't maintain property anymore?
-                </p>
-                <p className="text-sm sm:text-bold md:text-lg lg:text-xl text-red-700 leading-relaxed font-semibold">
-                  We turn Birmingham property disasters into cash - fast.
+                <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+                  {subtitle}
                 </p>
               </div>
 
               {/* Benefits Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
+              <div className="flex justify-center lg:justify-start space-x-6">
                 {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-center space-x-1 sm:space-x-2 text-gray-700">
+                  <div key={index} className="flex items-center space-x-2 text-gray-700">
                     <Icon 
                       icon={benefit.icon} 
                       size="sm" 
                       color={getIconColor(benefit.color)}
                     />
-                    <span className="text-xs sm:text-sm font-medium">{benefit.text}</span>
+                    <span className="text-sm font-medium">{benefit.text}</span>
                   </div>
                 ))}
               </div>
 
               {/* Call to Action */}
-              <div className="flex justify-center">
-                <div className="grid grid-cols-2 gap-6 sm:gap-8 pt-2">
-                  <div className="flex items-center space-x-2 sm:space-x-3 text-base sm:text-lg md:text-xl font-bold text-blue-600">
-                    <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span>Call {CONTACT_INFO.phone}</span>
-                  </div>
-                  <div className="text-gray-600">
-                    <div className="font-medium text-xs sm:text-sm">Birmingham Crisis Response</div>
-                    <div className="text-xs">No Situation Too Desperate</div>
-                  </div>
+              <div className="flex justify-center lg:justify-start">
+                <div className="flex items-center space-x-4 text-lg font-semibold text-blue-600">
+                  <Phone className="w-5 h-5" />
+                  <span>Call {CONTACT_INFO.phone}</span>
                 </div>
               </div>
             </div>
 
             {/* Right Column - Form */}
             {showForm && (
-              <div className="hero-form bg-white/90 backdrop-blur-sm rounded-3xl shadow-luxury border border-gray-200 p-4 sm:p-6 max-w-sm sm:max-w-md mx-auto lg:max-w-none">
-                <div className="text-center mb-3 sm:mb-4">
-                  <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Birmingham Property Emergency? Get Help Now</h2>
-                  <p className="text-xs sm:text-sm text-gray-600">Facing foreclosure? House condemned? Health crisis? We specialize in impossible Birmingham property situations.</p>
-                </div>
-                <LeadForm variant="inline" />
-              </div>
+              <LeadForm variant="inline" />
             )}
           </div>
         </div>
